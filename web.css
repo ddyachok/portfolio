@@ -400,6 +400,39 @@ footer{
   margin-top:26px
 }
 
+/* ASCII glitch effect for buttons */
+@keyframes glitch-text {
+  0%, 100% {
+    text-shadow: none;
+  }
+  10% {
+    text-shadow: 2px 0 #ff0000, -2px 0 #00ffff;
+    transform: skew(1deg);
+  }
+  20% {
+    text-shadow: -2px 0 #ff0000, 2px 0 #00ffff;
+    transform: skew(-1deg);
+  }
+  30% {
+    text-shadow: 2px 0 #00ff00, -2px 0 #ff00ff;
+    transform: skew(0.5deg);
+  }
+  40%, 60% {
+    text-shadow: none;
+    transform: skew(0);
+  }
+  50% {
+    text-shadow: 1px 0 #ff0000, -1px 0 #00ffff;
+    transform: skew(-0.5deg);
+  }
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(255,255,255,0.1);
+  animation: glitch-text 0.3s ease-in-out;
+}
+
 /* ascii/glitch keyframes for tiny decorative motion */
 @keyframes flicker {
   0%{opacity:1}
