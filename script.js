@@ -1,10 +1,3 @@
-//
-//  script.js
-//  
-//
-//  Created by Danylo Dyachok on 11.08.2025.
-//
-
 // Custom cursor
 const cursor = document.querySelector('.cursor');
 const cursorRing = document.querySelector('.cursor-ring');
@@ -30,13 +23,23 @@ interactiveElements.forEach(el => {
   });
 });
 
-// Image Viewer with Glitch Transition
+// Image Viewer with Advanced Scrolling
 const portrait = document.getElementById('portrait');
 const imageViewer = document.getElementById('imageViewer');
 const closeViewer = document.getElementById('closeViewer');
 const glitchTransition = document.getElementById('glitchTransition');
-const viewerImage = imageViewer.querySelector('img');
-const viewerContent = imageViewer.querySelector('.image-viewer-content');
+
+let viewerImage = null;
+let viewerViewport = null;
+let imageData = {
+  scale: 1,
+  translateX: 0,
+  translateY: 0,
+  naturalWidth: 0,
+  naturalHeight: 0,
+  viewportWidth: 0,
+  viewportHeight: 0
+};
 
 function openImageViewer() {
   // Trigger glitch effect
@@ -45,7 +48,8 @@ function openImageViewer() {
   // Open viewer with slight delay for glitch effect
   setTimeout(() => {
     imageViewer.classList.add('active');
-    setupImageScrolling();
+    setupImageViewer();
+    cursorRing.classList.add('viewing');
   }, 100);
   
   // Remove glitch effect after animation
@@ -61,7 +65,8 @@ function closeImageViewer() {
   // Close viewer
   setTimeout(() => {
     imageViewer.classList.remove('active');
-    removeImageScrolling();
+    cleanupImageViewer();
+    cursorRing.classList.remove('viewing');
   }, 200);
   
   // Remove glitch effect
@@ -70,31 +75,166 @@ function closeImageViewer() {
   }, 600);
 }
 
-function setupImageScrolling() {
-  viewerContent.addEventListener('mousemove', handleImageScroll);
+function setupImageViewer() {
+  viewerImage = imageViewer.querySelector('img');
+  viewerViewport = imageViewer.querySelector('.image-viewer-viewport');
+  
+  if (!viewerViewport) {
+    // Create viewport if it doesn't exist
+    const content = imageViewer.querySelector('.image-viewer-content');
+    const viewport = document.createElement('div');
+    viewport.className = 'image-viewer-viewport';
+    const img = content.querySelector('img');
+    content.appendChild(viewport);
+    viewport.appendChild(img);
+    viewerViewport = viewport;
+  }
+  
+  // Wait for image to load and get dimensions
+  viewerImage.onload = function() {
+    calculateImageDimensions();
+    setupScrolling();
+  };
+  
+  // If image is already loaded
+  if (viewerImage.complete) {
+    calculateImageDimensions();
+    setupScrolling();
+  }
 }
 
-function removeImageScrolling() {
-  viewerContent.removeEventListener('mousemove', handleImageScroll);
-  // Reset image position
-  viewerImage.style.transform = 'translate(0%, 0%)';
+function calculateImageDimensions() {
+  imageData.naturalWidth = viewerImage.naturalWidth;
+  imageData.naturalHeight = viewerImage.naturalHeight;
+  imageData.viewportWidth = viewerViewport.clientWidth;
+  imageData.viewportHeight = viewerViewport.clientHeight;
+  
+  // Calculate initial scale to fit image
+  const scaleX = imageData.viewportWidth / imageData.naturalWidth;
+  const scaleY = imageData.viewportHeight / imageData.naturalHeight;
+  imageData.scale = Math.max(scaleX, scaleY) * 1.2; // 20% larger than viewport
+  
+  // Reset position
+  imageData.translateX = 0;
+  imageData.translateY = 0;
+  
+  updateImageTransform();
+  updateZoomIndicator();
+}
+
+function setupScrolling() {
+  viewerViewport.addEventListener('mousemove', handleImageScroll);
+  viewerViewport.addEventListener('wheel', handleZoom, { passive: false });
+}
+
+function cleanupImageViewer() {
+  if (viewerViewport) {
+    viewerViewport.removeEventListener('mousemove', handleImageScroll);
+    viewerViewport.removeEventListener('wheel', handleZoom);
+  }
+  
+  // Reset image transform
+  if (viewerImage) {
+    viewerImage.style.transform = 'translate(-50%, -50%) scale(1)';
+  }
+  
+  hideZoomIndicator();
 }
 
 function handleImageScroll(e) {
-  const rect = viewerContent.getBoundingClientRect();
-  const x = e.clientX - rect.left;
-  const y = e.clientY - rect.top;
+  const rect = viewerViewport.getBoundingClientRect();
+  const centerX = rect.width / 2;
+  const centerY = rect.height / 2;
   
-  // Calculate relative position (0 to 1)
-  const relativeX = x / rect.width;
-  const relativeY = y / rect.height;
+  // Get mouse position relative to center
+  const mouseX = e.clientX - rect.left - centerX;
+  const mouseY = e.clientY - rect.top - centerY;
   
-  // Calculate scroll amounts (adjust these values to control scroll sensitivity)
-  const scrollX = (relativeX - 0.5) * 30; // 30% max scroll
-  const scrollY = (relativeY - 0.5) * 30; // 30% max scroll
+  // Calculate maximum translation based on scale
+  const scaledWidth = imageData.naturalWidth * imageData.scale;
+  const scaledHeight = imageData.naturalHeight * imageData.scale;
   
-  // Apply transform to image
-  viewerImage.style.transform = `translate(${-scrollX}%, ${-scrollY}%)`;
+  const maxTranslateX = Math.max(0, (scaledWidth - imageData.viewportWidth) / 2);
+  const maxTranslateY = Math.max(0, (scaledHeight - imageData.viewportHeight) / 2);
+  
+  // Calculate translation based on cursor position (more responsive)
+  const translateFactorX = maxTranslateX / centerX;
+  const translateFactorY = maxTranslateY / centerY;
+  
+  imageData.translateX = -mouseX * translateFactorX * 0.8; // 0.8 for smoother movement
+  imageData.translateY = -mouseY * translateFactorY * 0.8;
+  
+  // Clamp translation
+  imageData.translateX = Math.max(-maxTranslateX, Math.min(maxTranslateX, imageData.translateX));
+  imageData.translateY = Math.max(-maxTranslateY, Math.min(maxTranslateY, imageData.translateY));
+  
+  updateImageTransform();
+  showZoomIndicator();
+}
+
+function handleZoom(e) {
+  e.preventDefault();
+  
+  const zoomFactor = 0.1;
+  const oldScale = imageData.scale;
+  
+  if (e.deltaY < 0) {
+    // Zoom in
+    imageData.scale *= (1 + zoomFactor);
+  } else {
+    // Zoom out
+    imageData.scale *= (1 - zoomFactor);
+  }
+  
+  // Limit zoom range
+  const minScale = Math.min(
+    imageData.viewportWidth / imageData.naturalWidth,
+    imageData.viewportHeight / imageData.naturalHeight
+  );
+  const maxScale = 3;
+  
+  imageData.scale = Math.max(minScale, Math.min(maxScale, imageData.scale));
+  
+  // Adjust translation based on zoom change
+  const scaleRatio = imageData.scale / oldScale;
+  imageData.translateX *= scaleRatio;
+  imageData.translateY *= scaleRatio;
+  
+  updateImageTransform();
+  updateZoomIndicator();
+}
+
+function updateImageTransform() {
+  if (viewerImage) {
+    viewerImage.style.transform =
+      `translate(calc(-50% + ${imageData.translateX}px), calc(-50% + ${imageData.translateY}px)) scale(${imageData.scale})`;
+  }
+}
+
+function updateZoomIndicator() {
+  const indicator = imageViewer.querySelector('.image-viewer-zoom-indicator');
+  if (indicator) {
+    const percentage = Math.round(imageData.scale * 100);
+    indicator.textContent = `${percentage}%`;
+  }
+}
+
+function showZoomIndicator() {
+  const indicator = imageViewer.querySelector('.image-viewer-zoom-indicator');
+  if (indicator) {
+    indicator.style.opacity = '1';
+    clearTimeout(indicator.hideTimeout);
+    indicator.hideTimeout = setTimeout(() => {
+      indicator.style.opacity = '0';
+    }, 2000);
+  }
+}
+
+function hideZoomIndicator() {
+  const indicator = imageViewer.querySelector('.image-viewer-zoom-indicator');
+  if (indicator) {
+    indicator.style.opacity = '0';
+  }
 }
 
 portrait.addEventListener('click', openImageViewer);
