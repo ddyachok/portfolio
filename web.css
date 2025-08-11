@@ -119,6 +119,7 @@ html,body{
   filter: contrast(1.1) saturate(0.9);
   transition: transform 0.2s ease-out;
   will-change: transform;
+  z-index: 1;
 }
 
 .image-viewer-controls {
@@ -147,6 +148,8 @@ html,body{
   backdrop-filter: blur(10px);
   cursor: pointer;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  position: relative;
+  z-index: 25001;
 }
 
 .image-viewer-close:hover {
@@ -168,6 +171,7 @@ html,body{
   font-size: 12px;
   color: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(10px);
+  z-index: 25000;
 }
 
 .image-viewer-zoom-indicator {
@@ -184,6 +188,7 @@ html,body{
   backdrop-filter: blur(10px);
   opacity: 0;
   transition: opacity 0.3s ease;
+  z-index: 25000;
 }
 
 .image-viewer-close {
