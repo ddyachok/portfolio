@@ -35,6 +35,8 @@ const portrait = document.getElementById('portrait');
 const imageViewer = document.getElementById('imageViewer');
 const closeViewer = document.getElementById('closeViewer');
 const glitchTransition = document.getElementById('glitchTransition');
+const viewerImage = imageViewer.querySelector('img');
+const viewerContent = imageViewer.querySelector('.image-viewer-content');
 
 function openImageViewer() {
   // Trigger glitch effect
@@ -43,6 +45,7 @@ function openImageViewer() {
   // Open viewer with slight delay for glitch effect
   setTimeout(() => {
     imageViewer.classList.add('active');
+    setupImageScrolling();
   }, 100);
   
   // Remove glitch effect after animation
@@ -58,12 +61,40 @@ function closeImageViewer() {
   // Close viewer
   setTimeout(() => {
     imageViewer.classList.remove('active');
+    removeImageScrolling();
   }, 200);
   
   // Remove glitch effect
   setTimeout(() => {
     glitchTransition.classList.remove('active');
   }, 600);
+}
+
+function setupImageScrolling() {
+  viewerContent.addEventListener('mousemove', handleImageScroll);
+}
+
+function removeImageScrolling() {
+  viewerContent.removeEventListener('mousemove', handleImageScroll);
+  // Reset image position
+  viewerImage.style.transform = 'translate(0%, 0%)';
+}
+
+function handleImageScroll(e) {
+  const rect = viewerContent.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+  
+  // Calculate relative position (0 to 1)
+  const relativeX = x / rect.width;
+  const relativeY = y / rect.height;
+  
+  // Calculate scroll amounts (adjust these values to control scroll sensitivity)
+  const scrollX = (relativeX - 0.5) * 30; // 30% max scroll
+  const scrollY = (relativeY - 0.5) * 30; // 30% max scroll
+  
+  // Apply transform to image
+  viewerImage.style.transform = `translate(${-scrollX}%, ${-scrollY}%)`;
 }
 
 portrait.addEventListener('click', openImageViewer);
