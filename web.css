@@ -1073,7 +1073,7 @@ footer {
 
 .ascii-logo {
   font-family: var(--mono);
-  font-size: 14px;
+  font-size: 20px;
   line-height: 1;
   color: var(--white);
   white-space: pre;
@@ -1287,7 +1287,7 @@ footer {
 @media (max-width: 768px) {
   .ascii-nav { display: none; }
   .mobile-menu-toggle { display: block; }
-  .ascii-logo { font-size: 12px; }
+  .ascii-logo { font-size: 20px; }
   .nav-path { display: none; }
 }
 
