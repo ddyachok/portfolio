@@ -7,786 +7,7 @@
 <title>Danylo Dyachok — iOS Developer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
-<style>
-/* Include the mobile-responsive CSS here */
-:root{
-  --bg:#0a0a0a;
-  --paper:#111;
-  --accent1: rgb(58,46,71);
-  --accent2: rgb(25,25,25);
-  --white:#f6f6f6;
-  --mono: 'Share Tech Mono', monospace;
-  --ui: 'Inter', system-ui, sans-serif;
-  --vh: 1vh;
-}
-
-html,body{
-  height:100%;
-  margin:0;
-  background:linear-gradient(180deg,var(--bg) 0%, #050505 100%);
-  color:var(--white);
-  font-family:var(--ui);
-  -webkit-font-smoothing:antialiased;
-  cursor:none;
-  -webkit-tap-highlight-color: transparent;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  user-select: none;
-}
-
-/* Media query to detect touch devices and remove custom cursor */
-@media (hover: none) and (pointer: coarse) {
-  html, body, * {
-    cursor: auto !important;
-  }
-  
-  .cursor, .cursor-ring {
-    display: none !important;
-  }
-  
-  /* Enable text selection on mobile */
-  html, body {
-    -webkit-user-select: text;
-    user-select: text;
-  }
-}
-
-/* Custom Cursor - only on non-touch devices */
-@media (hover: hover) and (pointer: fine) {
-  .cursor {
-    position: fixed;
-    width: 8px;
-    height: 8px;
-    background: var(--white);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 50000;
-    mix-blend-mode: difference;
-    transition: all 0.1s ease;
-    transform: translate(-50%, -50%);
-  }
-
-  .cursor-ring {
-    position: fixed;
-    width: 24px;
-    height: 24px;
-    border: 1px solid var(--white);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 49999;
-    mix-blend-mode: difference;
-    transition: all 0.15s ease;
-    transform: translate(-50%, -50%);
-  }
-
-  .cursor-ring.hover {
-    width: 40px;
-    height: 40px;
-    border-color: rgba(58,46,71,0.8);
-    mix-blend-mode: normal;
-  }
-
-  .cursor-ring.viewing {
-    width: 60px;
-    height: 60px;
-    border-color: var(--white);
-    border-style: dashed;
-    animation: rotate 4s linear infinite;
-  }
-}
-
-@keyframes rotate {
-  0% { transform: translate(-50%, -50%) rotate(0deg); }
-  100% { transform: translate(-50%, -50%) rotate(360deg); }
-}
-
-/* Image Viewer */
-.image-viewer {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.98);
-  backdrop-filter: blur(20px);
-  z-index: 20000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.4s ease, visibility 0.4s ease;
-  padding: 10px;
-}
-
-.image-viewer.active {
-  opacity: 1;
-  visibility: visible;
-}
-
-.image-viewer-content {
-  position: relative;
-  width: 95vw;
-  height: 95vh;
-  overflow: hidden;
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  border-radius: 16px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
-  background: rgba(0, 0, 0, 0.5);
-}
-
-.image-viewer-viewport {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  cursor: none;
-}
-
-@media (hover: none) and (pointer: coarse) {
-  .image-viewer-viewport {
-    cursor: auto;
-  }
-}
-
-.image-viewer img {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  max-width: none;
-  max-height: none;
-  width: auto;
-  height: auto;
-  min-width: 100%;
-  min-height: 100%;
-  object-fit: cover;
-  filter: contrast(1.1) saturate(0.9);
-  transition: transform 0.2s ease-out;
-  will-change: transform;
-  z-index: 1;
-}
-
-.image-viewer-close {
-  background: rgba(0, 0, 0, 0.9);
-  border: 2px solid rgba(255, 255, 255, 0.8);
-  color: var(--white);
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--mono);
-  font-size: 20px;
-  font-weight: bold;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
-  cursor: pointer;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  z-index: 25001;
-}
-
-.image-viewer-close:hover {
-  background: rgba(255, 0, 0, 0.8);
-  border-color: var(--white);
-  transform: scale(1.15);
-  box-shadow: 0 6px 30px rgba(255, 0, 0, 0.4);
-}
-
-.image-viewer-info {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  background: rgba(0, 0, 0, 0.8);
-  padding: 12px 16px;
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  font-family: var(--mono);
-  font-size: 12px;
-  color: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(10px);
-  z-index: 25000;
-}
-
-.image-viewer-zoom-indicator {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  background: rgba(0, 0, 0, 0.8);
-  padding: 8px 12px;
-  border-radius: 6px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  font-family: var(--mono);
-  font-size: 11px;
-  color: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(10px);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: 25000;
-}
-
-/* Glitch transition effects */
-.glitch-transition {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0;
-  z-index: 21000;
-}
-
-.glitch-transition.active {
-  opacity: 1;
-  animation: glitch-overlay 0.8s ease-out;
-}
-
-@keyframes glitch-overlay {
-  0%, 100% { opacity: 0; }
-  5% {
-    opacity: 1;
-    background: linear-gradient(90deg, transparent 0%, rgba(255, 0, 0, 0.4) 15%, transparent 20%, rgba(0, 255, 255, 0.4) 60%, transparent 65%);
-    transform: translateX(-150px) skewX(5deg);
-  }
-  15% {
-    background: linear-gradient(90deg, transparent 0%, rgba(0, 255, 0, 0.3) 25%, transparent 30%, rgba(255, 0, 255, 0.3) 55%, transparent 60%);
-    transform: translateX(80px) skewX(-3deg);
-  }
-  25% {
-    background: linear-gradient(90deg, rgba(255, 255, 0, 0.2) 0%, transparent 15%, rgba(255, 0, 0, 0.3) 40%, transparent 50%, rgba(0, 255, 255, 0.3) 70%, transparent 80%);
-    transform: translateX(-40px) skewX(2deg);
-  }
-  35% {
-    opacity: 0.9;
-    background: repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(255, 255, 255, 0.15) 1px, rgba(255, 255, 255, 0.15) 3px);
-    transform: translateX(0) skewX(0);
-  }
-  45% {
-    background: linear-gradient(45deg, rgba(255, 0, 0, 0.2) 0%, transparent 25%, rgba(0, 255, 255, 0.2) 75%, transparent 100%);
-    transform: translateX(20px) skewX(-1deg);
-  }
-  60% {
-    opacity: 0.7;
-    background: repeating-linear-gradient(90deg, transparent, transparent 4px, rgba(255, 255, 255, 0.1) 4px, rgba(255, 255, 255, 0.1) 8px);
-    transform: translateX(-10px) skewX(0.5deg);
-  }
-  80% {
-    opacity: 0.3;
-    background: linear-gradient(135deg, rgba(58, 46, 71, 0.3) 0%, transparent 50%, rgba(255, 255, 255, 0.1) 100%);
-    transform: translateX(0) skewX(0);
-  }
-}
-
-.portrait {
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.portrait:hover {
-  transform: scale(1.02);
-  border-color: rgba(58, 46, 71, 0.3);
-}
-
-/* Watch Dogs / Deus Ex vibe: sharp grids, high contrast, scanlines */
-.scanlines::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background-image: linear-gradient(transparent 90%, rgba(255,255,255,0.02) 100%);
-  background-size: 100% 4px;
-  mix-blend-mode: overlay;
-}
-
-.container {
-  max-width: 1100px;
-  margin: 6vh auto;
-  padding: 40px;
-  display: grid;
-  grid-template-columns: 420px 1fr;
-  gap: 36px;
-  align-items: start;
-}
-
-.card {
-  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-  border: 1px solid rgba(255,255,255,0.04);
-  padding: 28px;
-  border-radius: 12px;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.7);
-}
-
-.portrait {
-  width: 100%;
-  height: 520px;
-  background: linear-gradient(180deg, rgba(0,0,0,0.2), rgba(0,0,0,0.6));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
-  overflow: hidden;
-  border: 1px solid rgba(255,255,255,0.03);
-}
-
-.portrait img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: contrast(1.05) saturate(0.6);
-  transform: scale(1.02);
-}
-
-h1 {
-  font-family: var(--mono);
-  font-weight: 700;
-  font-size: 30px;
-  letter-spacing: 1px;
-  margin: 12px 0 6px 0;
-  color: var(--white);
-}
-
-.handle {
-  display: inline-block;
-  padding: 6px 10px;
-  border-radius: 6px;
-  background: linear-gradient(90deg, rgba(58,46,71,0.22), rgba(25,25,25,0.5));
-  color: var(--white);
-  font-family: var(--mono);
-  font-size: 13px;
-  border: 1px solid rgba(255,255,255,0.04);
-}
-
-.meta p {
-  margin: 6px 0;
-  color: rgba(255,255,255,0.75);
-  font-size: 14px;
-}
-
-.tags {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin-top: 12px;
-}
-
-.tag {
-  font-family: var(--mono);
-  font-size: 12px;
-  padding: 6px 8px;
-  border-radius: 6px;
-  background: rgba(255,255,255,0.02);
-  border: 1px solid rgba(255,255,255,0.03);
-  color: rgba(255,255,255,0.85);
-}
-
-/* Right column content */
-.right {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
-
-.bio {
-  font-size: 15px;
-  line-height: 1.5;
-  color: rgba(255,255,255,0.9);
-  background: linear-gradient(180deg, rgba(255,255,255,0.01), transparent);
-  padding: 18px;
-  border-radius: 10px;
-  border: 1px solid rgba(255,255,255,0.03);
-}
-
-.skills {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-}
-
-.skill {
-  padding: 12px;
-  border-radius: 8px;
-  background: rgba(0,0,0,0.35);
-  font-family: var(--mono);
-  font-size: 13px;
-  text-align: center;
-}
-
-.projects .project {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px;
-  border-radius: 8px;
-  background: rgba(0,0,0,0.25);
-  margin-bottom: 8px;
-  border: 1px solid rgba(255,255,255,0.02);
-}
-
-.project .meta {
-  font-size: 13px;
-  color: rgba(255,255,255,0.8);
-}
-
-/* Buttons & glitch ASCII hover */
-.actions {
-  display: flex;
-  gap: 12px;
-  margin-top: 18px;
-}
-
-.btn {
-  position: relative;
-  padding: 12px 18px;
-  border-radius: 8px;
-  font-family: var(--mono);
-  font-weight: 700;
-  border: 1px solid rgba(255,255,255,0.06);
-  background: rgba(255,255,255,0.02);
-  color: var(--white);
-  overflow: hidden;
-  transition: transform 0.15s ease;
-}
-
-.btn:active {
-  transform: translateY(1px);
-}
-
-.btn.glow {
-  box-shadow: 0 6px 30px rgba(58,46,71,0.28), 0 0 20px rgba(58,46,71,0.06) inset;
-  border: 1px solid rgba(58,46,71,0.6);
-}
-
-/* Mobile touch feedback */
-@media (hover: none) and (pointer: coarse) {
-  .btn.active {
-    transform: scale(0.98);
-    background: rgba(58,46,71,0.3);
-  }
-}
-
-/* subtle RGB edge glow and scan */
-.glitch {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  pointer-events: none;
-  mix-blend-mode: screen;
-  opacity: 0.06;
-  background: linear-gradient(90deg, transparent 0 40%, rgba(58,46,71,0.06) 41% 60%, transparent 61% 100%);
-  transform: skewX(-12deg);
-}
-
-/* small animated bars */
-.bars {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background-image: linear-gradient(90deg, rgba(255,255,255,0.02) 0 1px, transparent 1px 100%);
-  background-size: 10px 100%;
-  mix-blend-mode: overlay;
-  opacity: 0.03;
-}
-
-/* ascii hover effect text */
-.ascii {
-  display: inline-block;
-  transition: opacity 0.12s linear;
-}
-
-/* ascii "scanline" hover underline */
-.underline {
-  height: 2px;
-  background: linear-gradient(90deg, rgba(58,46,71,0.9), rgba(255,255,255,0.08));
-  margin-top: 10px;
-  border-radius: 2px;
-  opacity: 0.9;
-}
-
-/* ASCII glitch effect for buttons */
-@keyframes glitch-text {
-  0%, 100% { text-shadow: none; }
-  10% {
-    text-shadow: 2px 0 #ff0000, -2px 0 #00ffff;
-    transform: skew(1deg);
-  }
-  20% {
-    text-shadow: -2px 0 #ff0000, 2px 0 #00ffff;
-    transform: skew(-1deg);
-  }
-  30% {
-    text-shadow: 2px 0 #00ff00, -2px 0 #ff00ff;
-    transform: skew(0.5deg);
-  }
-  40%, 60% { text-shadow: none; transform: skew(0); }
-  50% {
-    text-shadow: 1px 0 #ff0000, -1px 0 #00ffff;
-    transform: skew(-0.5deg);
-  }
-}
-
-.btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(255,255,255,0.1);
-  animation: glitch-text 0.3s ease-in-out;
-}
-
-/* ascii/glitch keyframes for tiny decorative motion */
-@keyframes flicker {
-  0% { opacity: 1; }
-  50% { opacity: 0.6; }
-  100% { opacity: 1; }
-}
-
-/* Mobile Responsive Styles */
-@media (max-width: 768px) {
-  .container {
-    grid-template-columns: 1fr;
-    padding: 20px 16px;
-    margin: 2vh auto;
-    gap: 20px;
-  }
-  
-  .card {
-    padding: 20px;
-  }
-  
-  .portrait {
-    height: 300px;
-  }
-  
-  h1 {
-    font-size: 24px;
-    margin: 8px 0 4px 0;
-  }
-  
-  /* Mobile header layout */
-  .mobile-header {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-  
-  .mobile-header-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 12px;
-  }
-  
-  .mobile-info {
-    text-align: right;
-    font-family: var(--mono);
-    font-size: 11px;
-    color: rgba(255,255,255,0.7);
-  }
-  
-  .mobile-info div:last-child {
-    margin-top: 4px;
-    font-size: 10px;
-    color: rgba(255,255,255,0.5);
-  }
-  
-  /* Mobile tags */
-  .tags {
-    gap: 6px;
-    margin-top: 8px;
-  }
-  
-  .tag {
-    font-size: 10px;
-    padding: 4px 6px;
-  }
-  
-  /* Mobile actions */
-  .actions {
-    flex-direction: column;
-    gap: 8px;
-    margin-top: 12px;
-  }
-  
-  .btn {
-    padding: 14px 16px;
-    font-size: 13px;
-    text-align: center;
-  }
-  
-  /* Mobile experience/education */
-  .mobile-experience {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-top: 12px;
-    font-size: 11px;
-    color: rgba(255,255,255,0.6);
-    font-family: var(--mono);
-  }
-  
-  .mobile-experience > div {
-    padding: 10px;
-    background: rgba(0,0,0,0.2);
-    border-radius: 6px;
-    border: 1px solid rgba(255,255,255,0.02);
-  }
-  
-  .mobile-experience strong {
-    display: block;
-    margin-bottom: 4px;
-    color: rgba(255,255,255,0.8);
-  }
-  
-  /* Mobile bio adjustments */
-  .bio {
-    padding: 16px;
-    font-size: 14px;
-  }
-  
-  .bio h2 {
-    font-size: 16px;
-    margin: 4px 0 0 0;
-  }
-  
-  /* Mobile skills grid */
-  .skills {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
-  }
-  
-  .skill {
-    padding: 10px 8px;
-    font-size: 11px;
-  }
-  
-  /* Mobile projects */
-  .projects .project {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 6px;
-    padding: 12px;
-  }
-  
-  .project .meta {
-    font-size: 12px;
-  }
-  
-  .project .meta div:last-child {
-    margin-top: 2px;
-    font-size: 10px;
-  }
-  
-  /* Mobile underline */
-  .underline {
-    width: 100%;
-    margin-top: 8px;
-  }
-  
-  /* Mobile image viewer adjustments */
-  .image-viewer {
-    padding: 5px;
-  }
-  
-  .image-viewer-content {
-    width: 98vw;
-    height: 98vh;
-    border-radius: 8px;
-  }
-  
-  .image-viewer-close {
-    width: 40px;
-    height: 40px;
-    font-size: 16px;
-    top: 10px;
-    right: 10px;
-  }
-  
-  .image-viewer-info {
-    bottom: 10px;
-    left: 10px;
-    padding: 8px 12px;
-    font-size: 10px;
-  }
-  
-  .image-viewer-zoom-indicator {
-    top: 10px;
-    left: 10px;
-    padding: 6px 10px;
-    font-size: 10px;
-  }
-}
-
-/* Tablet adjustments */
-@media (max-width: 980px) and (min-width: 769px) {
-  .container {
-    grid-template-columns: 1fr;
-    padding: 30px;
-    gap: 24px;
-  }
-  
-  .portrait {
-    height: 400px;
-  }
-  
-  .skills {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-/* Small phone adjustments */
-@media (max-width: 480px) {
-  .container {
-    padding: 16px 12px;
-    margin: 1vh auto;
-  }
-  
-  .card {
-    padding: 16px;
-  }
-  
-  .portrait {
-    height: 250px;
-    border-radius: 8px;
-  }
-  
-  h1 {
-    font-size: 20px;
-  }
-  
-  .handle {
-    font-size: 11px;
-    padding: 4px 8px;
-  }
-  
-  .skills {
-    grid-template-columns: 1fr;
-    gap: 6px;
-  }
-  
-  .tags {
-    gap: 4px;
-  }
-  
-  .tag {
-    font-size: 9px;
-    padding: 3px 5px;
-  }
-  
-  .btn {
-    padding: 12px 14px;
-    font-size: 12px;
-  }
-  
-  .bio {
-    padding: 14px;
-    font-size: 13px;
-  }
-  
-  .bio h2 {
-    font-size: 14px;
-  }
-}
-</style>
+<link rel="stylesheet" href="web.css">
 </head>
 <body class="scanlines">
 <div class="cursor"></div>
@@ -800,13 +21,12 @@ h1 {
       <div class="bars"></div>
     </div>
     
-    <!-- Mobile-optimized header layout -->
     <div class="mobile-header" style="margin-top:14px;">
       <div class="mobile-header-top">
         <div>
           <div class="handle">DANYLO • iOS</div>
           <h1>Danylo Dyachok</h1>
-          <div class="meta"><p>iOS Developer — 4+ years of professional experience</p></div>
+          <div class="meta"><p>iOS Developer — 4+ years professional</p></div>
         </div>
         <div class="mobile-info">
           <div>Lviv • Remote</div>
@@ -825,23 +45,22 @@ h1 {
 
     <div class="actions">
       <button class="btn glow" data-ascii="CONTACT"> <span class="ascii">CONTACT</span></button>
-      <button class="btn" data-ascii="RESUME"><span class="ascii">SOCIAL</span></button>
-      <button class="btn" data-ascii="WORK"><span class="ascii">WORK</span></button>
+      <button class="btn" data-ascii="RESUME"><span class="ascii">RESUME</span></button>
+      <button class="btn" data-ascii="WORK" onclick="window.location.href='projects.html'"><span class="ascii">WORK</span></button>
     </div>
 
     <div class="underline" style="width:70%;"></div>
     
-    <!-- Mobile-optimized experience/education section -->
-    <div class="mobile-experience" style="margin-top:12px">
+    <div class="mobile-experience">
       <div>
         <strong>Experience</strong>
-        <div class="meta">Binariks — 1 year</div>
-        <div class="meta">NerdzLab — 3 years</div>
+        <div>Binariks — 1 year</div>
+        <div>NerdzLab — 3 years</div>
       </div>
       <div>
         <strong>Education</strong>
-        <div class="meta">BSc Computer Science — IT Step, Lviv</div>
-        <div class="meta">MSc Management — Lviv Polytechnic</div>
+        <div>BSc Computer Science — IT Step, Lviv</div>
+        <div>MSc Management — Lviv Polytechnic</div>
       </div>
     </div>
   </div>
@@ -884,26 +103,46 @@ h1 {
     <div class="card projects">
       <div style="display:flex;justify-content:space-between;align-items:center">
         <div style="font-family:var(--mono);font-size:12px;color:rgba(255,255,255,0.6)">SELECTED WORK</div>
-        <div style="font-family:var(--mono);font-size:12px;color:rgba(255,255,255,0.6)">2021—2024</div>
+        <div style="font-family:var(--mono);font-size:12px;color:rgba(255,255,255,0.6)">
+          <button class="view-all-btn" onclick="window.location.href='projects.html'">VIEW ALL →</button>
+        </div>
       </div>
 
       <div style="margin-top:12px">
-        <div class="project">
+        <div class="project project-clickable" onclick="openProjectModal('hiive')">
           <div class="meta">
-            <div style="font-weight:700">Bankee — Mobile Banking</div>
-            <div style="font-size:12px;color:rgba(255,255,255,0.6)">SwiftUI, Combine, Networking</div>
+            <div style="font-weight:700">Hiive — Shopping Deals</div>
+            <div style="font-size:12px;color:rgba(255,255,255,0.6)">UIKit, MVP + Coordinator</div>
           </div>
-          <div style="font-family:var(--mono);font-size:12px;color:rgba(255,255,255,0.6)">NerdzLab</div>
+          <div style="font-family:var(--mono);font-size:12px;color:rgba(255,255,255,0.6)">E-commerce</div>
         </div>
 
-        <div class="project">
+        <div class="project project-clickable" onclick="openProjectModal('bankee')">
           <div class="meta">
-            <div style="font-weight:700">Education Platform</div>
-            <div style="font-size:12px;color:rgba(255,255,255,0.6)">UIKit, REST, Animations</div>
+            <div style="font-weight:700">Bankee — EdTech Banking</div>
+            <div style="font-size:12px;color:rgba(255,255,255,0.6)">SwiftUI, MVVM, Universal</div>
           </div>
-          <div style="font-family:var(--mono);font-size:12px;color:rgba(255,255,255,0.6)">Binariks</div>
+          <div style="font-family:var(--mono);font-size:12px;color:rgba(255,255,255,0.6)">Fintech</div>
+        </div>
+
+        <div class="project project-clickable" onclick="openProjectModal('itclub')">
+          <div class="meta">
+            <div style="font-weight:700">IT Club — Loyalty Program</div>
+            <div style="font-size:12px;color:rgba(255,255,255,0.6)">UIKit, MVVM</div>
+          </div>
+          <div style="font-family:var(--mono);font-size:12px;color:rgba(255,255,255,0.6)">Retail</div>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- Project Modal -->
+<div class="project-modal" id="projectModal">
+  <div class="project-modal-content">
+    <button class="project-modal-close" onclick="closeProjectModal()">×</button>
+    <div class="project-modal-body" id="projectModalBody">
+      <!-- Content will be inserted here -->
     </div>
   </div>
 </div>
@@ -919,503 +158,90 @@ h1 {
   </div>
 </div>
 
+<script src="script.js"></script>
 <script>
-// Include the mobile-responsive JavaScript here
-// Detect if device supports hover (desktop) or touch (mobile)
-const isDesktop = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-
-// Custom cursor - only for desktop
-if (isDesktop) {
-  const cursor = document.querySelector('.cursor');
-  const cursorRing = document.querySelector('.cursor-ring');
-
-  if (cursor && cursorRing) {
-    document.addEventListener('mousemove', (e) => {
-      cursor.style.left = e.clientX + 'px';
-      cursor.style.top = e.clientY + 'px';
-      
-      cursorRing.style.left = e.clientX + 'px';
-      cursorRing.style.top = e.clientY + 'px';
-    });
-
-    // Cursor hover effects
-    const interactiveElements = document.querySelectorAll('.btn, .project, .tag, .skill, .portrait');
-
-    interactiveElements.forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        cursorRing.classList.add('hover');
-      });
-      
-      el.addEventListener('mouseleave', () => {
-        cursorRing.classList.remove('hover');
-      });
-    });
+// Project modal functionality
+const projectData = {
+  hiive: {
+    title: "Hiive — Online Shopping Deals",
+    category: "E-commerce Platform",
+    tech: ["UIKit", "MVP", "Coordinator", "Networking", "Core Data"],
+    description: "E-commerce platform offering curated shopping deals and social commerce features. Built with focus on performance and user experience, featuring complex product catalogs, real-time deal updates, and social sharing capabilities.",
+    links: [
+      { title: "Website", url: "https://www.joinhiive.com/" },
+      { title: "App Store", url: "https://apps.apple.com/us/app/hiive-online-shopping-deals/id1637602669" }
+    ]
+  },
+  bankee: {
+    title: "Bankee — Education & Gamified Banking",
+    category: "EdTech Fintech",
+    tech: ["SwiftUI", "MVVM", "Combine", "Split View", "Universal", "Async/Await"],
+    description: "Educational fintech platform for a private school in Kuwait. Features gamified learning with virtual currency (BKZ), student management, teacher tools, and transaction systems. Supports both iPhone and iPad with adaptive UI.",
+    links: [
+      { title: "Web Demo", url: "https://web-dev.bankee.online/login" }
+    ]
+  },
+  itclub: {
+    title: "IT Club — Loyalty Program",
+    category: "Retail Technology",
+    tech: ["UIKit", "MVVM", "Core Location", "Realm", "QR Codes", "Analytics"],
+    description: "Loyalty program application for IT Club retail chain. Features reward tracking, exclusive offers, store locator, and personalized promotions. Built with focus on performance and offline capabilities.",
+    links: [
+      { title: "Website", url: "https://itclubloyalty.com/" },
+      { title: "App Store", url: "https://apps.apple.com/us/app/it-club/id1151038817" }
+    ]
   }
-}
-
-// Update info text for mobile
-if (!isDesktop) {
-  const infoElement = document.querySelector('.image-viewer-info');
-  if (infoElement) {
-    infoElement.textContent = 'Drag to explore • Pinch to zoom';
-  }
-}
-
-// Image Viewer with Advanced Scrolling and Touch Support
-const portrait = document.getElementById('portrait');
-const imageViewer = document.getElementById('imageViewer');
-const closeViewer = document.getElementById('closeViewer');
-const glitchTransition = document.getElementById('glitchTransition');
-
-let viewerImage = null;
-let viewerViewport = null;
-let imageData = {
-  scale: 1,
-  translateX: 0,
-  translateY: 0,
-  naturalWidth: 0,
-  naturalHeight: 0,
-  viewportWidth: 0,
-  viewportHeight: 0
 };
 
-// Touch handling variables
-let lastTouchDistance = 0;
-let lastTouchCenter = { x: 0, y: 0 };
-let isDragging = false;
-let lastTouchPos = { x: 0, y: 0 };
+function openProjectModal(projectId) {
+  const project = projectData[projectId];
+  if (!project) return;
 
-function openImageViewer() {
-  if (glitchTransition) {
-    glitchTransition.classList.add('active');
-  }
+  const modal = document.getElementById('projectModal');
+  const modalBody = document.getElementById('projectModalBody');
   
-  setTimeout(() => {
-    imageViewer.classList.add('active');
-    setupImageViewer();
-    if (isDesktop && document.querySelector('.cursor-ring')) {
-      document.querySelector('.cursor-ring').classList.add('viewing');
-    }
-  }, 100);
-  
-  setTimeout(() => {
-    if (glitchTransition) {
-      glitchTransition.classList.remove('active');
-    }
-  }, 600);
-}
-
-function closeImageViewer() {
-  if (glitchTransition) {
-    glitchTransition.classList.add('active');
-  }
-  
-  setTimeout(() => {
-    imageViewer.classList.remove('active');
-    cleanupImageViewer();
-    if (isDesktop && document.querySelector('.cursor-ring')) {
-      document.querySelector('.cursor-ring').classList.remove('viewing');
-    }
-  }, 200);
-  
-  setTimeout(() => {
-    if (glitchTransition) {
-      glitchTransition.classList.remove('active');
-    }
-  }, 600);
-}
-
-function setupImageViewer() {
-  viewerImage = imageViewer.querySelector('img');
-  viewerViewport = imageViewer.querySelector('.image-viewer-viewport');
-  
-  if (!viewerViewport) {
-    const content = imageViewer.querySelector('.image-viewer-content');
-    const viewport = document.createElement('div');
-    viewport.className = 'image-viewer-viewport';
-    const img = content.querySelector('img');
-    content.appendChild(viewport);
-    viewport.appendChild(img);
-    viewerViewport = viewport;
-  }
-  
-  viewerImage.onload = function() {
-    calculateImageDimensions();
-    setupScrolling();
-  };
-  
-  if (viewerImage.complete) {
-    calculateImageDimensions();
-    setupScrolling();
-  }
-}
-
-function calculateImageDimensions() {
-  imageData.naturalWidth = viewerImage.naturalWidth;
-  imageData.naturalHeight = viewerImage.naturalHeight;
-  imageData.viewportWidth = viewerViewport.clientWidth;
-  imageData.viewportHeight = viewerViewport.clientHeight;
-  
-  const scaleX = imageData.viewportWidth / imageData.naturalWidth;
-  const scaleY = imageData.viewportHeight / imageData.naturalHeight;
-  imageData.scale = Math.max(scaleX, scaleY) * 1.2;
-  
-  imageData.translateX = 0;
-  imageData.translateY = 0;
-  
-  updateImageTransform();
-  updateZoomIndicator();
-}
-
-function setupScrolling() {
-  if (isDesktop) {
-    viewerViewport.addEventListener('mousemove', handleImageScroll);
-    viewerViewport.addEventListener('wheel', handleZoom, { passive: false });
-  } else {
-    viewerViewport.addEventListener('touchstart', handleTouchStart, { passive: false });
-    viewerViewport.addEventListener('touchmove', handleTouchMove, { passive: false });
-    viewerViewport.addEventListener('touchend', handleTouchEnd, { passive: false });
-  }
-}
-
-function cleanupImageViewer() {
-  if (viewerViewport) {
-    viewerViewport.removeEventListener('mousemove', handleImageScroll);
-    viewerViewport.removeEventListener('wheel', handleZoom);
-    viewerViewport.removeEventListener('touchstart', handleTouchStart);
-    viewerViewport.removeEventListener('touchmove', handleTouchMove);
-    viewerViewport.removeEventListener('touchend', handleTouchEnd);
-  }
-  
-  if (viewerImage) {
-    viewerImage.style.transform = 'translate(-50%, -50%) scale(1)';
-  }
-  
-  hideZoomIndicator();
-}
-
-// Touch event handlers for mobile
-function handleTouchStart(e) {
-  e.preventDefault();
-  
-  if (e.touches.length === 1) {
-    isDragging = true;
-    lastTouchPos = {
-      x: e.touches[0].clientX,
-      y: e.touches[0].clientY
-    };
-  } else if (e.touches.length === 2) {
-    isDragging = false;
-    const touch1 = e.touches[0];
-    const touch2 = e.touches[1];
+  modalBody.innerHTML = `
+    <div class="project-modal-header">
+      <h2>${project.title}</h2>
+      <div class="project-modal-category">${project.category}</div>
+    </div>
     
-    lastTouchDistance = Math.sqrt(
-      Math.pow(touch2.clientX - touch1.clientX, 2) +
-      Math.pow(touch2.clientY - touch1.clientY, 2)
-    );
-  }
-}
-
-function handleTouchMove(e) {
-  e.preventDefault();
-  
-  if (e.touches.length === 1 && isDragging) {
-    const touch = e.touches[0];
-    const deltaX = touch.clientX - lastTouchPos.x;
-    const deltaY = touch.clientY - lastTouchPos.y;
+    <div class="project-modal-tech">
+      ${project.tech.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
+    </div>
     
-    imageData.translateX += deltaX;
-    imageData.translateY += deltaY;
+    <p class="project-modal-description">${project.description}</p>
     
-    const scaledWidth = imageData.naturalWidth * imageData.scale;
-    const scaledHeight = imageData.naturalHeight * imageData.scale;
-    const maxTranslateX = Math.max(0, (scaledWidth - imageData.viewportWidth) / 2);
-    const maxTranslateY = Math.max(0, (scaledHeight - imageData.viewportHeight) / 2);
-    
-    imageData.translateX = Math.max(-maxTranslateX, Math.min(maxTranslateX, imageData.translateX));
-    imageData.translateY = Math.max(-maxTranslateY, Math.min(maxTranslateY, imageData.translateY));
-    
-    updateImageTransform();
-    
-    lastTouchPos = { x: touch.clientX, y: touch.clientY };
-  } else if (e.touches.length === 2) {
-    const touch1 = e.touches[0];
-    const touch2 = e.touches[1];
-    
-    const currentDistance = Math.sqrt(
-      Math.pow(touch2.clientX - touch1.clientX, 2) +
-      Math.pow(touch2.clientY - touch1.clientY, 2)
-    );
-    
-    if (lastTouchDistance > 0) {
-      const scaleChange = currentDistance / lastTouchDistance;
-      const oldScale = imageData.scale;
-      imageData.scale *= scaleChange;
-      
-      const minScale = Math.min(
-        imageData.viewportWidth / imageData.naturalWidth,
-        imageData.viewportHeight / imageData.naturalHeight
-      );
-      const maxScale = 3;
-      
-      imageData.scale = Math.max(minScale, Math.min(maxScale, imageData.scale));
-      
-      const scaleRatio = imageData.scale / oldScale;
-      imageData.translateX *= scaleRatio;
-      imageData.translateY *= scaleRatio;
-      
-      updateImageTransform();
-      updateZoomIndicator();
-    }
-    
-    lastTouchDistance = currentDistance;
-  }
+    <div class="project-modal-links">
+      ${project.links.map(link => `
+        <a href="${link.url}" target="_blank" class="btn ${link.title === 'Website' || link.title === 'Web Demo' ? 'glow' : ''}" style="font-size:13px;padding:10px 16px">
+          <span class="ascii">${link.title.toUpperCase()}</span>
+        </a>
+      `).join('')}
+    </div>
+  `;
+  
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
 }
 
-function handleTouchEnd(e) {
-  if (e.touches.length === 0) {
-    isDragging = false;
-    lastTouchDistance = 0;
-  } else if (e.touches.length === 1) {
-    isDragging = true;
-    lastTouchPos = {
-      x: e.touches[0].clientX,
-      y: e.touches[0].clientY
-    };
-  }
+function closeProjectModal() {
+  const modal = document.getElementById('projectModal');
+  modal.classList.remove('active');
+  document.body.style.overflow = '';
 }
 
-// Desktop mouse handlers
-function handleImageScroll(e) {
-  const rect = viewerViewport.getBoundingClientRect();
-  const centerX = rect.width / 2;
-  const centerY = rect.height / 2;
-  
-  const mouseX = e.clientX - rect.left - centerX;
-  const mouseY = e.clientY - rect.top - centerY;
-  
-  const scaledWidth = imageData.naturalWidth * imageData.scale;
-  const scaledHeight = imageData.naturalHeight * imageData.scale;
-  
-  const maxTranslateX = Math.max(0, (scaledWidth - imageData.viewportWidth) / 2);
-  const maxTranslateY = Math.max(0, (scaledHeight - imageData.viewportHeight) / 2);
-  
-  const translateFactorX = maxTranslateX / centerX;
-  const translateFactorY = maxTranslateY / centerY;
-  
-  imageData.translateX = -mouseX * translateFactorX * 0.8;
-  imageData.translateY = -mouseY * translateFactorY * 0.8;
-  
-  imageData.translateX = Math.max(-maxTranslateX, Math.min(maxTranslateX, imageData.translateX));
-  imageData.translateY = Math.max(-maxTranslateY, Math.min(maxTranslateY, imageData.translateY));
-  
-  updateImageTransform();
-  showZoomIndicator();
-}
-
-function handleZoom(e) {
-  e.preventDefault();
-  
-  const zoomFactor = 0.1;
-  const oldScale = imageData.scale;
-  
-  if (e.deltaY < 0) {
-    imageData.scale *= (1 + zoomFactor);
-  } else {
-    imageData.scale *= (1 - zoomFactor);
-  }
-  
-  const minScale = Math.min(
-    imageData.viewportWidth / imageData.naturalWidth,
-    imageData.viewportHeight / imageData.naturalHeight
-  );
-  const maxScale = 3;
-  
-  imageData.scale = Math.max(minScale, Math.min(maxScale, imageData.scale));
-  
-  const scaleRatio = imageData.scale / oldScale;
-  imageData.translateX *= scaleRatio;
-  imageData.translateY *= scaleRatio;
-  
-  updateImageTransform();
-  updateZoomIndicator();
-}
-
-function updateImageTransform() {
-  if (viewerImage) {
-    viewerImage.style.transform =
-      `translate(calc(-50% + ${imageData.translateX}px), calc(-50% + ${imageData.translateY}px)) scale(${imageData.scale})`;
-  }
-}
-
-function updateZoomIndicator() {
-  const indicator = imageViewer.querySelector('.image-viewer-zoom-indicator');
-  if (indicator) {
-    const percentage = Math.round(imageData.scale * 100);
-    indicator.textContent = `${percentage}%`;
-  }
-}
-
-function showZoomIndicator() {
-  const indicator = imageViewer.querySelector('.image-viewer-zoom-indicator');
-  if (indicator) {
-    indicator.style.opacity = '1';
-    clearTimeout(indicator.hideTimeout);
-    indicator.hideTimeout = setTimeout(() => {
-      indicator.style.opacity = '0';
-    }, 2000);
-  }
-}
-
-function hideZoomIndicator() {
-  const indicator = imageViewer.querySelector('.image-viewer-zoom-indicator');
-  if (indicator) {
-    indicator.style.opacity = '0';
-  }
-}
-
-// Event listeners
-if (portrait) {
-  portrait.addEventListener('click', openImageViewer);
-}
-
-if (closeViewer) {
-  closeViewer.addEventListener('click', closeImageViewer);
-}
-
+// Close modal on escape key or clicking outside
 document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && imageViewer && imageViewer.classList.contains('active')) {
-    closeImageViewer();
+  if (e.key === 'Escape' && document.getElementById('projectModal').classList.contains('active')) {
+    closeProjectModal();
   }
 });
 
-if (imageViewer) {
-  imageViewer.addEventListener('click', (e) => {
-    if (e.target === imageViewer) {
-      closeImageViewer();
-    }
-  });
-}
-
-// ASCII glitch effect on hover/interaction - Enhanced for mobile
-const buttons = document.querySelectorAll('.btn');
-const asciiChars = Array.from("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*<>?[]{}()-_=+\\/|");
-
-function randAscii(len) {
-  let s = '';
-  for (let i = 0; i < len; i++) s += asciiChars[Math.floor(Math.random() * asciiChars.length)];
-  return s;
-}
-
-function triggerGlitchEffect(btn, span, original) {
-  let frames = 0;
-  const maxFrames = 12;
-  
-  const glitchInterval = setInterval(() => {
-    frames++;
-    span.textContent = randAscii(original.length);
-    span.style.opacity = 0.95;
-    
-    if (frames > maxFrames) {
-      clearInterval(glitchInterval);
-      let idx = 0;
-      const reveal = setInterval(() => {
-        idx++;
-        span.textContent = original.slice(0, idx) + randAscii(Math.max(0, original.length - idx));
-        if (idx >= original.length) {
-          clearInterval(reveal);
-          span.textContent = original;
-        }
-      }, 45);
-    }
-  }, 35);
-  
-  return glitchInterval;
-}
-
-buttons.forEach(btn => {
-  const span = btn.querySelector('.ascii');
-  if (!span) return;
-  
-  const original = span.textContent;
-  let hoverTimeout;
-
-  if (isDesktop) {
-    btn.addEventListener('mouseenter', () => {
-      clearInterval(hoverTimeout);
-      hoverTimeout = triggerGlitchEffect(btn, span, original);
-    });
-
-    btn.addEventListener('mouseleave', () => {
-      clearInterval(hoverTimeout);
-      span.textContent = original;
-    });
-  } else {
-    btn.addEventListener('touchstart', () => {
-      btn.classList.add('active');
-    });
-    
-    btn.addEventListener('touchend', () => {
-      btn.classList.remove('active');
-    });
+document.getElementById('projectModal').addEventListener('click', (e) => {
+  if (e.target.id === 'projectModal') {
+    closeProjectModal();
   }
-
-  btn.addEventListener('click', (e) => {
-    e.preventDefault();
-    
-    const prev = span.textContent;
-    span.textContent = randAscii(prev.length);
-    setTimeout(() => span.textContent = prev, 300);
-    
-    if (btn.dataset.ascii === 'CONTACT') {
-      if ('navigator' in window && 'share' in navigator) {
-        navigator.share({
-          title: 'Contact Danylo Dyachok',
-          text: 'iOS Developer - Contact Information',
-          url: window.location.href
-        }).catch(() => {
-          alert('Email: danylo.dyachok@example.com\\nLinkedIn: linkedin.com/in/danylo');
-        });
-      } else {
-        alert('Email: danylo.dyachok@example.com\\nLinkedIn: linkedin.com/in/danylo');
-      }
-    } else if (btn.dataset.ascii === 'RESUME') {
-      alert('Resume request — send me an email to get a PDF.');
-    } else if (btn.dataset.ascii === 'WORK') {
-      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-    }
-  });
-});
-
-// Subtle animation - flicker header (reduced on mobile for performance)
-const flickerInterval = isDesktop ? 2200 : 4500;
-setInterval(() => {
-  document.querySelectorAll('h1, h2').forEach(el => {
-    el.style.opacity = (Math.random() > 0.2) ? 1 : 0.85;
-  });
-}, flickerInterval);
-
-// Mobile-specific optimizations
-if (!isDesktop) {
-  document.documentElement.style.setProperty('--scanline-opacity', '0.01');
-  document.body.classList.add('touch-device');
-  
-  const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-  if (mediaQuery.matches) {
-    document.documentElement.style.setProperty('--animation-duration', '0s');
-  }
-}
-
-// Viewport height fix for mobile browsers
-function setViewportHeight() {
-  const vh = window.innerHeight * 0.01;
-  document.documentElement.style.setProperty('--vh', `${vh}px`);
-}
-
-setViewportHeight();
-window.addEventListener('resize', setViewportHeight);
-window.addEventListener('orientationchange', () => {
-  setTimeout(setViewportHeight, 100);
 });
 </script>
 </body>
