@@ -16,7 +16,7 @@ if (isDesktop) {
     });
 
     // Cursor hover effects
-    const interactiveElements = document.querySelectorAll('.btn, .project, .tag, .skill, .portrait');
+    const interactiveElements = document.querySelectorAll('.btn, .project, .tag, .skill, .portrait, .nav-item');
 
     interactiveElements.forEach(el => {
       el.addEventListener('mouseenter', () => {
@@ -35,6 +35,7 @@ const portrait = document.getElementById('portrait');
 const imageViewer = document.getElementById('imageViewer');
 const closeViewer = document.getElementById('closeViewer');
 const glitchTransition = document.getElementById('glitchTransition');
+const navItems = document.querySelectorAll('.nav-item');
 
 let viewerImage = null;
 let viewerViewport = null;
@@ -587,7 +588,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   
   navItems.forEach(item => {
-    item.addEventListener('click', function(e) {
+    item.addEventListener('mouseenter', function(e) {
       // Only prevent default if it's not a real link
       if (this.getAttribute('href').startsWith('#')) {
         e.preventDefault();
@@ -612,13 +613,6 @@ document.addEventListener('DOMContentLoaded', function() {
       if (mobileNav.classList.contains('active')) {
         toggleMobileMenu();
       }
-    });
-    
-    item.addEventListener('mouseenter', function() {
-      this.classList.add('nav-glitch');
-      setTimeout(() => {
-        this.classList.remove('nav-glitch');
-      }, 200);
     });
   });
 });
