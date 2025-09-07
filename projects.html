@@ -13,7 +13,35 @@
 <div class="cursor"></div>
 <div class="cursor-ring"></div>
 
-<div class="container">
+<nav class="ascii-navbar">
+  <div class="navbar-container">
+    <div class="ascii-logo">╔══════════════╗
+║ DANYLO • iOS ║
+╚══════════════╝</div>
+    
+    <div class="ascii-nav">
+      <span class="ascii-decoration">►</span>
+      <a href="index.html" class="nav-item" data-page="home">HOME</a>
+      <a href="projects.html" class="nav-item active" data-page="projects">PROJECTS</a>
+      <a href="#contact" class="nav-item" data-page="contact">CONTACT</a>
+      <a href="#resume" class="nav-item" data-page="resume">RESUME</a>
+      <span class="ascii-decoration">◄</span>
+      
+      <div class="nav-path" id="currentPath">portfolio/home</div>
+    </div>
+    
+    <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">≡ MENU</button>
+    
+    <div class="mobile-nav" id="mobileNav">
+      <a href="index.html" class="nav-item active" data-page="home">HOME</a>
+      <a href="projects.html" class="nav-item" data-page="projects">PROJECTS</a>
+      <a href="#contact" class="nav-item" data-page="contact">CONTACT</a>
+      <a href="#resume" class="nav-item" data-page="resume">RESUME</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container main-content">
   <div class="right" style="grid-column:1 / -1">
     <div class="card bio">
       <div style="display:flex;justify-content:space-between;align-items:center">
