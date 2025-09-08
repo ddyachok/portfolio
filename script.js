@@ -588,7 +588,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   
   navItems.forEach(item => {
-    item.addEventListener('mouseenter', function(e) {
+    item.addEventListener('click', function(e) {
       // Only prevent default if it's not a real link
       if (this.getAttribute('href').startsWith('#')) {
         e.preventDefault();
