@@ -1,350 +1,352 @@
 <!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
-<meta name="theme-color" content="#0a0a0a" />
-<title>Danylo Dyachok — iOS Developer</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="web.css">
-</head>
-<body class="scanlines">
-<div class="cursor"></div>
-<div class="cursor-ring"></div>
-
-<!-- Navigation -->
-<nav class="ascii-navbar">
-  <div class="navbar-container">
-    <div class="ascii-logo">ཊབས</div>
-    
-    <div class="ascii-nav">
-      <span class="ascii-decoration">►</span>
-      <a href="index.html" class="nav-item active" data-page="home">HOME</a>
-      <a href="projects.html" class="nav-item" data-page="projects">PROJECTS</a>
-      <a href="cv.html" class="nav-item" data-page="cv">CV</a>
-      <a href="socials.html" class="nav-item" data-page="socials">SOCIALS</a>
-      <span class="ascii-decoration">◄</span>
-      
-      <div class="nav-path" id="currentPath">portfolio/home</div>
-    </div>
-    
-    <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">≡ MENU</button>
-    
-    <div class="mobile-nav" id="mobileNav">
-      <a href="index.html" class="nav-item active" data-page="home">HOME</a>
-      <a href="projects.html" class="nav-item" data-page="projects">PROJECTS</a>
-      <a href="cv.html" class="nav-item" data-page="cv">CV</a>
-      <a href="socials.html" class="nav-item" data-page="socials">SOCIALS</a>
-    </div>
-  </div>
-</nav>
-
-<div class="container main-content">
-  <div class="card">
-    <div class="portrait" id="portrait">
-      <img src="images/IMG_3108.JPG" alt="Danylo Dyachok portrait" />
-      <div class="glitch"></div>
-      <div class="bars"></div>
-    </div>
-    
-    <div class="mobile-header" style="margin-top:14px;">
-      <div class="mobile-header-top">
-        <div>
-          <div class="handle">DANYLO • iOS</div>
-          <h1>Danylo Dyachok</h1>
-          <div class="meta"><p>iOS Developer — 4+ years professional</p></div>
-        </div>
-        <div class="mobile-info">
-          <div>Lviv • Remote</div>
-          <div>Ukrainian • English (C1)</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="tags" style="margin-top:12px">
-      <div class="tag">Swift</div>
-      <div class="tag">UIKit</div>
-      <div class="tag">SwiftUI</div>
-      <div class="tag">iOS · iPadOS</div>
-      <div class="tag">Combine</div>
-      <div class="tag">Core Data</div>
-      <div class="tag">Networking</div>
-    </div>
-
-    <div class="actions">
-      <button class="btn glow" data-ascii="CONTACT" onclick="window.location.href='mailto:danieldyachok@gmail.com'"> <span class="ascii">CONTACT</span></button>
-      <button class="btn" data-ascii="CV" onclick="window.location.href='cv.html'"><span class="ascii">CV</span></button>
-      <button class="btn" data-ascii="WORK" onclick="window.location.href='projects.html'"><span class="ascii">WORK</span></button>
-    </div>
-    
-    <div class="professional-summary">
-        <div class="summary-section">
-            <div class="section-header">
-                <div class="section-icon">💼</div>
-                <div class="section-title">
-                    <strong>Experience</strong>
-                    <span class="section-subtitle">4+ years professional</span>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+        <meta name="theme-color" content="#0a0a0a" />
+        <title>Danylo Dyachok — iOS Developer</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+                <link rel="stylesheet" href="web.css">
+    </head>
+    <body>
+        <div class="cursor"></div>
+        <div class="cursor-ring"></div>
+        
+        <!-- Navigation -->
+        <nav class="ascii-navbar">
+            <div class="navbar-container">
+                <div class="ascii-logo">ཊབས</div>
+                
+                <div class="ascii-nav">
+                    <span class="ascii-decoration">►</span>
+                    <a href="index.html" class="nav-item active" data-page="home">HOME</a>
+                    <a href="projects.html" class="nav-item" data-page="projects">PROJECTS</a>
+                    <a href="cv.html" class="nav-item" data-page="cv">CV</a>
+                    <a href="socials.html" class="nav-item" data-page="socials">SOCIALS</a>
+                    <span class="ascii-decoration">◄</span>
+                    
+                    <div class="nav-path" id="currentPath">portfolio/home</div>
+                </div>
+                
+                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">≡ MENU</button>
+                
+                <div class="mobile-nav" id="mobileNav">
+                    <a href="index.html" class="nav-item active" data-page="home">HOME</a>
+                    <a href="projects.html" class="nav-item" data-page="projects">PROJECTS</a>
+                    <a href="cv.html" class="nav-item" data-page="cv">CV</a>
+                    <a href="socials.html" class="nav-item" data-page="socials">SOCIALS</a>
                 </div>
             </div>
-            <div class="summary-items">
-                <div class="summary-item">
-                    <div class="item-header">
-                        <span class="company">NerdzLab</span>
-                        <span class="duration">2022 — Present</span>
-                    </div>
-                    <div class="item-role">iOS Developer</div>
-                    <div class="item-description">E-commerce & Fintech applications</div>
+        </nav>
+        
+        <div class="container main-content">
+            <div class="card">
+                <div class="portrait" id="portrait">
+                    <img src="images/IMG_3108.JPG" alt="Danylo Dyachok portrait" />
+                    <div class="glitch"></div>
+                    <div class="bars"></div>
                 </div>
-                <div class="summary-item">
-                    <div class="item-header">
-                        <span class="company">Binariks Inc.</span>
-                        <span class="duration">2021 — 2022</span>
+                
+                <div class="mobile-header" style="margin-top:14px;">
+                    <div class="mobile-header-top">
+                        <div>
+                            <div class="handle">🇺🇦</div>
+                            <h1>Danylo Dyachok</h1>
+                            <div class="meta"><p>iOS Developer — 4+ years professional</p></div>
+                        </div>
+                        <div class="mobile-info">
+                            <div>Lviv • Remote</div>
+                            <div>Ukrainian • English (C1)</div>
+                        </div>
                     </div>
-                    <div class="item-role">iOS Software Engineer</div>
-                    <div class="item-description">Cross-platform mobile solutions</div>
+                </div>
+                
+                <div class="tags" style="margin-top:12px">
+                    <div class="tag">Swift</div>
+                    <div class="tag">UIKit</div>
+                    <div class="tag">SwiftUI</div>
+                    <div class="tag">iOS · iPadOS</div>
+                    <div class="tag">Combine</div>
+                    <div class="tag">Core Data</div>
+                    <div class="tag">Networking</div>
+                </div>
+                
+                <div class="actions">
+                    <button class="btn glow" data-ascii="CONTACT" onclick="window.location.href='mailto:danieldyachok@gmail.com'"> <span class="ascii">CONTACT</span></button>
+                    <button class="btn" data-ascii="CV" onclick="window.location.href='cv.html'"><span class="ascii">CV</span></button>
+                    <button class="btn" data-ascii="WORK" onclick="window.location.href='projects.html'"><span class="ascii">WORK</span></button>
+                </div>
+                
+                <div class="underline"></div>
+                
+                <div class="professional-summary">
+                    <div class="summary-section">
+                        <div class="section-header">
+                            <div class="section-icon">💼</div>
+                            <div class="section-title">
+                                <strong>Experience</strong>
+                                <span class="section-subtitle">4+ years professional</span>
+                            </div>
+                        </div>
+                        <div class="summary-items">
+                            <div class="summary-item">
+                                <div class="item-header">
+                                    <span class="company">NerdzLab</span>
+                                    <span class="duration">2022 — Present</span>
+                                </div>
+                                <div class="item-role">iOS Developer</div>
+                                <div class="item-description">E-commerce & Fintech applications</div>
+                            </div>
+                            <div class="summary-item">
+                                <div class="item-header">
+                                    <span class="company">Binariks Inc.</span>
+                                    <span class="duration">2021 — 2022</span>
+                                </div>
+                                <div class="item-role">iOS Software Engineer</div>
+                                <div class="item-description">Cross-platform mobile solutions</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="summary-section">
+                        <div class="section-header">
+                            <div class="section-icon">🎓</div>
+                            <div class="section-title">
+                                <strong>Education</strong>
+                                <span class="section-subtitle">Computer Science & Management</span>
+                            </div>
+                        </div>
+                        <div class="summary-items">
+                            <div class="summary-item">
+                                <div class="item-header">
+                                    <span class="company">Lviv Polytechnic</span>
+                                    <span class="duration">2021 — 2023</span>
+                                </div>
+                                <div class="item-role">MSc Management</div>
+                                <div class="item-description">Project Management & Leadership</div>
+                            </div>
+                            <div class="summary-item">
+                                <div class="item-header">
+                                    <span class="company">IT Step University</span>
+                                    <span class="duration">2018 — 2021</span>
+                                </div>
+                                <div class="item-role">BSc Computer Science</div>
+                                <div class="item-description">Mobile Development Specialization</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="right">
+                <div class="card bio">
+                    <div style="display:flex;justify-content:space-between;align-items:center">
+                        <div>
+                            <div style="font-family:var(--mono);font-size:12px;color:rgba(255,255,255,0.6)">ABOUT</div>
+                            <h2 style="font-family:var(--mono);margin:6px 0 0 0">Crafting modern iOS experiences</h2>
+                        </div>
+                        <div style="font-family:var(--mono);font-size:12px;color:rgba(255,255,255,0.5)">Expert • Lviv</div>
+                    </div>
+                    <p style="margin-top:12px;color:rgba(255,255,255,0.85)">
+                    iOS Developer with more than 4 years of experience in developing robust, scalable, and user-centric mobile applications for iPhones and iPads. Expertise in native development with <strong>Swift (UIKit and SwiftUI)</strong>, designing and implementing innovative solutions with seamless UI/UX.
+                    </p>
+                    <p style="margin-top:12px;color:rgba(255,255,255,0.8)">
+                    In-depth knowledge of iOS SDKs, Auto Layout, Core Data, and networking frameworks. Experience with RESTful API integrations, third-party libraries using Swift Package Manager, CocoaPods, and Carthage. Hands-on experience with asynchronous programming, multithreading, and performance optimization.
+                    </p>
+                    <div style="margin-top:12px;font-family:var(--mono);font-size:13px;color:rgba(255,255,255,0.6)">
+                        Looking for remote roles. Open to collaboration and interesting product problems.
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div style="display:flex;justify-content:space-between;align-items:center">
+                        <div style="font-family:var(--mono);font-size:12px;color:rgba(255,255,255,0.6)">SKILLS</div>
+                        <div style="font-family:var(--mono);font-size:12px;color:rgba(255,255,255,0.6)">LEVEL</div>
+                    </div>
+                    <div class="skills" style="margin-top:12px">
+                        <div class="skill">Swift · Expert</div>
+                        <div class="skill">UIKit · Expert</div>
+                        <div class="skill">SwiftUI · Proficient</div>
+                        <div class="skill">Combine · Proficient</div>
+                        <div class="skill">Networking · Expert</div>
+                        <div class="skill">Core Data · Proficient</div>
+                    </div>
+                </div>
+                
+                <div class="card projects">
+                    <div style="display:flex;justify-content:space-between;align-items:center">
+                        <div style="font-family:var(--mono);font-size:12px;color:rgba(255,255,255,0.6)">SELECTED WORK</div>
+                        <div style="font-family:var(--mono);font-size:12px;color:rgba(255,255,255,0.6)">
+                            <button class="view-all-btn" onclick="window.location.href='projects.html'">VIEW ALL →</button>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top:12px">
+                        <div class="project project-clickable" onclick="openProjectModal('hiive')">
+                            <div class="meta">
+                                <div style="font-weight:700">Hiive — E-commerce Deals</div>
+                                <div style="font-size:12px;color:rgba(255,255,255,0.6)">UIKit, MVP + Coordinator, 2.5 years</div>
+                            </div>
+                            <div style="font-family:var(--mono);font-size:12px;color:rgba(255,255,255,0.6)">E-commerce</div>
+                        </div>
+                        
+                        <div class="project project-clickable" onclick="openProjectModal('bankee')">
+                            <div class="meta">
+                                <div style="font-weight:700">Bankee — Financial Literacy</div>
+                                <div style="font-size:12px;color:rgba(255,255,255,0.6)">SwiftUI, MVVM + Router, 5 months</div>
+                            </div>
+                            <div style="font-family:var(--mono);font-size:12px;color:rgba(255,255,255,0.6)">EdTech</div>
+                        </div>
+                        
+                        <div class="project project-clickable" onclick="openProjectModal('itclub')">
+                            <div class="meta">
+                                <div style="font-weight:700">IT Club — Loyalty Program</div>
+                                <div style="font-size:12px;color:rgba(255,255,255,0.6)">UIKit, MVVM + Coordinator, 3.5 months</div>
+                            </div>
+                            <div style="font-family:var(--mono);font-size:12px;color:rgba(255,255,255,0.6)">Retail</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
         
-        <div class="summary-section">
-            <div class="section-header">
-                <div class="section-icon">🎓</div>
-                <div class="section-title">
-                    <strong>Education</strong>
-                    <span class="section-subtitle">Computer Science & Management</span>
-                </div>
-            </div>
-            <div class="summary-items">
-                <div class="summary-item">
-                    <div class="item-header">
-                        <span class="company">Lviv Polytechnic</span>
-                        <span class="duration">2021 — 2023</span>
-                    </div>
-                    <div class="item-role">MSc Management</div>
-                    <div class="item-description">Project Management & Leadership</div>
-                </div>
-                <div class="summary-item">
-                    <div class="item-header">
-                        <span class="company">IT Step University</span>
-                        <span class="duration">2018 — 2021</span>
-                    </div>
-                    <div class="item-role">BSc Computer Science</div>
-                    <div class="item-description">Mobile Development Specialization</div>
+        <!-- Project Modal -->
+        <div class="project-modal" id="projectModal">
+            <div class="project-modal-content">
+                <button class="project-modal-close" onclick="closeProjectModal()">×</button>
+                <div class="project-modal-body" id="projectModalBody">
+                    <!-- Content will be inserted here -->
                 </div>
             </div>
         </div>
-    </div>
-  </div>
-
-  <div class="right">
-    <div class="card bio">
-      <div style="display:flex;justify-content:space-between;align-items:center">
-        <div>
-          <div style="font-family:var(--mono);font-size:12px;color:rgba(255,255,255,0.6)">ABOUT</div>
-          <h2 style="font-family:var(--mono);margin:6px 0 0 0">Crafting modern iOS experiences</h2>
+        
+        <!-- Image Viewer -->
+        <div class="image-viewer" id="imageViewer">
+            <div class="image-viewer-content">
+                <img src="images/IMG_3108.JPG" alt="Danylo Dyachok - Full Image" />
+                <button class="image-viewer-close" id="closeViewer">×</button>
+                <div class="image-viewer-zoom-indicator">100%</div>
+                <div class="image-viewer-info">Click and drag to explore • Pinch to zoom</div>
+                <div class="glitch-transition" id="glitchTransition"></div>
+            </div>
         </div>
-        <div style="font-family:var(--mono);font-size:12px;color:rgba(255,255,255,0.5)">Expert • Lviv</div>
-      </div>
-      <p style="margin-top:12px;color:rgba(255,255,255,0.85)">
-        iOS Developer with more than 4 years of experience in developing robust, scalable, and user-centric mobile applications for iPhones and iPads. Expertise in native development with <strong>Swift (UIKit and SwiftUI)</strong>, designing and implementing innovative solutions with seamless UI/UX.
-      </p>
-      <p style="margin-top:12px;color:rgba(255,255,255,0.8)">
-        In-depth knowledge of iOS SDKs, Auto Layout, Core Data, and networking frameworks. Experience with RESTful API integrations, third-party libraries using Swift Package Manager, CocoaPods, and Carthage. Hands-on experience with asynchronous programming, multithreading, and performance optimization.
-      </p>
-      <div style="margin-top:12px;font-family:var(--mono);font-size:13px;color:rgba(255,255,255,0.6)">
-        Looking for remote roles. Open to collaboration and interesting product problems.
-      </div>
-    </div>
-
-    <div class="card">
-      <div style="display:flex;justify-content:space-between;align-items:center">
-        <div style="font-family:var(--mono);font-size:12px;color:rgba(255,255,255,0.6)">SKILLS</div>
-        <div style="font-family:var(--mono);font-size:12px;color:rgba(255,255,255,0.6)">LEVEL</div>
-      </div>
-      <div class="skills" style="margin-top:12px">
-        <div class="skill">Swift · Expert</div>
-        <div class="skill">UIKit · Expert</div>
-        <div class="skill">SwiftUI · Proficient</div>
-        <div class="skill">Combine · Proficient</div>
-        <div class="skill">Networking · Expert</div>
-        <div class="skill">Core Data · Proficient</div>
-      </div>
-    </div>
-
-    <div class="card projects">
-      <div style="display:flex;justify-content:space-between;align-items:center">
-        <div style="font-family:var(--mono);font-size:12px;color:rgba(255,255,255,0.6)">SELECTED WORK</div>
-        <div style="font-family:var(--mono);font-size:12px;color:rgba(255,255,255,0.6)">
-          <button class="view-all-btn" onclick="window.location.href='projects.html'">VIEW ALL →</button>
-        </div>
-      </div>
-
-      <div style="margin-top:12px">
-        <div class="project project-clickable" onclick="openProjectModal('hiive')">
-          <div class="meta">
-            <div style="font-weight:700">Hiive — E-commerce Deals</div>
-            <div style="font-size:12px;color:rgba(255,255,255,0.6)">UIKit, MVP + Coordinator, 2.5 years</div>
-          </div>
-          <div style="font-family:var(--mono);font-size:12px;color:rgba(255,255,255,0.6)">E-commerce</div>
-        </div>
-
-        <div class="project project-clickable" onclick="openProjectModal('bankee')">
-          <div class="meta">
-            <div style="font-weight:700">Bankee — Financial Literacy</div>
-            <div style="font-size:12px;color:rgba(255,255,255,0.6)">SwiftUI, MVVM + Router, 5 months</div>
-          </div>
-          <div style="font-family:var(--mono);font-size:12px;color:rgba(255,255,255,0.6)">EdTech</div>
-        </div>
-
-        <div class="project project-clickable" onclick="openProjectModal('itclub')">
-          <div class="meta">
-            <div style="font-weight:700">IT Club — Loyalty Program</div>
-            <div style="font-size:12px;color:rgba(255,255,255,0.6)">UIKit, MVVM + Coordinator, 3.5 months</div>
-          </div>
-          <div style="font-family:var(--mono);font-size:12px;color:rgba(255,255,255,0.6)">Retail</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Project Modal -->
-<div class="project-modal" id="projectModal">
-  <div class="project-modal-content">
-    <button class="project-modal-close" onclick="closeProjectModal()">×</button>
-    <div class="project-modal-body" id="projectModalBody">
-      <!-- Content will be inserted here -->
-    </div>
-  </div>
-</div>
-
-<!-- Image Viewer -->
-<div class="image-viewer" id="imageViewer">
-  <div class="image-viewer-content">
-    <img src="images/IMG_3108.JPG" alt="Danylo Dyachok - Full Image" />
-    <button class="image-viewer-close" id="closeViewer">×</button>
-    <div class="image-viewer-zoom-indicator">100%</div>
-    <div class="image-viewer-info">Click and drag to explore • Pinch to zoom</div>
-    <div class="glitch-transition" id="glitchTransition"></div>
-  </div>
-</div>
-
-<script src="script.js"></script>
-<script>
-// Project modal functionality with updated data from CV
-const projectData = {
-  hiive: {
-    title: "Hiive — E-commerce Deals App",
-    category: "E-commerce Platform",
-    duration: "2.5 years",
-    role: "iOS Developer",
-    tech: ["Swift", "UIKit", "Stripe", "Apple Pay", "Core Animation", "Lottie", "Combine", "MixPanel", "Segment", "MVP+Coordinator"],
-    description: "An e-commerce platform providing users with the best deals and discounts, featuring a TikTok-style feed. Developed rich referral system, implemented advanced deep link navigation, refactored existing codebase to improve app performance and battery usage.",
-    responsibilities: [
-      "Developed a rich referral system",
-      "Implemented advanced deep link navigation",
-      "Refactored existing code base to improve app performance and battery usage",
-      "Integrated multiple analytics services and different ad providers"
-    ],
-    links: [
-      { title: "Website", url: "https://www.joinhiive.com/" },
-      { title: "App Store", url: "https://apps.apple.com/us/app/hiive-online-shopping-deals/id1637602669" }
-    ]
-  },
-  bankee: {
-    title: "Bankee — Financial Literacy Program",
-    category: "EdTech Fintech",
-    duration: "5 months",
-    role: "iOS Developer",
-    tech: ["Swift", "UIKit", "SwiftUI", "MVVM+Router", "Combine", "SwiftGen", "SwiftLint", "Intercom"],
-    description: "Innovative financial literacy program targeting elementary students in public and private schools in Kuwait. Features educational content delivery system, real-time financial data synchronization, and interactive learning modules.",
-    responsibilities: [
-      "Developed financial literacy educational modules with interactive UI components",
-      "Created animated user interfaces to enhance learning experience"
-    ],
-    links: [
-      { title: "Web Demo", url: "https://web-dev.bankee.online/login" }
-    ]
-  },
-  itclub: {
-    title: "IT Club — Loyalty Program",
-    category: "Retail Technology",
-    duration: "3.5 months",
-    role: "iOS Developer",
-    tech: ["Swift", "UIKit", "SwiftUI", "MVVM+Coordinator", "Combine", "SwiftGen", "SwiftLint", "Firebase"],
-    description: "IT Club Loyalty is the largest loyalty program for IT specialists in Ukraine, created by the Lviv IT Cluster. Features digital loyalty card with QR code, catalog of partner companies, map integration, and event listings.",
-    responsibilities: [
-      "Implemented loyalty card and partner catalog screens with filtering and search functionality",
-      "Developed event module with reminder scheduling and notifications",
-      "Integrated push notifications and in-app deeplinks for marketing campaigns"
-    ],
-    links: [
-      { title: "Website", url: "https://itclubloyalty.com/" },
-      { title: "App Store", url: "https://apps.apple.com/us/app/it-club/id1151038817" }
-    ]
-  }
-};
-
-function openProjectModal(projectId) {
-  const project = projectData[projectId];
-  if (!project) return;
-
-  const modal = document.getElementById('projectModal');
-  const modalBody = document.getElementById('projectModalBody');
-  
-  modalBody.innerHTML = `
-    <div class="project-modal-header">
+        
+        <script src="script.js"></script>
+        <script>
+            // Project modal functionality with updated data from CV
+            const projectData = {
+                hiive: {
+                    title: "Hiive — E-commerce Deals App",
+                    category: "E-commerce Platform",
+                    duration: "2.5 years",
+                    role: "iOS Developer",
+                    tech: ["Swift", "UIKit", "Stripe", "Apple Pay", "Core Animation", "Lottie", "Combine", "MixPanel", "Segment", "MVP+Coordinator"],
+                    description: "An e-commerce platform providing users with the best deals and discounts, featuring a TikTok-style feed. Developed rich referral system, implemented advanced deep link navigation, refactored existing codebase to improve app performance and battery usage.",
+                    responsibilities: [
+                                       "Developed a rich referral system",
+                                       "Implemented advanced deep link navigation",
+                                       "Refactored existing code base to improve app performance and battery usage",
+                                       "Integrated multiple analytics services and different ad providers"
+                                       ],
+                                       links: [
+                                               { title: "Website", url: "https://www.joinhiive.com/" },
+                                               { title: "App Store", url: "https://apps.apple.com/us/app/hiive-online-shopping-deals/id1637602669" }
+                                               ]
+                },
+                bankee: {
+                    title: "Bankee — Financial Literacy Program",
+                    category: "EdTech Fintech",
+                    duration: "5 months",
+                    role: "iOS Developer",
+                    tech: ["Swift", "UIKit", "SwiftUI", "MVVM+Router", "Combine", "SwiftGen", "SwiftLint", "Intercom"],
+                    description: "Innovative financial literacy program targeting elementary students in public and private schools in Kuwait. Features educational content delivery system, real-time financial data synchronization, and interactive learning modules.",
+                    responsibilities: [
+                                       "Developed financial literacy educational modules with interactive UI components",
+                                       "Created animated user interfaces to enhance learning experience"
+                                       ],
+                                       links: [
+                                               { title: "Web Demo", url: "https://web-dev.bankee.online/login" }
+                                               ]
+                },
+                itclub: {
+                    title: "IT Club — Loyalty Program",
+                    category: "Retail Technology",
+                    duration: "3.5 months",
+                    role: "iOS Developer",
+                    tech: ["Swift", "UIKit", "SwiftUI", "MVVM+Coordinator", "Combine", "SwiftGen", "SwiftLint", "Firebase"],
+                    description: "IT Club Loyalty is the largest loyalty program for IT specialists in Ukraine, created by the Lviv IT Cluster. Features digital loyalty card with QR code, catalog of partner companies, map integration, and event listings.",
+                    responsibilities: [
+                                       "Implemented loyalty card and partner catalog screens with filtering and search functionality",
+                                       "Developed event module with reminder scheduling and notifications",
+                                       "Integrated push notifications and in-app deeplinks for marketing campaigns"
+                                       ],
+                                       links: [
+                                               { title: "Website", url: "https://itclubloyalty.com/" },
+                                               { title: "App Store", url: "https://apps.apple.com/us/app/it-club/id1151038817" }
+                                               ]
+                }
+            };
+            
+            function openProjectModal(projectId) {
+                const project = projectData[projectId];
+                if (!project) return;
+                
+                const modal = document.getElementById('projectModal');
+                const modalBody = document.getElementById('projectModalBody');
+                
+                modalBody.innerHTML = `
+      <div class="project-modal-header">
       <h2>${project.title}</h2>
       <div class="project-modal-category">${project.category} • ${project.duration} • ${project.role}</div>
-    </div>
-    
-    <div class="project-modal-tech">
+      </div>
+      
+      <div class="project-modal-tech">
       ${project.tech.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
     </div>
     
     <p class="project-modal-description">${project.description}</p>
     
     ${project.responsibilities ? `
-      <div style="margin: 20px 0;">
-        <h4 style="font-family: var(--mono); font-size: 14px; color: rgba(255,255,255,0.8); margin-bottom: 10px;">Key Responsibilities:</h4>
-        <ul style="color: rgba(255,255,255,0.7); line-height: 1.6; margin-left: 20px;">
-          ${project.responsibilities.map(resp => `<li>${resp}</li>`).join('')}
-        </ul>
-      </div>
-    ` : ''}
-    
-    <div class="project-modal-links">
+    <div style="margin: 20px 0;">
+    <h4 style="font-family: var(--mono); font-size: 14px; color: rgba(255,255,255,0.8); margin-bottom: 10px;">Key Responsibilities:</h4>
+    <ul style="color: rgba(255,255,255,0.7); line-height: 1.6; margin-left: 20px;">
+    ${project.responsibilities.map(resp => `<li>${resp}</li>`).join('')}
+    </ul>
+    </div>
+      ` : ''}
+      
+      <div class="project-modal-links">
       ${project.links.map(link => `
-        <a href="${link.url}" target="_blank" class="btn ${link.title === 'Website' || link.title === 'Web Demo' ? 'glow' : ''}" style="font-size:13px;padding:10px 16px">
-          <span class="ascii">${link.title.toUpperCase()}</span>
-        </a>
+      <a href="${link.url}" target="_blank" class="btn ${link.title === 'Website' || link.title === 'Web Demo' ? 'glow' : ''}" style="font-size:13px;padding:10px 16px">
+      <span class="ascii">${link.title.toUpperCase()}</span>
+      </a>
       `).join('')}
     </div>
   `;
   
   modal.classList.add('active');
   document.body.style.overflow = 'hidden';
-}
-
-function closeProjectModal() {
-  const modal = document.getElementById('projectModal');
-  modal.classList.remove('active');
-  document.body.style.overflow = '';
-}
-
-// Close modal on escape key or clicking outside
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && document.getElementById('projectModal').classList.contains('active')) {
-    closeProjectModal();
-  }
-});
-
-document.getElementById('projectModal').addEventListener('click', (e) => {
-  if (e.target.id === 'projectModal') {
-    closeProjectModal();
-  }
-});
-</script>
-</body>
+            }
+            
+            function closeProjectModal() {
+                const modal = document.getElementById('projectModal');
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            
+            // Close modal on escape key or clicking outside
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && document.getElementById('projectModal').classList.contains('active')) {
+                    closeProjectModal();
+                }
+            });
+            
+            document.getElementById('projectModal').addEventListener('click', (e) => {
+                if (e.target.id === 'projectModal') {
+                    closeProjectModal();
+                }
+            });
+        </script>
+    </body>
 </html>
