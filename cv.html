@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+<meta name="theme-color" content="#0a0a0a" />
+<title>Danylo Dyachok — CV</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="web.css">
+</head>
+<body class="scanlines">
+<div class="cursor"></div>
+<div class="cursor-ring"></div>
+
+<!-- Navigation -->
+<nav class="ascii-navbar">
+  <div class="navbar-container">
+    <div class="ascii-logo">ཊབས</div>
+    
+    <div class="ascii-nav">
+      <span class="ascii-decoration">►</span>
+      <a href="index.html" class="nav-item" data-page="home">HOME</a>
+      <a href="projects.html" class="nav-item" data-page="projects">PROJECTS</a>
+      <a href="cv.html" class="nav-item active" data-page="cv">CV</a>
+      <a href="socials.html" class="nav-item" data-page="socials">SOCIALS</a>
+      <span class="ascii-decoration">◄</span>
+      
+      <div class="nav-path" id="currentPath">portfolio/cv</div>
+    </div>
+    
+    <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">≡ MENU</button>
+    
+    <div class="mobile-nav" id="mobileNav">
+      <a href="index.html" class="nav-item" data-page="home">HOME</a>
+      <a href="projects.html" class="nav-item" data-page="projects">PROJECTS</a>
+      <a href="cv.html" class="nav-item active" data-page="cv">CV</a>
+      <a href="socials.html" class="nav-item" data-page="socials">SOCIALS</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container main-content">
+  <div class="right" style="grid-column:1 / -1">
+    <!-- CV Header -->
+    <div class="card bio">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div>
+          <div style="font-family:var(--mono);font-size:12px;color:rgba(255,255,255,0.6)">CURRICULUM VITAE</div>
+          <h2 style="font-family:var(--mono);margin:6px 0 0 0">Danylo Dyachok — iOS Developer</h2>
+        </div>
+        <div style="font-family:var(--mono);font-size:12px;color:rgba(255,255,255,0.5)">4+ Years Experience</div>
+      </div>
+      <p style="margin-top:12px;color:rgba(255,255,255,0.85)">
+        Comprehensive professional background and expertise in native iOS development using <strong>Swift, UIKit, and SwiftUI</strong>.
+        Specialized in building scalable mobile applications with focus on performance optimization and user experience.
+      </p>
+      
+      <div class="cv-actions" style="margin-top:16px;display:flex;gap:12px;flex-wrap:wrap">
+        <button class="btn glow" onclick="downloadCV()" data-ascii="DOWNLOAD PDF">
+          <span class="ascii">DOWNLOAD PDF</span>
+        </button>
+        <button class="btn" onclick="printCV()" data-ascii="PRINT CV">
+          <span class="ascii">PRINT CV</span>
+        </button>
+        <button class="btn" onclick="window.location.href='mailto:danieldyachok@gmail.com?subject=CV Request'" data-ascii="EMAIL CV">
+          <span class="ascii">EMAIL CV</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Professional Experience -->
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+        <div>
+          <div style="font-family:var(--mono);font-size:12px;color:rgba(255,255,255,0.6)">PROFESSIONAL EXPERIENCE</div>
+          <h3 style="font-family:var(--mono);margin:4px 0 0 0;font-size:16px">Career Timeline</h3>
+        </div>
+        <div style="font-family:var(--mono);font-size:12px;color:rgba(255,255,255,0.5)">2021 → Present</div>
+      </div>
+
+      <div class="experience-timeline">
+        <div class="experience-item">
+          <div class="experience-header">
+            <div class="experience-title">
+              <h4>iOS Developer</h4>
+              <div class="company-name">NerdzLab</div>
+            </div>
+            <div class="experience-duration">
+              <div class="duration-badge">2022 — Present</div>
+              <div class="duration-length">2+ years</div>
+            </div>
+          </div>
+          <div class="experience-description">
+            <p>Leading iOS development for multiple client projects, focusing on e-commerce and fintech applications. Responsible for architecture decisions, code quality, and team mentorship.</p>
+            <div class="experience-highlights">
+              <h5>Key Achievements:</h5>
+              <ul>
+                <li>Developed Hiive e-commerce platform with 50K+ active users</li>
+                <li>Implemented advanced referral system increasing user retention by 35%</li>
+                <li>Optimized app performance reducing battery usage by 40%</li>
+                <li>Mentored 2 junior developers and established code review practices</li>
+              </ul>
+            </div>
+            <div class="tech-stack">
+              <span class="tech-tag">Swift</span>
+              <span class="tech-tag">UIKit</span>
+              <span class="tech-tag">SwiftUI</span>
+              <span class="tech-tag">Combine</span>
+              <span class="tech-tag">Core Data</span>
+              <span class="tech-tag">MVP</span>
+              <span class="tech-tag">MVVM</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="experience-item">
+          <div class="experience-header">
+            <div class="experience-title">
+              <h4>iOS Software Engineer</h4>
+              <div class="company-name">Binariks Inc.</div>
+            </div>
+            <div class="experience-duration">
+              <div class="duration-badge">2021 — 2022</div>
+              <div class="duration-length">1 year</div>
+            </div>
+          </div>
+          <div class="experience-description">
+            <p>Developed and maintained iOS applications for international clients, working with cross-functional teams to deliver high-quality mobile solutions.</p>
+            <div class="experience-highlights">
+              <h5>Key Achievements:</h5>
+              <ul>
+                <li>Successfully delivered 3 major iOS applications from concept to App Store</li>
+                <li>Implemented complex UI animations and custom components</li>
+                <li>Integrated multiple third-party APIs and payment systems</li>
+                <li>Maintained 98% crash-free rate across all applications</li>
+              </ul>
+            </div>
+            <div class="tech-stack">
+              <span class="tech-tag">Swift</span>
+              <span class="tech-tag">UIKit</span>
+              <span class="tech-tag">Auto Layout</span>
+              <span class="tech-tag">Core Animation</span>
+              <span class="tech-tag">Networking</span>
+              <span class="tech-tag">Firebase</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Education -->
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+        <div>
+          <div style="font-family:var(--mono);font-size:12px;color:rgba(255,255,255,0.6)">EDUCATION</div>
+          <h3 style="font-family:var(--mono);margin:4px 0 0 0;font-size:16px">Academic Background</h3>
+        </div>
+        <div style="font-family:var(--mono);font-size:12px;color:rgba(255,255,255,0.5)">2018 → 2023</div>
+      </div>
+
+      <div class="education-timeline">
+        <div class="education-item">
+          <div class="education-header">
+            <div class="education-title">
+              <h4>Master of Science in Management</h4>
+              <div class="institution-name">Lviv Polytechnic National University</div>
+            </div>
+            <div class="education-year">2021 — 2023</div>
+          </div>
+          <div class="education-description">
+            <p>Advanced studies in project management, team leadership, and business strategy. Focus on technology management and agile methodologies.</p>
+            <div class="education-highlights">
+              <div class="highlight-item">
+                <span class="highlight-label">GPA:</span>
+                <span class="highlight-value">4.2/5.0</span>
+              </div>
+              <div class="highlight-item">
+                <span class="highlight-label">Thesis:</span>
+                <span class="highlight-value">"Agile Development in Mobile Applications"</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="education-item">
+          <div class="education-header">
+            <div class="education-title">
+              <h4>Bachelor of Science in Computer Science</h4>
+              <div class="institution-name">IT Step University</div>
+            </div>
+            <div class="education-year">2018 — 2021</div>
+          </div>
+          <div class="education-description">
+            <p>Comprehensive computer science education with specialization in mobile development and software engineering principles.</p>
+            <div class="education-highlights">
+              <div class="highlight-item">
+                <span class="highlight-label">GPA:</span>
+                <span class="highlight-value">4.5/5.0</span>
+              </div>
+              <div class="highlight-item">
+                <span class="highlight-label">Specialization:</span>
+                <span class="highlight-value">Mobile Development, iOS</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="education-item">
+          <div class="education-header">
+            <div class="education-title">
+              <h4>Computer Science Diploma</h4>
+              <div class="institution-name">IT STEP Academy</div>
+            </div>
+            <div class="education-year">2018 — 2020</div>
+          </div>
+          <div class="education-description">
+            <p>Intensive practical programming course focusing on iOS development, Swift programming, and mobile app architecture.</p>
+            <div class="education-highlights">
+              <div class="highlight-item">
+                <span class="highlight-label">Focus:</span>
+                <span class="highlight-value">iOS Development, Swift, UI/UX</span>
+              </div>
+              <div class="highlight-item">
+                <span class="highlight-label">Projects:</span>
+                <span class="highlight-value">5 iOS apps developed</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Skills Matrix -->
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+        <div>
+          <div style="font-family:var(--mono);font-size:12px;color:rgba(255,255,255,0.6)">TECHNICAL SKILLS</div>
+          <h3 style="font-family:var(--mono);margin:4px 0 0 0;font-size:16px">Expertise Matrix</h3>
+        </div>
+        <div style="font-family:var(--mono);font-size:12px;color:rgba(255,255,255,0.5)">4+ Years</div>
+      </div>
+
+      <div class="skills-matrix">
+        <div class="skill-category">
+          <h4>Core Technologies</h4>
+          <div class="skill-items">
+            <div class="skill-item">
+              <div class="skill-info">
+                <span class="skill-name">Swift</span>
+                <span class="skill-level">Expert</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 95%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info">
+                <span class="skill-name">UIKit</span>
+                <span class="skill-level">Expert</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 90%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info">
+                <span class="skill-name">SwiftUI</span>
+                <span class="skill-level">Proficient</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 80%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h4>Frameworks & Tools</h4>
+          <div class="skill-items">
+            <div class="skill-item">
+              <div class="skill-info">
+                <span class="skill-name">Combine</span>
+                <span class="skill-level">Proficient</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 75%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info">
+                <span class="skill-name">Core Data</span>
+                <span class="skill-level">Proficient</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 85%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info">
+                <span class="skill-name">Networking</span>
+                <span class="skill-level">Expert</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 90%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact Information -->
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+        <div>
+          <div style="font-family:var(--mono);font-size:12px;color:rgba(255,255,255,0.6)">CONTACT</div>
+          <h3 style="font-family:var(--mono);margin:4px 0 0 0;font-size:16px">Get In Touch</h3>
+        </div>
+        <div style="font-family:var(--mono);font-size:12px;color:rgba(255,255,255,0.5)">Available</div>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-item">
+          <div class="contact-icon">📧</div>
+          <div class="contact-info">
+            <div class="contact-label">Email</div>
+            <div class="contact-value">danieldyachok@gmail.com</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div class="contact-info">
+            <div class="contact-label">Location</div>
+            <div class="contact-value">Lviv, Ukraine (Remote)</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🌐</div>
+          <div class="contact-info">
+            <div class="contact-label">Languages</div>
+            <div class="contact-value">Ukrainian (Native), English (C1)</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">💼</div>
+          <div class="contact-info">
+            <div class="contact-label">Availability</div>
+            <div class="contact-value">Open to remote opportunities</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

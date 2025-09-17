@@ -654,3 +654,87 @@ document.addEventListener('keydown', function(e) {
     }
   }
 });
+
+// MARK: - CV -
+
+function downloadCV() {
+  // Simulate CV download
+  const link = document.createElement('a');
+  link.href = 'Danylo_Middle_iOS_Developer_CV.pdf';
+  link.download = 'Danylo_Middle_iOS_Developer_CV.pdf';
+  
+  // Create a loading animation
+  const btn = event.target.closest('.btn');
+  const originalText = btn.querySelector('.ascii').textContent;
+  const span = btn.querySelector('.ascii');
+  
+  span.textContent = 'GENERATING...';
+  btn.style.opacity = '0.7';
+  
+  setTimeout(() => {
+    span.textContent = 'DOWNLOAD READY';
+    setTimeout(() => {
+      span.textContent = originalText;
+      btn.style.opacity = '1';
+      // In real implementation: link.click();
+      alert('CV download would start here. In development, this links to an actual PDF file.');
+    }, 1000);
+  }, 2000);
+}
+
+function printCV() {
+  // Add print-specific styles
+  const printStyles = `
+    <style media="print">
+      .ascii-navbar, .scanlines::before, .cursor, .cursor-ring { display: none !important; }
+      .main-content { margin-top: 0 !important; }
+      .container { max-width: 100% !important; margin: 0 !important; padding: 20px !important; }
+      .card { break-inside: avoid; margin-bottom: 20px; }
+      .cv-actions { display: none !important; }
+      body { background: white !important; color: black !important; }
+      * { color: black !important; background: white !important; border-color: #ccc !important; }
+    </style>
+  `;
+  
+  const head = document.head.innerHTML;
+  document.head.innerHTML = head + printStyles;
+  
+  setTimeout(() => {
+    window.print();
+    // Restore original styles after print dialog
+    setTimeout(() => {
+      document.head.innerHTML = head;
+    }, 1000);
+  }, 100);
+}
+
+// Add glitch effect to CV buttons
+const cvButtons = document.querySelectorAll('.cv-actions .btn');
+cvButtons.forEach(btn => {
+  const span = btn.querySelector('.ascii');
+  if (!span) return;
+  
+  const original = span.textContent;
+  const asciiChars = Array.from("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*<>?[]{}()-_=+\\/|");
+
+  function randAscii(len) {
+    let s = '';
+    for (let i = 0; i < len; i++) s += asciiChars[Math.floor(Math.random() * asciiChars.length)];
+    return s;
+  }
+
+  btn.addEventListener('mouseenter', () => {
+    let frames = 0;
+    const maxFrames = 8;
+    
+    const glitchInterval = setInterval(() => {
+      frames++;
+      span.textContent = randAscii(original.length);
+      
+      if (frames > maxFrames) {
+        clearInterval(glitchInterval);
+        span.textContent = original;
+      }
+    }, 40);
+  });
+});
