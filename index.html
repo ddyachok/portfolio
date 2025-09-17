@@ -13,6 +13,7 @@
 <div class="cursor"></div>
 <div class="cursor-ring"></div>
 
+<!-- Navigation -->
 <nav class="ascii-navbar">
   <div class="navbar-container">
     <div class="ascii-logo">ཊབས</div>
@@ -21,8 +22,8 @@
       <span class="ascii-decoration">►</span>
       <a href="index.html" class="nav-item active" data-page="home">HOME</a>
       <a href="projects.html" class="nav-item" data-page="projects">PROJECTS</a>
-      <a href="#contact" class="nav-item" data-page="contact">CONTACT</a>
-      <a href="#resume" class="nav-item" data-page="resume">RESUME</a>
+      <a href="cv.html" class="nav-item" data-page="cv">CV</a>
+      <a href="socials.html" class="nav-item" data-page="socials">SOCIALS</a>
       <span class="ascii-decoration">◄</span>
       
       <div class="nav-path" id="currentPath">portfolio/home</div>
@@ -33,8 +34,8 @@
     <div class="mobile-nav" id="mobileNav">
       <a href="index.html" class="nav-item active" data-page="home">HOME</a>
       <a href="projects.html" class="nav-item" data-page="projects">PROJECTS</a>
-      <a href="#contact" class="nav-item" data-page="contact">CONTACT</a>
-      <a href="#resume" class="nav-item" data-page="resume">RESUME</a>
+      <a href="cv.html" class="nav-item" data-page="cv">CV</a>
+      <a href="socials.html" class="nav-item" data-page="socials">SOCIALS</a>
     </div>
   </div>
 </nav>
@@ -62,16 +63,18 @@
     </div>
 
     <div class="tags" style="margin-top:12px">
+      <div class="tag">Swift</div>
       <div class="tag">UIKit</div>
       <div class="tag">SwiftUI</div>
       <div class="tag">iOS · iPadOS</div>
       <div class="tag">Combine</div>
+      <div class="tag">Core Data</div>
       <div class="tag">Networking</div>
     </div>
 
     <div class="actions">
-      <button class="btn glow" data-ascii="CONTACT"> <span class="ascii">CONTACT</span></button>
-      <button class="btn" data-ascii="RESUME"><span class="ascii">RESUME</span></button>
+      <button class="btn glow" data-ascii="CONTACT" onclick="window.location.href='mailto:danieldyachok@gmail.com'"> <span class="ascii">CONTACT</span></button>
+      <button class="btn" data-ascii="CV" onclick="window.location.href='cv.html'"><span class="ascii">CV</span></button>
       <button class="btn" data-ascii="WORK" onclick="window.location.href='projects.html'"><span class="ascii">WORK</span></button>
     </div>
 
@@ -80,13 +83,14 @@
     <div class="mobile-experience">
       <div>
         <strong>Experience</strong>
-        <div>Binariks — 1 year</div>
-        <div>NerdzLab — 3 years</div>
+        <div>NerdzLab — iOS Developer (2022-present)</div>
+        <div>Binariks Inc. — iOS Software Engineer (2021-2022)</div>
       </div>
       <div>
         <strong>Education</strong>
-        <div>BSc Computer Science — IT Step, Lviv</div>
         <div>MSc Management — Lviv Polytechnic</div>
+        <div>BSc Computer Science — IT Step University</div>
+        <div>Computer Science — IT STEP Academy</div>
       </div>
     </div>
   </div>
@@ -98,16 +102,16 @@
           <div style="font-family:var(--mono);font-size:12px;color:rgba(255,255,255,0.6)">ABOUT</div>
           <h2 style="font-family:var(--mono);margin:6px 0 0 0">Crafting modern iOS experiences</h2>
         </div>
-        <div style="font-family:var(--mono);font-size:12px;color:rgba(255,255,255,0.5)">4+ years • Lviv</div>
+        <div style="font-family:var(--mono);font-size:12px;color:rgba(255,255,255,0.5)">Expert • Lviv</div>
       </div>
       <p style="margin-top:12px;color:rgba(255,255,255,0.85)">
-        I build robust, performant and accessible iOS and iPadOS apps using UIKit and SwiftUI.
-        Experienced in app architecture, networking, animations and platform conventions.
-        Strong background in product delivery from my time at <strong>Binariks</strong> and <strong>NerdzLab</strong>.
-        I speak Ukrainian (native) and English (C1).
+        iOS Developer with more than 4 years of experience in developing robust, scalable, and user-centric mobile applications for iPhones and iPads. Expertise in native development with <strong>Swift (UIKit and SwiftUI)</strong>, designing and implementing innovative solutions with seamless UI/UX.
+      </p>
+      <p style="margin-top:12px;color:rgba(255,255,255,0.8)">
+        In-depth knowledge of iOS SDKs, Auto Layout, Core Data, and networking frameworks. Experience with RESTful API integrations, third-party libraries using Swift Package Manager, CocoaPods, and Carthage. Hands-on experience with asynchronous programming, multithreading, and performance optimization.
       </p>
       <div style="margin-top:12px;font-family:var(--mono);font-size:13px;color:rgba(255,255,255,0.6)">
-        Looking for remote or hybrid roles. Open to collaboration and interesting product problems.
+        Looking for remote roles. Open to collaboration and interesting product problems.
       </div>
     </div>
 
@@ -117,12 +121,12 @@
         <div style="font-family:var(--mono);font-size:12px;color:rgba(255,255,255,0.6)">LEVEL</div>
       </div>
       <div class="skills" style="margin-top:12px">
-        <div class="skill">Swift · Advanced</div>
-        <div class="skill">SwiftUI · Advanced</div>
-        <div class="skill">UIKit · Advanced</div>
-        <div class="skill">Combine · Intermediate</div>
-        <div class="skill">Architecture · Advanced</div>
-        <div class="skill">Testing · Intermediate</div>
+        <div class="skill">Swift · Expert</div>
+        <div class="skill">UIKit · Expert</div>
+        <div class="skill">SwiftUI · Proficient</div>
+        <div class="skill">Combine · Proficient</div>
+        <div class="skill">Networking · Expert</div>
+        <div class="skill">Core Data · Proficient</div>
       </div>
     </div>
 
@@ -137,24 +141,24 @@
       <div style="margin-top:12px">
         <div class="project project-clickable" onclick="openProjectModal('hiive')">
           <div class="meta">
-            <div style="font-weight:700">Hiive — Shopping Deals</div>
-            <div style="font-size:12px;color:rgba(255,255,255,0.6)">UIKit, MVP + Coordinator</div>
+            <div style="font-weight:700">Hiive — E-commerce Deals</div>
+            <div style="font-size:12px;color:rgba(255,255,255,0.6)">UIKit, MVP + Coordinator, 2.5 years</div>
           </div>
           <div style="font-family:var(--mono);font-size:12px;color:rgba(255,255,255,0.6)">E-commerce</div>
         </div>
 
         <div class="project project-clickable" onclick="openProjectModal('bankee')">
           <div class="meta">
-            <div style="font-weight:700">Bankee — EdTech Banking</div>
-            <div style="font-size:12px;color:rgba(255,255,255,0.6)">SwiftUI, MVVM, Universal</div>
+            <div style="font-weight:700">Bankee — Financial Literacy</div>
+            <div style="font-size:12px;color:rgba(255,255,255,0.6)">SwiftUI, MVVM + Router, 5 months</div>
           </div>
-          <div style="font-family:var(--mono);font-size:12px;color:rgba(255,255,255,0.6)">Fintech</div>
+          <div style="font-family:var(--mono);font-size:12px;color:rgba(255,255,255,0.6)">EdTech</div>
         </div>
 
         <div class="project project-clickable" onclick="openProjectModal('itclub')">
           <div class="meta">
             <div style="font-weight:700">IT Club — Loyalty Program</div>
-            <div style="font-size:12px;color:rgba(255,255,255,0.6)">UIKit, MVVM</div>
+            <div style="font-size:12px;color:rgba(255,255,255,0.6)">UIKit, MVVM + Coordinator, 3.5 months</div>
           </div>
           <div style="font-family:var(--mono);font-size:12px;color:rgba(255,255,255,0.6)">Retail</div>
         </div>
@@ -186,23 +190,37 @@
 
 <script src="script.js"></script>
 <script>
-// Project modal functionality
+// Project modal functionality with updated data from CV
 const projectData = {
   hiive: {
-    title: "Hiive — Online Shopping Deals",
+    title: "Hiive — E-commerce Deals App",
     category: "E-commerce Platform",
-    tech: ["UIKit", "MVP", "Coordinator", "Networking", "Core Data"],
-    description: "E-commerce platform offering curated shopping deals and social commerce features. Built with focus on performance and user experience, featuring complex product catalogs, real-time deal updates, and social sharing capabilities.",
+    duration: "2.5 years",
+    role: "iOS Developer",
+    tech: ["Swift", "UIKit", "Stripe", "Apple Pay", "Core Animation", "Lottie", "Combine", "MixPanel", "Segment", "MVP+Coordinator"],
+    description: "An e-commerce platform providing users with the best deals and discounts, featuring a TikTok-style feed. Developed rich referral system, implemented advanced deep link navigation, refactored existing codebase to improve app performance and battery usage.",
+    responsibilities: [
+      "Developed a rich referral system",
+      "Implemented advanced deep link navigation",
+      "Refactored existing code base to improve app performance and battery usage",
+      "Integrated multiple analytics services and different ad providers"
+    ],
     links: [
       { title: "Website", url: "https://www.joinhiive.com/" },
       { title: "App Store", url: "https://apps.apple.com/us/app/hiive-online-shopping-deals/id1637602669" }
     ]
   },
   bankee: {
-    title: "Bankee — Education & Gamified Banking",
+    title: "Bankee — Financial Literacy Program",
     category: "EdTech Fintech",
-    tech: ["SwiftUI", "MVVM", "Combine", "Split View", "Universal", "Async/Await"],
-    description: "Educational fintech platform for a private school in Kuwait. Features gamified learning with virtual currency (BKZ), student management, teacher tools, and transaction systems. Supports both iPhone and iPad with adaptive UI.",
+    duration: "5 months",
+    role: "iOS Developer",
+    tech: ["Swift", "UIKit", "SwiftUI", "MVVM+Router", "Combine", "SwiftGen", "SwiftLint", "Intercom"],
+    description: "Innovative financial literacy program targeting elementary students in public and private schools in Kuwait. Features educational content delivery system, real-time financial data synchronization, and interactive learning modules.",
+    responsibilities: [
+      "Developed financial literacy educational modules with interactive UI components",
+      "Created animated user interfaces to enhance learning experience"
+    ],
     links: [
       { title: "Web Demo", url: "https://web-dev.bankee.online/login" }
     ]
@@ -210,8 +228,15 @@ const projectData = {
   itclub: {
     title: "IT Club — Loyalty Program",
     category: "Retail Technology",
-    tech: ["UIKit", "MVVM", "Core Location", "Realm", "QR Codes", "Analytics"],
-    description: "Loyalty program application for IT Club retail chain. Features reward tracking, exclusive offers, store locator, and personalized promotions. Built with focus on performance and offline capabilities.",
+    duration: "3.5 months",
+    role: "iOS Developer",
+    tech: ["Swift", "UIKit", "SwiftUI", "MVVM+Coordinator", "Combine", "SwiftGen", "SwiftLint", "Firebase"],
+    description: "IT Club Loyalty is the largest loyalty program for IT specialists in Ukraine, created by the Lviv IT Cluster. Features digital loyalty card with QR code, catalog of partner companies, map integration, and event listings.",
+    responsibilities: [
+      "Implemented loyalty card and partner catalog screens with filtering and search functionality",
+      "Developed event module with reminder scheduling and notifications",
+      "Integrated push notifications and in-app deeplinks for marketing campaigns"
+    ],
     links: [
       { title: "Website", url: "https://itclubloyalty.com/" },
       { title: "App Store", url: "https://apps.apple.com/us/app/it-club/id1151038817" }
@@ -229,7 +254,7 @@ function openProjectModal(projectId) {
   modalBody.innerHTML = `
     <div class="project-modal-header">
       <h2>${project.title}</h2>
-      <div class="project-modal-category">${project.category}</div>
+      <div class="project-modal-category">${project.category} • ${project.duration} • ${project.role}</div>
     </div>
     
     <div class="project-modal-tech">
@@ -237,6 +262,15 @@ function openProjectModal(projectId) {
     </div>
     
     <p class="project-modal-description">${project.description}</p>
+    
+    ${project.responsibilities ? `
+      <div style="margin: 20px 0;">
+        <h4 style="font-family: var(--mono); font-size: 14px; color: rgba(255,255,255,0.8); margin-bottom: 10px;">Key Responsibilities:</h4>
+        <ul style="color: rgba(255,255,255,0.7); line-height: 1.6; margin-left: 20px;">
+          ${project.responsibilities.map(resp => `<li>${resp}</li>`).join('')}
+        </ul>
+      </div>
+    ` : ''}
     
     <div class="project-modal-links">
       ${project.links.map(link => `
