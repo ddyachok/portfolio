@@ -22,7 +22,7 @@
                     <span class="ascii-decoration">►</span>
                     <a href="index.html" class="nav-item active" data-page="home">HOME</a>
                     <a href="projects.html" class="nav-item" data-page="projects">PROJECTS</a>
-                    <a href="cv.html" class="nav-item" data-page="cv">CV</a>
+                    <a href="#" class="nav-item" data-page="cv" onclick="downloadCV(event)">CV</a>
                     <a href="socials.html" class="nav-item" data-page="socials">SOCIALS</a>
                     <span class="ascii-decoration">◄</span>
                     
@@ -34,7 +34,7 @@
                 <div class="mobile-nav" id="mobileNav">
                     <a href="index.html" class="nav-item active" data-page="home">HOME</a>
                     <a href="projects.html" class="nav-item" data-page="projects">PROJECTS</a>
-                    <a href="cv.html" class="nav-item" data-page="cv">CV</a>
+                    <a href="#" class="nav-item" data-page="cv" onclick="downloadCV(event)">CV</a>
                     <a href="socials.html" class="nav-item" data-page="socials">SOCIALS</a>
                 </div>
             </div>
@@ -73,9 +73,13 @@
                 </div>
                 
                 <div class="actions">
-                    <button class="btn glow" data-ascii="CONTACT" onclick="window.location.href='mailto:danieldyachok@gmail.com'"> <span class="ascii">CONTACT</span></button>
-                    <button class="btn" data-ascii="CV" onclick="window.location.href='cv.html'"><span class="ascii">CV</span></button>
-                    <button class="btn" data-ascii="WORK" onclick="window.location.href='projects.html'"><span class="ascii">WORK</span></button>
+                    <button class="btn glow" data-ascii="CONTACT" onclick="window.location.href='mailto:danieldyachok@gmail.com'"> <span class="ascii">CONTACT</span>
+                    </button>
+                    <button class="btn" data-ascii="CV" onclick="downloadCV(event)">
+                        <span class="ascii">CV</span>
+                    </button>
+                    <button class="btn" data-ascii="WORK" onclick="window.location.href='projects.html'"><span class="ascii">WORK</span>
+                    </button>
                 </div>
                 
                 <div class="underline"></div>

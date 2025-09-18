@@ -738,3 +738,163 @@ cvButtons.forEach(btn => {
     }, 40);
   });
 });
+
+// CV Download functionality
+function downloadCV(event) {
+  if (event) {
+    event.preventDefault();
+  }
+  
+  // Create a temporary link element for download
+  const link = document.createElement('a');
+  
+  // You'll need to replace this with your actual CV file path
+  // Options for CV file location:
+  // 1. Place CV.pdf in the same directory as your HTML files
+  // 2. Create a 'files' or 'assets' folder and place it there
+  // 3. Host it externally and use full URL
+  
+  link.href = 'files/Danylo_Dyachok_CV.pdf'; // Adjust path as needed
+  link.download = 'Danylo_Dyachok_iOS_Developer_CV.pdf';
+  link.target = '_blank';
+  
+  // Trigger glitch effect on the clicked nav item
+  const navItem = event.target;
+  if (navItem && navItem.classList.contains('nav-item')) {
+    triggerAsciiGlitch(navItem);
+    navItem.classList.add('glitch-active');
+    setTimeout(() => {
+      navItem.classList.remove('glitch-active');
+    }, 300);
+  }
+  
+  // Show download feedback
+  showDownloadFeedback();
+  
+  // Trigger download
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  
+  // Update nav path
+  const currentPath = document.getElementById('currentPath');
+  if (currentPath) {
+    currentPath.textContent = 'portfolio/cv-download';
+    setTimeout(() => {
+      currentPath.textContent = 'portfolio/home';
+    }, 2000);
+  }
+}
+
+// Download feedback function
+function showDownloadFeedback() {
+  // Create feedback element
+  const feedback = document.createElement('div');
+  feedback.className = 'download-feedback';
+  feedback.innerHTML = `
+    <div class="feedback-content">
+      <span class="feedback-icon">📄</span>
+      <span class="feedback-text">CV Download Started</span>
+    </div>
+  `;
+  
+  document.body.appendChild(feedback);
+  
+  // Show feedback
+  setTimeout(() => {
+    feedback.classList.add('active');
+  }, 10);
+  
+  // Hide and remove feedback
+  setTimeout(() => {
+    feedback.classList.remove('active');
+    setTimeout(() => {
+      if (feedback.parentNode) {
+        feedback.parentNode.removeChild(feedback);
+      }
+    }, 300);
+  }, 2500);
+}
+
+// Alternative method: Open CV in new tab if download fails
+function openCVInNewTab() {
+  window.open('files/Danylo_Dyachok_CV.pdf', '_blank');
+}
+
+// Enhanced CV download with fallback
+function downloadCVWithFallback(event) {
+  if (event) {
+    event.preventDefault();
+  }
+  
+  const cvPath = 'files/Danylo_Dyachok_CV.pdf';
+  
+  // Try download first
+  try {
+    const link = document.createElement('a');
+    link.href = cvPath;
+    link.download = 'Danylo_Dyachok_iOS_Developer_CV.pdf';
+    
+    // Test if file exists by attempting to fetch it
+    fetch(cvPath, { method: 'HEAD' })
+      .then(response => {
+        if (response.ok) {
+          // File exists, proceed with download
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          showDownloadFeedback();
+        } else {
+          // File doesn't exist, show alternative
+          showCVAlternative();
+        }
+      })
+      .catch(() => {
+        // Fetch failed, show alternative
+        showCVAlternative();
+      });
+      
+  } catch (error) {
+    console.error('Download failed:', error);
+    showCVAlternative();
+  }
+}
+
+// Show alternative when CV file is not available
+function showCVAlternative() {
+  const modal = document.createElement('div');
+  modal.className = 'cv-modal';
+  modal.innerHTML = `
+    <div class="cv-modal-content">
+      <h3>CV Request</h3>
+      <p>CV will be sent via email. Please contact me:</p>
+      <div class="cv-contact-options">
+        <a href="mailto:danieldyachok@gmail.com?subject=CV Request&body=Hi Danylo, I'd like to request your CV." 
+           class="btn glow">
+          <span class="ascii">EMAIL REQUEST</span>
+        </a>
+        <button onclick="closeCVModal()" class="btn">
+          <span class="ascii">CLOSE</span>
+        </button>
+      </div>
+    </div>
+  `;
+  
+  document.body.appendChild(modal);
+  
+  setTimeout(() => {
+    modal.classList.add('active');
+  }, 10);
+}
+
+function closeCVModal() {
+  const modal = document.querySelector('.cv-modal');
+  if (modal) {
+    modal.classList.remove('active');
+    setTimeout(() => {
+      if (modal.parentNode) {
+        modal.parentNode.removeChild(modal);
+      }
+    }, 300);
+  }
+}
