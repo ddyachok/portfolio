@@ -705,15 +705,14 @@ function initCtosGrid(){
   const height = grid.clientHeight;
   linesSvg.setAttribute('viewBox', `0 0 ${width} ${height}`);
 
-  // Build nodes layout
-  const nodePositions = [
-    { x: width*0.18, y: height*0.68 },
-    { x: width*0.30, y: height*0.52 },
-    { x: width*0.42, y: height*0.60 },
-    { x: width*0.54, y: height*0.48 },
-    { x: width*0.68, y: height*0.56 },
-    { x: width*0.82, y: height*0.42 },
-  ];
+  // Build randomized nodes layout with gentle progression to the right
+  const segments = 6;
+  const nodePositions = [];
+  for (let i = 0; i < segments; i++) {
+    const x = width*(0.15 + i*(0.12 + Math.random()*0.05));
+    const yBase = 0.45 + (Math.sin(i*0.9)+Math.random()*0.6-0.3)*0.12; // wave + jitter
+    nodePositions.push({ x, y: height*Math.max(0.2, Math.min(0.8, yBase)) });
+  }
 
   // Draw connections
   const path = document.createElementNS('http://www.w3.org/2000/svg','path');
@@ -733,6 +732,17 @@ function initCtosGrid(){
     el.style.top = p.y + 'px';
     el.title = idx===nodePositions.length-1 ? 'CORE: SOCIALS' : `NODE ${idx+1}`;
 
+    // subtle parallax follow on hover for the "required" next node
+    el.addEventListener('mousemove', (e)=>{
+      const rect = el.getBoundingClientRect();
+      const dx = (e.clientX - (rect.left + rect.width/2)) * 0.05;
+      const dy = (e.clientY - (rect.top + rect.height/2)) * 0.05;
+      el.style.transform = `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px)) ${idx===nodePositions.length-1?'scale(1.08)':''}`;
+    });
+    el.addEventListener('mouseleave', ()=>{
+      el.style.transform = `translate(-50%, -50%)`;
+    });
+
     el.addEventListener('click', ()=>{
       // progress effect: highlight path up to the clicked node
       const subPath = document.createElementNS('http://www.w3.org/2000/svg','path');
@@ -746,8 +756,13 @@ function initCtosGrid(){
       linesSvg.appendChild(subPath);
 
       if (idx === nodePositions.length-1) {
-        // Core reached: reveal socials panel
-        setTimeout(()=> panel.classList.add('active'), 120);
+        // Core reached: add panel with glitch intro
+        const glitch = document.getElementById('socialsGlitch');
+        if (glitch) {
+          glitch.style.opacity = '1';
+          setTimeout(()=> glitch.style.opacity = '0', 700);
+        }
+        setTimeout(()=> panel.classList.add('active'), 80);
       }
     });
 
@@ -756,6 +771,40 @@ function initCtosGrid(){
     el.addEventListener('touchend', ()=> el.classList.remove('pulse'), {passive:true});
 
     grid.appendChild(el);
+  });
+
+  // Ambient animated tracer along the main path
+  const tracer = document.createElementNS('http://www.w3.org/2000/svg','circle');
+  tracer.setAttribute('r','3');
+  tracer.setAttribute('fill','rgba(255,255,255,0.9)');
+  linesSvg.appendChild(tracer);
+
+  let t = 0;
+  function animateTracer(){
+    t += 0.003; if (t>1) t = 0;
+    // find segment
+    const total = nodePositions.length-1;
+    const segFloat = t*total;
+    const i = Math.floor(segFloat);
+    const frac = segFloat - i;
+    const a = nodePositions[i];
+    const b = nodePositions[i+1];
+    const x = a.x + (b.x - a.x)*frac;
+    const y = a.y + (b.y - a.y)*frac;
+    tracer.setAttribute('cx', x);
+    tracer.setAttribute('cy', y);
+    requestAnimationFrame(animateTracer);
+  }
+  animateTracer();
+
+  // Recompute on resize/orientation
+  window.addEventListener('resize', () => {
+    // simple approach: reload layout
+    grid.innerHTML = '<svg class="ctos-lines" id="ctosLines" preserveAspectRatio="none"></svg><div class="ctos-hud"><div class="hud-left"><span class="dot"></span> ADVANCED HACKING • SOCIALS NODE</div><div class="hud-right">[TAB] VIEW ENTRY • [ESC] BACK</div></div><div class="ctos-scan"></div>';
+    const newSvg = grid.querySelector('#ctosLines');
+    if (newSvg) {
+      setTimeout(initCtosGrid, 0);
+    }
   });
 }
 
