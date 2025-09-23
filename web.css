@@ -1838,6 +1838,7 @@ footer {
               radial-gradient(1200px 800px at 80% 60%, rgba(255,255,255,0.04), transparent 60%),
               linear-gradient(180deg,var(--bg), #050505 100%);
   overflow:hidden;
+  padding:0 6vw; /* extra horizontal padding for safety */
 }
 
 .ctos-lines{

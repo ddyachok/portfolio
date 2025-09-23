@@ -714,13 +714,19 @@ function initCtosGrid(){
   const height = grid.clientHeight;
   linesSvg.setAttribute('viewBox', `0 0 ${width} ${height}`);
 
-  // Build randomized nodes layout with gentle progression to the right
+  // Build randomized nodes layout with horizontal padding to avoid overflow
   const segments = 6;
   const nodePositions = [];
+  const pad = Math.min(120, Math.max(64, width * 0.08));
+  const startX = pad;
+  const endX = width - pad;
   for (let i = 0; i < segments; i++) {
-    const x = width*(0.15 + i*(0.12 + Math.random()*0.05));
-    const yBase = 0.45 + (Math.sin(i*0.9)+Math.random()*0.6-0.3)*0.12; // wave + jitter
-    nodePositions.push({ x, y: height*Math.max(0.2, Math.min(0.8, yBase)) });
+    const lerp = i / (segments - 1);
+    const xJitter = (Math.random() - 0.5) * (width * 0.03);
+    const x = Math.max(startX, Math.min(endX, startX + (endX - startX) * lerp + xJitter));
+    const yBase = 0.5 + (Math.sin(i*0.9)+Math.random()*0.6-0.3)*0.12; // wave + jitter
+    const y = height * Math.max(0.2, Math.min(0.8, yBase));
+    nodePositions.push({ x, y });
   }
 
   // Draw connections
@@ -741,43 +747,8 @@ function initCtosGrid(){
     el.style.top = p.y + 'px';
     el.title = idx===nodePositions.length-1 ? 'CORE: SOCIALS' : `NODE ${idx+1}`;
 
-    // Subtle parallax follow on hover using requestAnimationFrame (perf-safe)
-    let followRaf = 0;
-    let currentX = 0, currentY = 0, targetX = 0, targetY = 0;
-    let rectCache = null;
-
-    function followLoop(){
-      currentX += (targetX - currentX) * 0.18;
-      currentY += (targetY - currentY) * 0.18;
-      el.style.transform = `translate(calc(-50% + ${currentX}px), calc(-50% + ${currentY}px)) ${idx===nodePositions.length-1?'scale(1.08)':''}`;
-      followRaf = requestAnimationFrame(followLoop);
-    }
-
-    el.addEventListener('mouseenter', ()=>{
-      rectCache = el.getBoundingClientRect();
-      if (!followRaf) followRaf = requestAnimationFrame(followLoop);
-      const ring = document.querySelector('.cursor-ring');
-      if (ring) ring.classList.add('hack');
-    });
-
-    el.addEventListener('mousemove', (e)=>{
-      if (!rectCache) rectCache = el.getBoundingClientRect();
-      const dxRaw = (e.clientX - (rectCache.left + rectCache.width/2));
-      const dyRaw = (e.clientY - (rectCache.top + rectCache.height/2));
-      // Clamp tiny follow for stability on low-end devices
-      targetX = Math.max(-6, Math.min(6, dxRaw * 0.08));
-      targetY = Math.max(-6, Math.min(6, dyRaw * 0.08));
-    });
-
-    el.addEventListener('mouseleave', ()=>{
-      rectCache = null;
-      targetX = targetY = 0;
-      cancelAnimationFrame(followRaf);
-      followRaf = 0; currentX = 0; currentY = 0;
-      el.style.transform = `translate(-50%, -50%)`;
-      const ring = document.querySelector('.cursor-ring');
-      if (ring) ring.classList.remove('hack');
-    });
+    // Remove cursor-hover interactions for performance stability
+    el.style.transform = 'translate(-50%, -50%)';
 
     el.addEventListener('click', ()=>{
       // progress effect: highlight path up to the clicked node
