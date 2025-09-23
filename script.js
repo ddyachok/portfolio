@@ -657,31 +657,6 @@ document.addEventListener('keydown', function(e) {
 
 // MARK: - CV -
 
-function downloadCV() {
-  // Simulate CV download
-  const link = document.createElement('a');
-  link.href = 'Danylo_Middle_iOS_Developer_CV.pdf';
-  link.download = 'Danylo_Middle_iOS_Developer_CV.pdf';
-  
-  // Create a loading animation
-  const btn = event.target.closest('.btn');
-  const originalText = btn.querySelector('.ascii').textContent;
-  const span = btn.querySelector('.ascii');
-  
-  span.textContent = 'GENERATING...';
-  btn.style.opacity = '0.7';
-  
-  setTimeout(() => {
-    span.textContent = 'DOWNLOAD READY';
-    setTimeout(() => {
-      span.textContent = originalText;
-      btn.style.opacity = '1';
-      // In real implementation: link.click();
-      alert('CV download would start here. In development, this links to an actual PDF file.');
-    }, 1000);
-  }, 2000);
-}
-
 function printCV() {
   // Add print-specific styles
   const printStyles = `

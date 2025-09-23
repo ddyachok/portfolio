@@ -1960,16 +1960,6 @@ footer {
   box-shadow: 0 4px 15px rgba(58,46,71,0.3);
 }
 
-.nav-item[data-page="cv"]::before {
-  content: '📄 ';
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.nav-item[data-page="cv"]:hover::before {
-  opacity: 1;
-}
-
 /* Mobile responsive for download feedback */
 @media (max-width: 768px) {
   .download-feedback {
