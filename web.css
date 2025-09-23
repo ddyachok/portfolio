@@ -1135,8 +1135,8 @@ footer {
   }
   
   .image-viewer-content {
-    width: 98vw;
-    height: 98vh;
+    width: 100vw;
+    height: calc(100vh - 60px);
     border-radius: 8px;
   }
   
@@ -1396,7 +1396,7 @@ footer {
   border: 1px solid rgba(255,255,255,0.06);
   border-radius: 12px;
   padding: 40px;
-  max-width: 600px;
+  max-width: min(92vw, 640px);
   width: 100%;
   position: relative;
   box-shadow: 0 20px 60px rgba(0,0,0,0.8);
@@ -1567,8 +1567,8 @@ footer {
   }
   
   .project-modal-content {
-    padding: 30px 20px;
-    max-width: 95vw;
+    padding: 22px 16px;
+    max-width: 96vw;
   }
   
   .project-modal-header h2 {
@@ -1869,6 +1869,8 @@ footer {
 
 .ctos-node.pulse{ animation:nodepulse 1.6s ease-in-out infinite; }
 @keyframes nodepulse{ 0%,100%{ box-shadow:0 0 24px rgba(58,46,71,0.7);} 50%{ box-shadow:0 0 36px rgba(255,255,255,0.5);} }
+.ctos-node.float{ animation:floatNode 3.6s ease-in-out infinite alternate; }
+@keyframes floatNode{ 0%{ transform:translate(-50%, -50%) translateY(-2px);} 100%{ transform:translate(-50%, -50%) translateY(2px);} }
 .ctos-node:hover{ transform:translate(-50%,-50%) scale(1.06); }
 .ctos-node.core{ outline:2px dashed rgba(255,255,255,0.5); outline-offset:2px; animation:coreglow 1.6s ease-in-out infinite; }
 @keyframes coreglow{ 0%,100%{ filter:drop-shadow(0 0 10px rgba(255,255,255,0.4)) drop-shadow(0 0 18px rgba(58,46,71,0.9)); } 50%{ filter:drop-shadow(0 0 18px rgba(255,255,255,0.7)) drop-shadow(0 0 28px rgba(58,46,71,1)); }}

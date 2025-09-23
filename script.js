@@ -503,19 +503,8 @@ buttons.forEach(btn => {
     
     // Button actions
     if (btn.dataset.ascii === 'CONTACT') {
-      if ('navigator' in window && 'share' in navigator) {
-        // Use native share on mobile if available
-        navigator.share({
-          title: 'Contact Danylo Dyachok',
-          text: 'iOS Developer - Contact Information',
-          url: window.location.href
-        }).catch(() => {
-          // Fallback to alert
-          alert('Email: danylo.dyachok@example.com\nLinkedIn: linkedin.com/in/danylo');
-        });
-      } else {
-        alert('Email: danylo.dyachok@example.com\nLinkedIn: linkedin.com/in/danylo');
-      }
+      // Navigate to socials interactive page
+      window.location.href = 'socials.html';
     } else if (btn.dataset.ascii === 'RESUME') {
       alert('Resume request — send me an email to get a PDF.');
     } else if (btn.dataset.ascii === 'WORK') {
@@ -742,12 +731,28 @@ function initCtosGrid(){
   // Add nodes
   nodePositions.forEach((p,idx)=>{
     const el = document.createElement('div');
-    el.className = 'ctos-node' + (idx===nodePositions.length-1 ? ' core pulse' : '');
+    el.className = 'ctos-node' + (idx===nodePositions.length-1 ? ' core pulse' : ' float');
     el.style.left = p.x + 'px';
     el.style.top = p.y + 'px';
     el.title = idx===nodePositions.length-1 ? 'CORE: SOCIALS' : `NODE ${idx+1}`;
 
-    // Remove cursor-hover interactions for performance stability
+    // Core hover: make outer cursor larger and violet
+    if (idx===nodePositions.length-1){
+      el.addEventListener('mouseenter', ()=>{
+        const ring = document.querySelector('.cursor-ring');
+        if (ring){
+          ring.classList.add('hack');
+        }
+      });
+      el.addEventListener('mouseleave', ()=>{
+        const ring = document.querySelector('.cursor-ring');
+        if (ring){
+          ring.classList.remove('hack');
+        }
+      });
+    }
+
+    // Keep node transform neutral by default
     el.style.transform = 'translate(-50%, -50%)';
 
     el.addEventListener('click', ()=>{
@@ -810,7 +815,7 @@ function initCtosGrid(){
   // Recompute on resize/orientation
   window.addEventListener('resize', () => {
     // simple approach: reload layout
-    grid.innerHTML = '<svg class="ctos-lines" id="ctosLines" preserveAspectRatio="none"></svg><div class="ctos-hud"><div class="hud-left"><span class="dot"></span> ADVANCED HACKING • SOCIALS NODE</div><div class="hud-right">[TAB] VIEW ENTRY • [ESC] BACK</div></div><div class="ctos-scan"></div>';
+    grid.innerHTML = '<svg class="ctos-lines" id="ctosLines" preserveAspectRatio="none"></svg><div class="ctos-hud"><div class="hud-left"><span class="dot"></span> HACKING • SOCIALS NODE</div><div class="hud-right">VIEW ENTRY</div></div><div class="ctos-scan"></div>';
     const newSvg = grid.querySelector('#ctosLines');
     if (newSvg) {
       setTimeout(initCtosGrid, 0);
