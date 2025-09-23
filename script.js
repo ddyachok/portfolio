@@ -399,6 +399,13 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && imageViewer && imageViewer.classList.contains('active')) {
     closeImageViewer();
   }
+  // Close socials panel with ESC
+  if (e.key === 'Escape') {
+    const panel = document.getElementById('socialsPanel');
+    if (panel && panel.classList.contains('active')) {
+      panel.classList.remove('active');
+    }
+  }
 });
 
 if (imageViewer) {
@@ -551,6 +558,7 @@ window.addEventListener('orientationchange', () => {
 document.addEventListener('DOMContentLoaded', function() {
   const navItems = document.querySelectorAll('.nav-item');
   const currentPath = document.getElementById('currentPath');
+  initCtosGrid();
   
   // ASCII characters for glitch effect
   const asciiChars = Array.from("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*<>?[]{}()-_=+\\/|");
@@ -681,6 +689,74 @@ function printCV() {
       document.head.innerHTML = head;
     }, 1000);
   }, 100);
+}
+
+// MARK: - CtOS Socials Grid
+function initCtosGrid(){
+  const grid = document.getElementById('ctosGrid');
+  const linesSvg = document.getElementById('ctosLines');
+  if (!grid || !linesSvg) return;
+
+  const panel = document.getElementById('socialsPanel');
+  const panelClose = document.getElementById('socialsPanelClose');
+  if (panelClose){ panelClose.addEventListener('click', ()=> panel.classList.remove('active')); }
+
+  const width = grid.clientWidth;
+  const height = grid.clientHeight;
+  linesSvg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+
+  // Build nodes layout
+  const nodePositions = [
+    { x: width*0.18, y: height*0.68 },
+    { x: width*0.30, y: height*0.52 },
+    { x: width*0.42, y: height*0.60 },
+    { x: width*0.54, y: height*0.48 },
+    { x: width*0.68, y: height*0.56 },
+    { x: width*0.82, y: height*0.42 },
+  ];
+
+  // Draw connections
+  const path = document.createElementNS('http://www.w3.org/2000/svg','path');
+  const d = nodePositions.map((p,i)=> `${i===0?'M':'L'} ${p.x} ${p.y}`).join(' ');
+  path.setAttribute('d', d);
+  path.setAttribute('stroke', 'rgba(255,255,255,0.35)');
+  path.setAttribute('stroke-width', '2');
+  path.setAttribute('fill', 'none');
+  path.setAttribute('stroke-linecap','round');
+  linesSvg.appendChild(path);
+
+  // Add nodes
+  nodePositions.forEach((p,idx)=>{
+    const el = document.createElement('div');
+    el.className = 'ctos-node' + (idx===nodePositions.length-1 ? ' core pulse' : '');
+    el.style.left = p.x + 'px';
+    el.style.top = p.y + 'px';
+    el.title = idx===nodePositions.length-1 ? 'CORE: SOCIALS' : `NODE ${idx+1}`;
+
+    el.addEventListener('click', ()=>{
+      // progress effect: highlight path up to the clicked node
+      const subPath = document.createElementNS('http://www.w3.org/2000/svg','path');
+      const d2 = nodePositions.slice(0, idx+1).map((np,i)=> `${i===0?'M':'L'} ${np.x} ${np.y}`).join(' ');
+      subPath.setAttribute('d', d2);
+      subPath.setAttribute('stroke', 'rgba(58,46,71,0.9)');
+      subPath.setAttribute('stroke-width', '3');
+      subPath.setAttribute('fill', 'none');
+      subPath.setAttribute('stroke-linecap','round');
+      subPath.style.filter = 'drop-shadow(0 0 6px rgba(58,46,71,0.9))';
+      linesSvg.appendChild(subPath);
+
+      if (idx === nodePositions.length-1) {
+        // Core reached: reveal socials panel
+        setTimeout(()=> panel.classList.add('active'), 120);
+      }
+    });
+
+    // touch support visual feedback
+    el.addEventListener('touchstart', ()=> el.classList.add('pulse'), {passive:true});
+    el.addEventListener('touchend', ()=> el.classList.remove('pulse'), {passive:true});
+
+    grid.appendChild(el);
+  });
 }
 
 // Add glitch effect to CV buttons

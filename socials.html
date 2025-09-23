@@ -39,43 +39,38 @@
             </div>
         </nav>
 
-        <div class="container main-content">
-            <div class="card">
-                <div style="display:flex;justify-content:space-between;align-items:center">
-                    <div>
-                        <div style="font-family:var(--mono);font-size:12px;color:rgba(255,255,255,0.6)">CONNECT</div>
-                        <h2 style="font-family:var(--mono);margin:6px 0 0 0">Find me online</h2>
-                    </div>
-                    <div style="font-family:var(--mono);font-size:12px;color:rgba(255,255,255,0.5)">Watch Dogs • CtOS</div>
-                </div>
+        <!-- Fullscreen CtOS hacking grid -->
+        <div class="ctos-grid" id="ctosGrid">
+            <svg class="ctos-lines" id="ctosLines" preserveAspectRatio="none"></svg>
+            <!-- Nodes injected by JS -->
+            <div class="ctos-hud">
+                <div class="hud-left"><span class="dot"></span> ADVANCED HACKING • SOCIALS NODE</div>
+                <div class="hud-right">[TAB] VIEW ENTRY • [ESC] BACK</div>
+            </div>
+            <div class="ctos-scan"></div>
+        </div>
 
-                <div class="underline"></div>
-
-                <div class="contact-grid" style="margin-top:16px">
-                    <a class="contact-item project-clickable" href="https://github.com/ddyachok" target="_blank" rel="noopener" onclick="asciiPing(this)">
-                        <div class="contact-icon">{ }</div>
-                        <div class="contact-info">
-                            <div class="contact-label">GitHub</div>
-                            <div class="contact-value">@github.com/ddyachok</div>
-                        </div>
-                    </a>
-
-                    <a class="contact-item project-clickable" href="https://www.instagram.com/danylodyachok/" target="_blank" rel="noopener" onclick="asciiPing(this)">
-                        <div class="contact-icon">#</div>
-                        <div class="contact-info">
-                            <div class="contact-label">Instagram</div>
-                            <div class="contact-value">@instagram.com/danylodyachok</div>
-                        </div>
-                    </a>
-
-                    <a class="contact-item project-clickable" href="https://www.linkedin.com/in/danylo-dyachok-528626153/" target="_blank" rel="noopener" onclick="asciiPing(this)">
-                        <div class="contact-icon"><> </div>
-                        <div class="contact-info">
-                            <div class="contact-label">LinkedIn</div>
-                            <div class="contact-value">@linkedin.com/in/danylo-dyachok-528626153</div>
-                        </div>
-                    </a>
-                </div>
+        <!-- Revealed socials panel -->
+        <div class="socials-panel" id="socialsPanel">
+            <button class="panel-close" id="socialsPanelClose">×</button>
+            <h2 class="panel-title"><span class="ascii">SOCIAL ACCESS GRANTED</span></h2>
+            <div class="panel-grid">
+                <a class="panel-item" href="https://github.com/ddyachok" target="_blank" rel="noopener">
+                    <img src="https://img.icons8.com/ios11/512/FFFFFF/github.png" alt="GitHub">
+                    <span>@github.com/ddyachok</span>
+                </a>
+                <a class="panel-item" href="https://www.instagram.com/danylodyachok/" target="_blank" rel="noopener">
+                    <img src="https://kranzbergartsfoundation.org/wp-content/uploads/2019/08/instagram-icon.png" alt="Instagram">
+                    <span>@instagram.com/danylodyachok</span>
+                </a>
+                <a class="panel-item" href="https://www.linkedin.com/in/danylo-dyachok-528626153/" target="_blank" rel="noopener">
+                    <img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/linkedin-app-white-icon.png" alt="LinkedIn">
+                    <span>@linkedin.com/in/danylo-dyachok-528626153</span>
+                </a>
+                <a class="panel-item" href="mailto:danieldyachok@gmail.com">
+                    <img src="https://uxwing.com/wp-content/themes/uxwing/download/communication-chat-call/email-envelope-white-icon.png" alt="Email">
+                    <span>danieldyachok@gmail.com</span>
+                </a>
             </div>
         </div>
 
