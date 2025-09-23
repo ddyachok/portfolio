@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+        <meta name="theme-color" content="#0a0a0a" />
+        <title>Socials — Danylo Dyachok</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+                <link rel="stylesheet" href="web.css">
+    </head>
+    <body>
+        <div class="cursor"></div>
+        <div class="cursor-ring"></div>
+
+        <!-- Navigation -->
+        <nav class="ascii-navbar">
+            <div class="navbar-container">
+                <div class="ascii-logo">ཊབས</div>
+
+                <div class="ascii-nav">
+                    <span class="ascii-decoration">►</span>
+                    <a href="index.html" class="nav-item" data-page="home">HOME</a>
+                    <a href="projects.html" class="nav-item" data-page="projects">PROJECTS</a>
+                    <a href="files/Danylo_Middle_iOS_Developer_CV.pdf" download class="nav-item" data-page="cv" onclick="downloadCV(event)">CV</a>
+                    <a href="socials.html" class="nav-item active" data-page="socials">SOCIALS</a>
+                    <span class="ascii-decoration">◄</span>
+                    <div class="nav-path" id="currentPath">portfolio/socials</div>
+                </div>
+
+                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">≡ MENU</button>
+
+                <div class="mobile-nav" id="mobileNav">
+                    <a href="index.html" class="nav-item" data-page="home">HOME</a>
+                    <a href="projects.html" class="nav-item" data-page="projects">PROJECTS</a>
+                    <a href="files/Danylo_Middle_iOS_Developer_CV.pdf" download class="nav-item" data-page="cv" onclick="downloadCV(event)">CV</a>
+                    <a href="socials.html" class="nav-item active" data-page="socials">SOCIALS</a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container main-content">
+            <div class="card">
+                <div style="display:flex;justify-content:space-between;align-items:center">
+                    <div>
+                        <div style="font-family:var(--mono);font-size:12px;color:rgba(255,255,255,0.6)">CONNECT</div>
+                        <h2 style="font-family:var(--mono);margin:6px 0 0 0">Find me online</h2>
+                    </div>
+                    <div style="font-family:var(--mono);font-size:12px;color:rgba(255,255,255,0.5)">Watch Dogs • CtOS</div>
+                </div>
+
+                <div class="underline"></div>
+
+                <div class="contact-grid" style="margin-top:16px">
+                    <a class="contact-item project-clickable" href="https://github.com/ddyachok" target="_blank" rel="noopener" onclick="asciiPing(this)">
+                        <div class="contact-icon">{ }</div>
+                        <div class="contact-info">
+                            <div class="contact-label">GitHub</div>
+                            <div class="contact-value">@github.com/ddyachok</div>
+                        </div>
+                    </a>
+
+                    <a class="contact-item project-clickable" href="https://www.instagram.com/danylodyachok/" target="_blank" rel="noopener" onclick="asciiPing(this)">
+                        <div class="contact-icon">#</div>
+                        <div class="contact-info">
+                            <div class="contact-label">Instagram</div>
+                            <div class="contact-value">@instagram.com/danylodyachok</div>
+                        </div>
+                    </a>
+
+                    <a class="contact-item project-clickable" href="https://www.linkedin.com/in/danylo-dyachok-528626153/" target="_blank" rel="noopener" onclick="asciiPing(this)">
+                        <div class="contact-icon"><> </div>
+                        <div class="contact-info">
+                            <div class="contact-label">LinkedIn</div>
+                            <div class="contact-value">@linkedin.com/in/danylo-dyachok-528626153</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <script src="script.js"></script>
+        <script>
+            function asciiPing(el){
+                el.classList.add('nav-glitch');
+                setTimeout(()=>{ el.classList.remove('nav-glitch'); }, 250);
+            }
+        </script>
+    </body>
+</html>
+

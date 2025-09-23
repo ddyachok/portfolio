@@ -729,8 +729,8 @@ function downloadCV(event) {
   // 2. Create a 'files' or 'assets' folder and place it there
   // 3. Host it externally and use full URL
   
-  link.href = 'files/Danylo_Dyachok_CV.pdf'; // Adjust path as needed
-  link.download = 'Danylo_Dyachok_iOS_Developer_CV.pdf';
+  link.href = 'files/Danylo_Middle_iOS_Developer_CV.pdf';
+  link.download = 'Danylo_Middle_iOS_Developer_CV.pdf';
   link.target = '_blank';
   
   // Trigger glitch effect on the clicked nav item
@@ -793,7 +793,7 @@ function showDownloadFeedback() {
 
 // Alternative method: Open CV in new tab if download fails
 function openCVInNewTab() {
-  window.open('files/Danylo_Dyachok_CV.pdf', '_blank');
+  window.open('files/Danylo_Middle_iOS_Developer_CV.pdf', '_blank');
 }
 
 // Enhanced CV download with fallback
@@ -802,13 +802,13 @@ function downloadCVWithFallback(event) {
     event.preventDefault();
   }
   
-  const cvPath = 'files/Danylo_Dyachok_CV.pdf';
+  const cvPath = 'files/Danylo_Middle_iOS_Developer_CV.pdf';
   
   // Try download first
   try {
     const link = document.createElement('a');
     link.href = cvPath;
-    link.download = 'Danylo_Dyachok_iOS_Developer_CV.pdf';
+    link.download = 'Danylo_Middle_iOS_Developer_CV.pdf';
     
     // Test if file exists by attempting to fetch it
     fetch(cvPath, { method: 'HEAD' })
