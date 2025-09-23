@@ -71,6 +71,16 @@ html,body{
     border-style: dashed;
     animation: rotate 4s linear infinite;
   }
+
+  /* Hacking proximity effect */
+  .cursor-ring.hack {
+    width: 70px;
+    height: 70px;
+    border-color: rgba(58,46,71,0.9);
+    border-style: dashed;
+    animation: rotate 2.5s linear infinite;
+    box-shadow: 0 0 24px rgba(58,46,71,0.6);
+  }
 }
 
 @keyframes rotate {

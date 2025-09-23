@@ -738,9 +738,13 @@ function initCtosGrid(){
       const dx = (e.clientX - (rect.left + rect.width/2)) * 0.05;
       const dy = (e.clientY - (rect.top + rect.height/2)) * 0.05;
       el.style.transform = `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px)) ${idx===nodePositions.length-1?'scale(1.08)':''}`;
+      const ring = document.querySelector('.cursor-ring');
+      if (ring) ring.classList.add('hack');
     });
     el.addEventListener('mouseleave', ()=>{
       el.style.transform = `translate(-50%, -50%)`;
+      const ring = document.querySelector('.cursor-ring');
+      if (ring) ring.classList.remove('hack');
     });
 
     el.addEventListener('click', ()=>{
@@ -763,6 +767,9 @@ function initCtosGrid(){
           setTimeout(()=> glitch.style.opacity = '0', 700);
         }
         setTimeout(()=> panel.classList.add('active'), 80);
+
+        // Simulated data exfil animation
+        simulateDataStream(linesSvg, nodePositions);
       }
     });
 
@@ -806,6 +813,52 @@ function initCtosGrid(){
       setTimeout(initCtosGrid, 0);
     }
   });
+}
+
+// Visual: data stream and ascii bursts after core access
+function simulateDataStream(svg, nodes){
+  // multiple particles flowing from left to right
+  const particles = new Array(16).fill(0).map(()=>{
+    const c = document.createElementNS('http://www.w3.org/2000/svg','circle');
+    c.setAttribute('r','1.8');
+    c.setAttribute('fill','rgba(255,255,255,0.85)');
+    c.style.opacity = '0.9';
+    svg.appendChild(c);
+    return c;
+  });
+
+  let t = 0;
+  function step(){
+    t += 0.01;
+    particles.forEach((p,i)=>{
+      const tt = (t + i*0.06) % 1;
+      const total = nodes.length-1;
+      const segFloat = tt*total;
+      const si = Math.floor(segFloat);
+      const frac = segFloat - si;
+      const a = nodes[si];
+      const b = nodes[si+1];
+      const x = a.x + (b.x - a.x)*frac;
+      const y = a.y + (b.y - a.y)*frac + Math.sin((tt+i)*10)*1.5;
+      p.setAttribute('cx', x);
+      p.setAttribute('cy', y);
+    });
+    requestAnimationFrame(step);
+  }
+  step();
+
+  // ascii burst in HUD
+  const hud = document.querySelector('.ctos-hud .hud-left');
+  if (hud){
+    const orig = hud.textContent;
+    let frames = 0;
+    const ascii = Array.from("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*<>?[]{}()-_=+\\/|");
+    const intv = setInterval(()=>{
+      frames++;
+      hud.textContent = 'ACCESSING ' + new Array(14).fill(0).map(()=> ascii[Math.floor(Math.random()*ascii.length)]).join('');
+      if (frames>16){ clearInterval(intv); hud.textContent = orig.replace('SOCIALS NODE', 'SOCIAL DATA STREAM'); }
+    }, 45);
+  }
 }
 
 // Add glitch effect to CV buttons
