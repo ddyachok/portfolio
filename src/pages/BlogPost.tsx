@@ -8,6 +8,8 @@ import Navbar from '../components/Navbar'
 import TableOfContents, { type Heading } from '../components/TableOfContents'
 import { gqlRequest } from '../lib/graphql'
 import { GET_POST_BY_SLUG } from '../lib/queries'
+import { BLOG_POSTS } from '../lib/data'
+import { blogContent } from '../lib/blog-content'
 import type { BlogPost, SkillLevel } from '../lib/types'
 import styles from './BlogPost.module.css'
 
@@ -57,7 +59,12 @@ export default function BlogPost() {
     if (!slug) return
     gqlRequest<{ blog_posts: BlogPost[] }>(GET_POST_BY_SLUG, { slug })
       .then((data) => setPost(data.blog_posts[0] ?? null))
-      .catch(console.error)
+      .catch(() => {
+        const staticPost = BLOG_POSTS.find((p) => p.slug === slug)
+        if (staticPost) {
+          setPost({ ...staticPost, content: blogContent[slug] || staticPost.content })
+        }
+      })
       .finally(() => setLoading(false))
   }, [slug])
 
