@@ -69,7 +69,6 @@
 .photo {
   width: 100%;
   display: block;
-  filter: grayscale(0.15) contrast(1.05) brightness(0.88);
 }
 
 /* Links as a horizontal ruled list */

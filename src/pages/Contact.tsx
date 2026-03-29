@@ -20,7 +20,7 @@ export default function Contact() {
             </div>
           </div>
           <div className={styles.photoWrap}>
-            <img src="/images/photo.png" alt="Danylo Dyachok" className={styles.photo} />
+            <img src="/images/photo.jpg" alt="Danylo Dyachok" className={styles.photo} />
           </div>
         </div>
         <div className={styles.links}>
