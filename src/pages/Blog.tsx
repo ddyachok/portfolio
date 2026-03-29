@@ -33,7 +33,7 @@ export default function Blog() {
       <Navbar />
       <header className={styles.header}>
         <div className={styles.brushMark} />
-        <h1 className={styles.title}>Writing</h1>
+        <h1 className={styles.title}>Blog</h1>
         <p className={styles.subtitle}>
           Notes on iOS development, architecture, and lessons from shipping.
         </p>

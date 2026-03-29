@@ -79,7 +79,7 @@ export default function BlogPost() {
         <Navbar />
         <div className={styles.notFound}>
           <h1>Post not found</h1>
-          <Link to="/blog" className={styles.back}>&larr; Writing</Link>
+          <Link to="/blog" className={styles.back}>&larr; Blog</Link>
         </div>
       </div>
     )
@@ -91,7 +91,7 @@ export default function BlogPost() {
       <div className={styles.container}>
         <div className={styles.main}>
           <header className={styles.header}>
-            <Link to="/blog" className={styles.back}>&larr; Writing</Link>
+            <Link to="/blog" className={styles.back}>&larr; Blog</Link>
             <h1 className={styles.title}>{post.title}</h1>
             <div className={styles.meta}>
               {formatDate(post.published_at)} · {post.reading_time_minutes} min read
