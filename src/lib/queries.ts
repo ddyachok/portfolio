@@ -9,6 +9,7 @@ export const GET_PUBLISHED_POSTS = `
       slug
       excerpt
       tags
+      skill_level
       reading_time_minutes
       published_at
     }
@@ -25,6 +26,7 @@ export const GET_POST_BY_SLUG = `
       content
       cover_image_url
       tags
+      skill_level
       reading_time_minutes
       published_at
       created_at

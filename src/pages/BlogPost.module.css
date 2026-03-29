@@ -65,6 +65,31 @@
   border-radius: 2px;
 }
 
+.skillLevel {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  padding: 3px 8px;
+  border-radius: 2px;
+  border: 1px solid;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.beginner {
+  color: rgba(106, 154, 130, 0.8);
+  border-color: rgba(106, 154, 130, 0.25);
+}
+
+.intermediate {
+  color: rgba(180, 160, 100, 0.8);
+  border-color: rgba(180, 160, 100, 0.25);
+}
+
+.advanced {
+  color: rgba(180, 110, 100, 0.8);
+  border-color: rgba(180, 110, 100, 0.25);
+}
+
 .divider {
   width: 40px;
   height: 2px;

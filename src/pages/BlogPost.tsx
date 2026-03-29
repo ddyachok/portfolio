@@ -8,7 +8,7 @@ import Navbar from '../components/Navbar'
 import TableOfContents, { type Heading } from '../components/TableOfContents'
 import { gqlRequest } from '../lib/graphql'
 import { GET_POST_BY_SLUG } from '../lib/queries'
-import type { BlogPost } from '../lib/types'
+import type { BlogPost, SkillLevel } from '../lib/types'
 import styles from './BlogPost.module.css'
 
 function formatDate(dateStr: string): string {
@@ -18,6 +18,12 @@ function formatDate(dateStr: string): string {
     day: 'numeric',
     year: 'numeric',
   })
+}
+
+const skillLevelLabels: Record<SkillLevel, string> = {
+  beginner: 'Beginner',
+  intermediate: 'Intermediate',
+  advanced: 'Advanced',
 }
 
 function slugify(text: string): string {
@@ -91,6 +97,11 @@ export default function BlogPost() {
               {formatDate(post.published_at)} · {post.reading_time_minutes} min read
             </div>
             <div className={styles.tags}>
+              {post.skill_level && (
+                <span className={`${styles.skillLevel} ${styles[post.skill_level]}`}>
+                  {skillLevelLabels[post.skill_level]}
+                </span>
+              )}
               {post.tags.map((tag) => (
                 <span key={tag} className={styles.tag}>{tag}</span>
               ))}
