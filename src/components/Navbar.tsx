@@ -1,4 +1,5 @@
 import { Link, useLocation } from 'react-router-dom'
+import Logo from './Logo'
 import styles from './Navbar.module.css'
 
 export default function Navbar() {
@@ -6,7 +7,9 @@ export default function Navbar() {
 
   return (
     <nav className={styles.nav}>
-      <Link to="/" className={styles.brand}>Danylo Dyachok</Link>
+      <Link to="/" className={styles.brand}>
+        <Logo size={28} />
+      </Link>
       <div className={styles.links}>
         <Link to="/" className={pathname === '/' ? styles.active : ''}>Home</Link>
         <Link to="/blog" className={pathname.startsWith('/blog') ? styles.active : ''}>Blog</Link>
