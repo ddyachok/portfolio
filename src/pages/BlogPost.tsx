@@ -55,7 +55,8 @@ export default function BlogPost() {
       .finally(() => setLoading(false))
   }, [slug])
 
-  const headings = useMemo(() => (post ? extractHeadings(post.content) : []), [post])
+  const content = useMemo(() => post?.content.replace(/^#\s+.+\n?/, '') ?? '', [post])
+  const headings = useMemo(() => (content ? extractHeadings(content) : []), [content])
 
   if (loading) {
     return (
@@ -101,7 +102,7 @@ export default function BlogPost() {
               remarkPlugins={[remarkGfm]}
               rehypePlugins={[rehypeHighlight, rehypeSlug]}
             >
-              {post.content}
+              {content}
             </ReactMarkdown>
           </article>
         </div>
