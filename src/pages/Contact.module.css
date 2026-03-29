@@ -1,0 +1,122 @@
+.page {
+  min-height: 100vh;
+}
+
+.content {
+  padding: 72px 48px 60px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+.brushMark {
+  width: 3px;
+  height: 60px;
+  background: linear-gradient(180deg, rgba(180, 140, 100, 0.4), rgba(180, 140, 100, 0));
+  margin-bottom: 28px;
+  border-radius: 2px;
+}
+
+.title {
+  font-family: var(--font-serif);
+  font-weight: 200;
+  font-size: 32px;
+  color: var(--aged-white);
+  margin-bottom: 20px;
+}
+
+.bio {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: rgba(232, 228, 220, 0.45);
+  line-height: 1.8;
+  margin-bottom: 28px;
+}
+
+.bio strong {
+  color: rgba(232, 228, 220, 0.65);
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: rgba(232, 228, 220, 0.3);
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  background: #5a8a5a;
+  border-radius: 50%;
+}
+
+.right {
+  padding-top: 28px;
+}
+
+.sectionLabel {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--whisper);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.linkCard {
+  display: block;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+  text-decoration: none;
+  transition: opacity 0.3s;
+}
+
+.linkCard:first-of-type {
+  border-top: 1px solid var(--border);
+}
+
+.linkCard:hover {
+  opacity: 0.7;
+}
+
+.linkLabel {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: rgba(232, 228, 220, 0.5);
+  margin-bottom: 2px;
+}
+
+.linkValue {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--whisper);
+}
+
+.cvNote {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  color: rgba(232, 228, 220, 0.25);
+  margin-top: 24px;
+  padding: 12px 16px;
+  border-left: 2px solid rgba(180, 140, 100, 0.15);
+}
+
+@media (max-width: 768px) {
+  .content {
+    padding: 48px 24px;
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .title {
+    font-size: 26px;
+  }
+
+  .right {
+    padding-top: 0;
+  }
+}

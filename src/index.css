@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;500;700&family=Inter:wght@300;400;600&family=Space+Mono&display=swap');
+
+:root {
+  --ink: #0d0d0b;
+  --paper: #141410;
+  --aged-white: #e8e4dc;
+  --ochre: #b48c64;
+  --stone: #8a8070;
+  --faded: rgba(232, 228, 220, 0.35);
+  --whisper: rgba(232, 228, 220, 0.15);
+  --border: rgba(255, 255, 255, 0.04);
+
+  --font-serif: 'Noto Serif JP', serif;
+  --font-sans: 'Inter', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: var(--ink);
+  color: var(--aged-white);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+#root {
+  min-height: 100vh;
+}

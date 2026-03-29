@@ -1,0 +1,61 @@
+import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import Navbar from '../components/Navbar'
+import { gqlRequest } from '../lib/graphql'
+import { GET_PUBLISHED_POSTS } from '../lib/queries'
+import type { BlogPost } from '../lib/types'
+import styles from './Blog.module.css'
+
+function formatDate(dateStr: string): string {
+  const date = new Date(dateStr)
+  return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
+}
+
+export default function Blog() {
+  const [posts, setPosts] = useState<BlogPost[]>([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    gqlRequest<{ blog_posts: BlogPost[] }>(GET_PUBLISHED_POSTS)
+      .then((data) => setPosts(data.blog_posts))
+      .catch(console.error)
+      .finally(() => setLoading(false))
+  }, [])
+
+  return (
+    <div className={styles.page}>
+      <Navbar />
+      <header className={styles.header}>
+        <div className={styles.brushMark} />
+        <h1 className={styles.title}>Writing</h1>
+        <p className={styles.subtitle}>
+          Notes on iOS development, architecture, and lessons from shipping.
+        </p>
+      </header>
+      <div className={styles.posts}>
+        {loading ? (
+          <p className={styles.loading}>—</p>
+        ) : (
+          posts.map((post) => (
+            <Link
+              key={post.slug}
+              to={`/blog/${post.slug}`}
+              className={styles.postItem}
+            >
+              <div className={styles.postDate}>
+                {formatDate(post.published_at)} · {post.reading_time_minutes} min
+              </div>
+              <div className={styles.postTitle}>{post.title}</div>
+              <div className={styles.postExcerpt}>{post.excerpt}</div>
+              <div className={styles.postTags}>
+                {post.tags.map((tag) => (
+                  <span key={tag} className={styles.tag}>{tag}</span>
+                ))}
+              </div>
+            </Link>
+          ))
+        )}
+      </div>
+    </div>
+  )
+}
