@@ -29,7 +29,7 @@
   line-height: 1.5;
   color: rgba(232, 228, 220, 0.25);
   text-decoration: none;
-  padding: 4px 0;
+  padding: 4px 0 4px 12px;
   transition: color 0.2s;
   white-space: nowrap;
   overflow: hidden;
@@ -46,7 +46,7 @@
 }
 
 .item.sub {
-  padding-left: 12px;
+  padding-left: 24px;
   font-size: 9px;
   opacity: 0.85;
 }

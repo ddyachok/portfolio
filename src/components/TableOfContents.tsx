@@ -48,6 +48,7 @@ export default function TableOfContents({ headings }: Props) {
             className={`${styles.item} ${level === 3 ? styles.sub : ''} ${activeId === id ? styles.active : ''}`}
             onClick={(e) => {
               e.preventDefault()
+              setActiveId(id)
               document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
             }}
           >
