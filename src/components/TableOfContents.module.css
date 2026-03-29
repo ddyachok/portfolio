@@ -1,0 +1,52 @@
+.toc {
+  position: sticky;
+  top: 80px;
+  padding-top: 4px;
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--stone);
+  margin-bottom: 12px;
+}
+
+.line {
+  width: 1px;
+  height: 100%;
+  position: absolute;
+  left: -1px;
+  top: 0;
+  background: var(--border);
+}
+
+.item {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  line-height: 1.5;
+  color: rgba(232, 228, 220, 0.25);
+  text-decoration: none;
+  padding: 4px 0;
+  transition: color 0.2s;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 180px;
+}
+
+.item:hover {
+  color: rgba(232, 228, 220, 0.5);
+}
+
+.item.active {
+  color: var(--ochre);
+}
+
+.item.sub {
+  padding-left: 12px;
+  font-size: 9px;
+  opacity: 0.85;
+}
