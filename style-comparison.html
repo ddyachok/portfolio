@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Style Comparison — Portfolio Designs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400&family=Noto+Serif+JP:wght@200;300;500&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&family=Space+Grotesk:wght@300;400;600;700&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #1a1a1a;
+    color: #ccc;
+    font-family: 'Inter', sans-serif;
+    padding: 48px 24px;
+  }
+
+  .page-title {
+    text-align: center;
+    font-size: 14px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #666;
+    margin-bottom: 12px;
+  }
+
+  .page-subtitle {
+    text-align: center;
+    font-size: 13px;
+    color: #555;
+    margin-bottom: 64px;
+    line-height: 1.6;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 1024px) {
+    .grid { grid-template-columns: 1fr; max-width: 700px; }
+  }
+
+  .style-card {
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #2a2a2a;
+  }
+
+  .style-label {
+    padding: 16px 24px;
+    background: #222;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #888;
+    border-bottom: 1px solid #2a2a2a;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .style-label .fonts {
+    font-size: 10px;
+    letter-spacing: 0;
+    text-transform: none;
+    color: #555;
+  }
+
+  /* ===== STYLE 1: NEO-TOKYO ===== */
+  .neo-tokyo {
+    background: #0a0a0a;
+    color: #f0ece4;
+    padding: 48px;
+  }
+  .neo-tokyo .brush-mark {
+    width: 3px;
+    height: 64px;
+    background: linear-gradient(180deg, #c42830, transparent);
+    margin-bottom: 28px;
+  }
+  .neo-tokyo .name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 56px;
+    line-height: 0.95;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    color: #f0ece4;
+  }
+  .neo-tokyo .role {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(240, 236, 228, 0.3);
+    margin-bottom: 40px;
+  }
+  .neo-tokyo .nav a {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: rgba(240, 236, 228, 0.35);
+    text-decoration: none;
+    margin-right: 28px;
+    transition: color 0.3s;
+  }
+  .neo-tokyo .nav a:hover { color: #c42830; }
+  .neo-tokyo .divider {
+    width: 100%;
+    height: 1px;
+    background: rgba(255,255,255,0.05);
+    margin: 40px 0;
+  }
+  .neo-tokyo .blog-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+  }
+  .neo-tokyo .post-card {
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .neo-tokyo .post-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: #6b6560;
+    margin-bottom: 6px;
+  }
+  .neo-tokyo .post-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 0.5px;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+  .neo-tokyo .post-excerpt {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: rgba(240, 236, 228, 0.35);
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+  .neo-tokyo .tags { display: flex; gap: 6px; flex-wrap: wrap; }
+  .neo-tokyo .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    padding: 3px 8px;
+    border: 1px solid rgba(196, 40, 48, 0.2);
+    color: rgba(196, 40, 48, 0.7);
+    border-radius: 2px;
+  }
+  .neo-tokyo .skill-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    padding: 3px 8px;
+    border: 1px solid rgba(196, 40, 48, 0.35);
+    color: #c42830;
+    border-radius: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .neo-tokyo .contact-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+  }
+  .neo-tokyo .contact-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: rgba(240, 236, 228, 0.45);
+    line-height: 1.7;
+  }
+
+  /* ===== STYLE 2: VAGABOND ===== */
+  .vagabond {
+    background: #f5f0e8;
+    color: #1a1814;
+    padding: 48px;
+  }
+  .vagabond .brush-mark {
+    width: 3px;
+    height: 64px;
+    background: linear-gradient(180deg, #c93530, transparent);
+    margin-bottom: 28px;
+  }
+  .vagabond .name {
+    font-family: 'Instrument Serif', serif;
+    font-size: 52px;
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.5px;
+    margin-bottom: 20px;
+    color: #1a1814;
+  }
+  .vagabond .role {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(26, 24, 20, 0.3);
+    margin-bottom: 40px;
+  }
+  .vagabond .nav a {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: rgba(26, 24, 20, 0.35);
+    text-decoration: none;
+    margin-right: 28px;
+    transition: color 0.3s;
+  }
+  .vagabond .nav a:hover { color: #c93530; }
+  .vagabond .divider {
+    width: 100%;
+    height: 1px;
+    background: rgba(0,0,0,0.08);
+    margin: 40px 0;
+  }
+  .vagabond .blog-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: 30px;
+    margin-bottom: 16px;
+  }
+  .vagabond .post-card {
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+  }
+  .vagabond .post-meta {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: #8a8478;
+    margin-bottom: 6px;
+  }
+  .vagabond .post-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: 22px;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .vagabond .post-excerpt {
+    font-family: 'Source Serif 4', serif;
+    font-size: 13px;
+    color: rgba(26, 24, 20, 0.45);
+    line-height: 1.7;
+    margin-bottom: 10px;
+  }
+  .vagabond .tags { display: flex; gap: 6px; flex-wrap: wrap; }
+  .vagabond .tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    padding: 3px 8px;
+    border: 1px solid rgba(26, 24, 20, 0.12);
+    color: rgba(26, 24, 20, 0.4);
+    border-radius: 2px;
+  }
+  .vagabond .skill-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    padding: 3px 8px;
+    border: 1px solid rgba(201, 53, 48, 0.25);
+    color: rgba(201, 53, 48, 0.8);
+    border-radius: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .vagabond .contact-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: 48px;
+    font-weight: 400;
+    margin-bottom: 16px;
+  }
+  .vagabond .contact-text {
+    font-family: 'Source Serif 4', serif;
+    font-size: 14px;
+    color: rgba(26, 24, 20, 0.5);
+    line-height: 1.8;
+  }
+
+  /* ===== STYLE 3: RONIN ===== */
+  .ronin {
+    background: #0d0d0b;
+    color: #e8e4dc;
+    padding: 48px;
+  }
+  .ronin .brush-mark {
+    width: 3px;
+    height: 64px;
+    background: linear-gradient(180deg, rgba(196, 48, 56, 0.6), transparent);
+    margin-bottom: 28px;
+  }
+  .ronin .name {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 52px;
+    line-height: 1.05;
+    letter-spacing: -0.5px;
+    margin-bottom: 20px;
+  }
+  .ronin .role {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(232, 228, 220, 0.25);
+    margin-bottom: 40px;
+  }
+  .ronin .nav a {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: rgba(232, 228, 220, 0.35);
+    text-decoration: none;
+    margin-right: 28px;
+    transition: color 0.3s;
+  }
+  .ronin .nav a:hover { color: #c43038; }
+  .ronin .divider {
+    width: 100%;
+    height: 1px;
+    background: rgba(255,255,255,0.04);
+    margin: 40px 0;
+  }
+  .ronin .blog-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 30px;
+    margin-bottom: 16px;
+  }
+  .ronin .post-card {
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .ronin .post-meta {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: #5a5550;
+    margin-bottom: 6px;
+  }
+  .ronin .post-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 22px;
+    line-height: 1.35;
+    margin-bottom: 6px;
+  }
+  .ronin .post-excerpt {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: rgba(232, 228, 220, 0.35);
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+  .ronin .tags { display: flex; gap: 6px; flex-wrap: wrap; }
+  .ronin .tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    padding: 3px 8px;
+    border: 1px solid rgba(196, 48, 56, 0.15);
+    color: rgba(180, 140, 100, 0.6);
+    border-radius: 2px;
+  }
+  .ronin .skill-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    padding: 3px 8px;
+    border: 1px solid rgba(196, 48, 56, 0.3);
+    color: rgba(196, 48, 56, 0.8);
+    border-radius: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .ronin .contact-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 48px;
+    margin-bottom: 16px;
+  }
+  .ronin .contact-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: rgba(232, 228, 220, 0.4);
+    line-height: 1.7;
+  }
+
+  /* ===== STYLE 4: CAPSULE ===== */
+  .capsule {
+    background: #111111;
+    color: #ffffff;
+    padding: 48px;
+  }
+  .capsule .brush-mark {
+    width: 40px;
+    height: 3px;
+    background: #e63028;
+    margin-bottom: 28px;
+  }
+  .capsule .name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 1.0;
+    letter-spacing: -1px;
+    margin-bottom: 20px;
+  }
+  .capsule .role {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #666;
+    margin-bottom: 40px;
+  }
+  .capsule .nav a {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #555;
+    text-decoration: none;
+    margin-right: 28px;
+    transition: color 0.3s;
+  }
+  .capsule .nav a:hover { color: #e63028; }
+  .capsule .divider {
+    width: 100%;
+    height: 1px;
+    background: #222;
+    margin: 40px 0;
+  }
+  .capsule .blog-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 26px;
+    letter-spacing: -0.5px;
+    margin-bottom: 16px;
+  }
+  .capsule .post-card {
+    padding: 20px 0;
+    border-bottom: 1px solid #222;
+  }
+  .capsule .post-meta {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: #555;
+    margin-bottom: 6px;
+  }
+  .capsule .post-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 1.3;
+    letter-spacing: -0.3px;
+    margin-bottom: 6px;
+  }
+  .capsule .post-excerpt {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+  .capsule .tags { display: flex; gap: 6px; flex-wrap: wrap; }
+  .capsule .tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    padding: 3px 8px;
+    border: 1px solid #333;
+    color: #666;
+    border-radius: 2px;
+  }
+  .capsule .skill-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    padding: 3px 8px;
+    border: 1px solid rgba(230, 48, 40, 0.35);
+    color: #e63028;
+    border-radius: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .capsule .contact-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 44px;
+    letter-spacing: -1px;
+    margin-bottom: 16px;
+  }
+  .capsule .contact-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #666;
+    line-height: 1.7;
+  }
+
+  /* Color swatches */
+  .swatches {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+  .swatch {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid rgba(128,128,128,0.15);
+  }
+  .swatch-label {
+    font-size: 9px;
+    color: inherit;
+    opacity: 0.4;
+    margin-top: 3px;
+    text-align: center;
+    display: block;
+  }
+  .swatch-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+</style>
+</head>
+<body>
+
+<p class="page-title">Style Comparison</p>
+<p class="page-subtitle">Four design directions inspired by Akira & Vagabond poster aesthetics.<br>Each card shows: Home hero, Blog list, and Contact section.</p>
+
+<div class="grid">
+
+  <!-- STYLE 1: NEO-TOKYO -->
+  <div class="style-card">
+    <div class="style-label">
+      <span>Style 1 — Neo-Tokyo</span>
+      <span class="fonts">Bebas Neue + Inter + JetBrains Mono</span>
+    </div>
+    <div class="neo-tokyo">
+      <div class="swatches">
+        <div class="swatch-group"><div class="swatch" style="background:#0a0a0a"></div><span class="swatch-label">bg</span></div>
+        <div class="swatch-group"><div class="swatch" style="background:#f0ece4"></div><span class="swatch-label">text</span></div>
+        <div class="swatch-group"><div class="swatch" style="background:#c42830"></div><span class="swatch-label">accent</span></div>
+        <div class="swatch-group"><div class="swatch" style="background:#2a2a2a"></div><span class="swatch-label">card</span></div>
+        <div class="swatch-group"><div class="swatch" style="background:#6b6560"></div><span class="swatch-label">muted</span></div>
+      </div>
+
+      <div class="brush-mark"></div>
+      <div class="name">DANYLO<br>DYACHOK</div>
+      <div class="role">iOS Developer</div>
+      <div class="nav">
+        <a href="#">work</a>
+        <a href="#">blog</a>
+        <a href="#">contact</a>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="blog-title">BLOG</div>
+      <div class="post-card">
+        <div class="post-meta">March 2026 · 12 min</div>
+        <div class="post-title">"JUST ADD ARABIC" — DYNAMIC LANGUAGE SWITCHING IN A SWIFTUI APP</div>
+        <div class="post-excerpt">How we built real-time English/Arabic switching in Bankee, and the RTL bugs that nearly broke us.</div>
+        <div class="tags">
+          <span class="skill-tag">Intermediate</span>
+          <span class="tag">SwiftUI</span>
+          <span class="tag">Localization</span>
+          <span class="tag">RTL</span>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="contact-title">LET'S TALK</div>
+      <div class="contact-text">I'm always open to discussing new projects,<br>creative ideas, or opportunities to be part of your vision.</div>
+    </div>
+  </div>
+
+  <!-- STYLE 2: VAGABOND -->
+  <div class="style-card">
+    <div class="style-label">
+      <span>Style 2 — Vagabond</span>
+      <span class="fonts">Instrument Serif + Source Serif 4 + Space Mono</span>
+    </div>
+    <div class="vagabond">
+      <div class="swatches">
+        <div class="swatch-group"><div class="swatch" style="background:#f5f0e8"></div><span class="swatch-label">bg</span></div>
+        <div class="swatch-group"><div class="swatch" style="background:#1a1814"></div><span class="swatch-label">text</span></div>
+        <div class="swatch-group"><div class="swatch" style="background:#c93530"></div><span class="swatch-label">accent</span></div>
+        <div class="swatch-group"><div class="swatch" style="background:#d4cfc4"></div><span class="swatch-label">border</span></div>
+        <div class="swatch-group"><div class="swatch" style="background:#8a8478"></div><span class="swatch-label">muted</span></div>
+      </div>
+
+      <div class="brush-mark"></div>
+      <div class="name">Danylo<br>Dyachok</div>
+      <div class="role">iOS Developer</div>
+      <div class="nav">
+        <a href="#">work</a>
+        <a href="#">blog</a>
+        <a href="#">contact</a>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="blog-title">Blog</div>
+      <div class="post-card">
+        <div class="post-meta">March 2026 · 12 min</div>
+        <div class="post-title">"Just Add Arabic" — Dynamic Language Switching in a SwiftUI App</div>
+        <div class="post-excerpt">How we built real-time English/Arabic switching in Bankee, and the RTL bugs that nearly broke us.</div>
+        <div class="tags">
+          <span class="skill-tag">Intermediate</span>
+          <span class="tag">SwiftUI</span>
+          <span class="tag">Localization</span>
+          <span class="tag">RTL</span>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="contact-title">Let's talk</div>
+      <div class="contact-text">I'm always open to discussing new projects,<br>creative ideas, or opportunities to be part of your vision.</div>
+    </div>
+  </div>
+
+  <!-- STYLE 3: RONIN -->
+  <div class="style-card">
+    <div class="style-label">
+      <span>Style 3 — Ronin</span>
+      <span class="fonts">Cormorant Garamond + Inter + Space Mono</span>
+    </div>
+    <div class="ronin">
+      <div class="swatches">
+        <div class="swatch-group"><div class="swatch" style="background:#0d0d0b"></div><span class="swatch-label">bg</span></div>
+        <div class="swatch-group"><div class="swatch" style="background:#e8e4dc"></div><span class="swatch-label">text</span></div>
+        <div class="swatch-group"><div class="swatch" style="background:#c43038"></div><span class="swatch-label">accent</span></div>
+        <div class="swatch-group"><div class="swatch" style="background:#b48c64"></div><span class="swatch-label">ochre</span></div>
+        <div class="swatch-group"><div class="swatch" style="background:#5a5550"></div><span class="swatch-label">muted</span></div>
+      </div>
+
+      <div class="brush-mark"></div>
+      <div class="name">Danylo<br>Dyachok</div>
+      <div class="role">iOS Developer</div>
+      <div class="nav">
+        <a href="#">work</a>
+        <a href="#">blog</a>
+        <a href="#">contact</a>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="blog-title">Blog</div>
+      <div class="post-card">
+        <div class="post-meta">March 2026 · 12 min</div>
+        <div class="post-title">"Just Add Arabic" — Dynamic Language Switching in a SwiftUI App</div>
+        <div class="post-excerpt">How we built real-time English/Arabic switching in Bankee, and the RTL bugs that nearly broke us.</div>
+        <div class="tags">
+          <span class="skill-tag">Intermediate</span>
+          <span class="tag">SwiftUI</span>
+          <span class="tag">Localization</span>
+          <span class="tag">RTL</span>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="contact-title">Let's talk</div>
+      <div class="contact-text">I'm always open to discussing new projects,<br>creative ideas, or opportunities to be part of your vision.</div>
+    </div>
+  </div>
+
+  <!-- STYLE 4: CAPSULE -->
+  <div class="style-card">
+    <div class="style-label">
+      <span>Style 4 — Capsule</span>
+      <span class="fonts">Space Grotesk + Inter + Space Mono</span>
+    </div>
+    <div class="capsule">
+      <div class="swatches">
+        <div class="swatch-group"><div class="swatch" style="background:#111111"></div><span class="swatch-label">bg</span></div>
+        <div class="swatch-group"><div class="swatch" style="background:#ffffff"></div><span class="swatch-label">text</span></div>
+        <div class="swatch-group"><div class="swatch" style="background:#e63028"></div><span class="swatch-label">accent</span></div>
+        <div class="swatch-group"><div class="swatch" style="background:#333333"></div><span class="swatch-label">card</span></div>
+        <div class="swatch-group"><div class="swatch" style="background:#666666"></div><span class="swatch-label">muted</span></div>
+      </div>
+
+      <div class="brush-mark"></div>
+      <div class="name">Danylo<br>Dyachok</div>
+      <div class="role">iOS Developer</div>
+      <div class="nav">
+        <a href="#">work</a>
+        <a href="#">blog</a>
+        <a href="#">contact</a>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="blog-title">Blog</div>
+      <div class="post-card">
+        <div class="post-meta">March 2026 · 12 min</div>
+        <div class="post-title">"Just Add Arabic" — Dynamic Language Switching in a SwiftUI App</div>
+        <div class="post-excerpt">How we built real-time English/Arabic switching in Bankee, and the RTL bugs that nearly broke us.</div>
+        <div class="tags">
+          <span class="skill-tag">Intermediate</span>
+          <span class="tag">SwiftUI</span>
+          <span class="tag">Localization</span>
+          <span class="tag">RTL</span>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="contact-title">Let's talk</div>
+      <div class="contact-text">I'm always open to discussing new projects,<br>creative ideas, or opportunities to be part of your vision.</div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

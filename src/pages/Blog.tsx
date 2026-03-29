@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import { gqlRequest } from '../lib/graphql'
 import { GET_PUBLISHED_POSTS } from '../lib/queries'
+import { BLOG_POSTS } from '../lib/data'
 import type { BlogPost, SkillLevel } from '../lib/types'
 import styles from './Blog.module.css'
 
@@ -24,7 +25,7 @@ export default function Blog() {
   useEffect(() => {
     gqlRequest<{ blog_posts: BlogPost[] }>(GET_PUBLISHED_POSTS)
       .then((data) => setPosts(data.blog_posts))
-      .catch(console.error)
+      .catch(() => setPosts(BLOG_POSTS))
       .finally(() => setLoading(false))
   }, [])
 
@@ -33,7 +34,7 @@ export default function Blog() {
       <Navbar />
       <header className={styles.header}>
         <div className={styles.brushMark} />
-        <h1 className={styles.title}>Writing</h1>
+        <h1 className={styles.title}>Blog</h1>
         <p className={styles.subtitle}>
           Notes on iOS development, architecture, and lessons from shipping.
         </p>
