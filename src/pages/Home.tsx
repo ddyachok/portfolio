@@ -14,7 +14,7 @@ export default function Home() {
           <Link to="/blog">Blog</Link>
           <Link to="/contact">Contact</Link>
         </nav>
-        <div className={styles.meta}>Lviv, Ukraine · Remote · NerdzLab</div>
+        <div className={styles.meta}>Lviv, Ukraine · Remote</div>
       </div>
     </div>
   )
