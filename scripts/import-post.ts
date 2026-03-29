@@ -10,6 +10,7 @@
  *   slug: my-post-slug
  *   excerpt: "Short description..."
  *   tags: [Tag1, Tag2]
+ *   skill_level: beginner | intermediate | advanced  (optional)
  *   cover_image_url: https://...  (optional)
  *   reading_time_minutes: 12
  *   ---
@@ -28,7 +29,7 @@ const INSERT_POST = `
       object: $object
       on_conflict: {
         constraint: blog_posts_slug_key
-        update_columns: [title, excerpt, content, cover_image_url, tags, reading_time_minutes, updated_at]
+        update_columns: [title, excerpt, content, cover_image_url, tags, skill_level, reading_time_minutes, updated_at]
       }
     ) {
       id
@@ -43,6 +44,7 @@ interface Frontmatter {
   slug: string
   excerpt?: string
   tags?: string[]
+  skill_level?: 'beginner' | 'intermediate' | 'advanced'
   cover_image_url?: string
   reading_time_minutes?: number
 }
@@ -98,6 +100,7 @@ async function importPost(filePath: string) {
   console.log(`Title: ${frontmatter.title}`)
   console.log(`Slug: ${frontmatter.slug}`)
   console.log(`Tags: ${frontmatter.tags?.join(', ') || 'none'}`)
+  console.log(`Skill level: ${frontmatter.skill_level || 'not set'}`)
 
   const headers: Record<string, string> = {
     'Content-Type': 'application/json',
@@ -119,6 +122,7 @@ async function importPost(filePath: string) {
           content,
           cover_image_url: frontmatter.cover_image_url || null,
           tags: `{${(frontmatter.tags || []).join(',')}}`,
+          skill_level: frontmatter.skill_level || null,
           reading_time_minutes: frontmatter.reading_time_minutes || 0,
           published: true,
           published_at: new Date().toISOString(),

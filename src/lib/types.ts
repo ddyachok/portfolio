@@ -1,3 +1,5 @@
+export type SkillLevel = 'beginner' | 'intermediate' | 'advanced'
+
 export interface BlogPost {
   id: string
   title: string
@@ -6,6 +8,7 @@ export interface BlogPost {
   content: string
   cover_image_url: string | null
   tags: string[]
+  skill_level: SkillLevel | null
   reading_time_minutes: number
   published: boolean
   published_at: string

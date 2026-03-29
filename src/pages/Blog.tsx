@@ -3,12 +3,18 @@ import { Link } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import { gqlRequest } from '../lib/graphql'
 import { GET_PUBLISHED_POSTS } from '../lib/queries'
-import type { BlogPost } from '../lib/types'
+import type { BlogPost, SkillLevel } from '../lib/types'
 import styles from './Blog.module.css'
 
 function formatDate(dateStr: string): string {
   const date = new Date(dateStr)
   return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
+}
+
+const skillLevelLabels: Record<SkillLevel, string> = {
+  beginner: 'Beginner',
+  intermediate: 'Intermediate',
+  advanced: 'Advanced',
 }
 
 export default function Blog() {
@@ -48,6 +54,11 @@ export default function Blog() {
               <div className={styles.postTitle}>{post.title}</div>
               <div className={styles.postExcerpt}>{post.excerpt}</div>
               <div className={styles.postTags}>
+                {post.skill_level && (
+                  <span className={`${styles.skillLevel} ${styles[post.skill_level]}`}>
+                    {skillLevelLabels[post.skill_level]}
+                  </span>
+                )}
                 {post.tags.map((tag) => (
                   <span key={tag} className={styles.tag}>{tag}</span>
                 ))}
