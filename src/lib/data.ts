@@ -10,6 +10,7 @@ export const BLOG_POSTS: BlogPost[] = [
     content: '', // Will be loaded separately
     cover_image_url: null,
     tags: ['SwiftUI', 'Localization', 'RTL'],
+    skill_level: null,
     reading_time_minutes: 12,
     published: true,
     published_at: '2026-03-29T00:00:00Z',
