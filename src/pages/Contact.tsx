@@ -6,6 +6,9 @@ export default function Contact() {
     <div className={styles.page}>
       <Navbar />
       <div className={styles.content}>
+        <div className={styles.photo}>
+          <img src="/images/photo.png" alt="" className={styles.photoImg} />
+        </div>
         <div className={styles.left}>
           <div className={styles.brushMark} />
           <h1 className={styles.title}>Let's talk</h1>

@@ -5,25 +5,16 @@ export default function Home() {
   return (
     <div className={styles.page}>
       <div className={styles.hero}>
-        <div className={styles.content}>
-          <div className={styles.brushMark} />
-          <h1 className={styles.name}>
-            Danylo<br />Dyachok
-          </h1>
-          <div className={styles.role}>iOS Developer</div>
-          <nav className={styles.nav}>
-            <Link to="/blog">Blog</Link>
-            <Link to="/contact">Contact</Link>
-          </nav>
-          <div className={styles.meta}>Lviv, Ukraine · Remote · NerdzLab</div>
-        </div>
-        <div className={styles.photoWrap}>
-          <img
-            src="/images/photo.jpg"
-            alt="Danylo Dyachok"
-            className={styles.photo}
-          />
-        </div>
+        <div className={styles.brushMark} />
+        <h1 className={styles.name}>
+          Danylo<br />Dyachok
+        </h1>
+        <div className={styles.role}>iOS Developer</div>
+        <nav className={styles.nav}>
+          <Link to="/blog">Blog</Link>
+          <Link to="/contact">Contact</Link>
+        </nav>
+        <div className={styles.meta}>Lviv, Ukraine · Remote · NerdzLab</div>
       </div>
     </div>
   )
