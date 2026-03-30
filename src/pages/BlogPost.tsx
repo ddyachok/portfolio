@@ -11,6 +11,7 @@ import { GET_POST_BY_SLUG } from '../lib/queries'
 import { BLOG_POSTS } from '../lib/data'
 import { blogContent } from '../lib/blog-content'
 import type { BlogPost, SkillLevel } from '../lib/types'
+import Loader from '../components/Loader'
 import styles from './BlogPost.module.css'
 
 function formatDate(dateStr: string): string {
@@ -75,7 +76,7 @@ export default function BlogPost() {
     return (
       <div className={styles.page}>
         <Navbar />
-        <div className={styles.notFound}>—</div>
+        <Loader />
       </div>
     )
   }

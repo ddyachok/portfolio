@@ -5,6 +5,7 @@ import { gqlRequest } from '../lib/graphql'
 import { GET_PUBLISHED_POSTS } from '../lib/queries'
 import { BLOG_POSTS } from '../lib/data'
 import type { BlogPost, SkillLevel } from '../lib/types'
+import Loader from '../components/Loader'
 import styles from './Blog.module.css'
 
 function formatDate(dateStr: string): string {
@@ -41,13 +42,14 @@ export default function Blog() {
       </header>
       <div className={styles.posts}>
         {loading ? (
-          <p className={styles.loading}>—</p>
+          <Loader />
         ) : (
-          posts.map((post) => (
+          posts.map((post, i) => (
             <Link
               key={post.slug}
               to={`/blog/${post.slug}`}
               className={styles.postItem}
+              style={{ animationDelay: `${0.3 + i * 0.08}s` }}
             >
               {post.cover_image_url && (
                 <div className={styles.postThumb}>
