@@ -49,6 +49,12 @@ export default function Blog() {
               to={`/blog/${post.slug}`}
               className={styles.postItem}
             >
+              {post.cover_image_url && (
+                <div className={styles.postThumb}>
+                  <img src={post.cover_image_url} alt="" className={styles.postThumbImg} />
+                </div>
+              )}
+              <div className={styles.postMeta}>
               <div className={styles.postDate}>
                 {formatDate(post.published_at)} · {post.reading_time_minutes} min
               </div>
@@ -63,6 +69,7 @@ export default function Blog() {
                 {post.tags.map((tag) => (
                   <span key={tag} className={styles.tag}>{tag}</span>
                 ))}
+              </div>
               </div>
             </Link>
           ))

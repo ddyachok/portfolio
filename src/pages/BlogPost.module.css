@@ -36,8 +36,8 @@
 }
 
 .title {
-  font-family: var(--font-serif);
-  font-weight: 300;
+  font-family: var(--font-heading);
+  font-weight: 700;
   font-size: 28px;
   color: var(--aged-white);
   line-height: 1.35;
@@ -97,6 +97,20 @@
   margin: 24px 0;
 }
 
+.cover {
+  width: 100%;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 40px;
+}
+
+.coverImg {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
 .notFound {
   padding: 120px 48px;
 }
@@ -123,16 +137,16 @@
 }
 
 .article h2 {
-  font-family: var(--font-serif);
-  font-weight: 300;
+  font-family: var(--font-heading);
+  font-weight: 700;
   font-size: 22px;
   color: rgba(232, 228, 220, 0.85);
   margin: 40px 0 16px;
 }
 
 .article h3 {
-  font-family: var(--font-serif);
-  font-weight: 500;
+  font-family: var(--font-heading);
+  font-weight: 700;
   font-size: 18px;
   color: rgba(232, 228, 220, 0.8);
   margin: 32px 0 12px;
