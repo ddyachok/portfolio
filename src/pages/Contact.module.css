@@ -29,7 +29,6 @@
   color: var(--aged-white);
   margin-bottom: 28px;
   line-height: 1.1;
-  animation: fadeUp 0.6s ease both;
 }
 
 .bioText {
@@ -39,8 +38,6 @@
   line-height: 1.9;
   margin-bottom: 28px;
   max-width: 420px;
-  animation: fadeUp 0.6s ease both;
-  animation-delay: 0.1s;
 }
 
 .bioText strong {
@@ -54,8 +51,6 @@
   font-family: var(--font-mono);
   font-size: 11px;
   color: rgba(232, 228, 220, 0.3);
-  animation: fadeUp 0.5s ease both;
-  animation-delay: 0.2s;
 }
 
 .dot {
@@ -69,8 +64,6 @@
 .photoWrap {
   position: relative;
   margin-top: -20px;
-  animation: fadeIn 0.8s ease both;
-  animation-delay: 0.15s;
 }
 
 .photo {
@@ -83,8 +76,6 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   border-top: 1px solid var(--border);
-  animation: fadeUp 0.6s ease both;
-  animation-delay: 0.3s;
 }
 
 .link {

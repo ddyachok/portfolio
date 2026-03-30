@@ -29,7 +29,6 @@
   display: inline-block;
   margin-bottom: 32px;
   transition: color 0.3s;
-  animation: fadeIn 0.5s ease both;
 }
 
 .back:hover {
@@ -43,8 +42,6 @@
   color: var(--aged-white);
   line-height: 1.35;
   margin-bottom: 16px;
-  animation: fadeUp 0.6s ease both;
-  animation-delay: 0.1s;
 }
 
 .meta {
@@ -52,15 +49,11 @@
   font-size: 11px;
   color: var(--stone);
   margin-bottom: 12px;
-  animation: fadeUp 0.5s ease both;
-  animation-delay: 0.2s;
 }
 
 .tags {
   display: flex;
   gap: 8px;
-  animation: fadeUp 0.5s ease both;
-  animation-delay: 0.25s;
 }
 
 .tag {
@@ -102,9 +95,6 @@
   height: 2px;
   background: linear-gradient(90deg, rgba(180, 140, 100, 0.3), transparent);
   margin: 24px 0;
-  transform-origin: left;
-  animation: brushGrowX 0.6s ease both;
-  animation-delay: 0.3s;
 }
 
 .cover {
@@ -112,8 +102,6 @@
   border-radius: 6px;
   overflow: hidden;
   margin-bottom: 40px;
-  animation: fadeIn 0.7s ease both;
-  animation-delay: 0.35s;
 }
 
 .coverImg {
@@ -138,8 +126,6 @@
 /* Article content */
 .article {
   padding-bottom: 80px;
-  animation: fadeIn 0.6s ease both;
-  animation-delay: 0.4s;
 }
 
 .article p {
