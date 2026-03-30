@@ -2,11 +2,11 @@
 // The title/h1 is stripped since BlogPost component renders it from metadata
 
 export const blogContent: Record<string, string> = {
-  'dynamic-localization-in-ios': `*How we built real-time English/Arabic switching in Bankee, and the RTL bugs that nearly broke us.*
+  'dynamic-localization-in-ios': `*How we built real-time English/Arabic switching in a production app, and the RTL bugs that nearly broke us.*
 
 ---
 
-Bankee is an edtech banking app built for Kuwait. Arabic isn't a nice-to-have — it's the primary language for most of our users. So when we set out to add full Arabic support with **in-app language switching** (no restart required), we figured it would be a couple of weeks of work.
+Our app is an edtech banking platform built for Kuwait. Arabic isn't a nice-to-have — it's the primary language for most of our users. So when we set out to add full Arabic support with **in-app language switching** (no restart required), we figured it would be a couple of weeks of work.
 
 Three weeks of debugging later, here's what actually happened:
 - SwiftUI TextFields had no idea how to position a cursor in Arabic
@@ -310,5 +310,5 @@ We use **Noto Kufi Arabic** as our Arabic font throughout the app. System Arabic
 
 ---
 
-*The full implementation is in the [Bankee iOS](https://github.com/Bankee-online/bankee-ios) codebase. If you're building dynamic localization in SwiftUI and hitting similar issues, feel free to reach out.*`,
+*If you're building dynamic localization in SwiftUI and hitting similar issues, feel free to reach out.*`,
 }

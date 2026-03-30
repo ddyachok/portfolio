@@ -6,7 +6,7 @@ export const BLOG_POSTS: BlogPost[] = [
     id: '1',
     title: '"Just Add Arabic" — Dynamic Language Switching in a SwiftUI App Without Restarting',
     slug: 'dynamic-localization-in-ios',
-    excerpt: 'How we built real-time English/Arabic switching in Bankee, and the RTL bugs that nearly broke us.',
+    excerpt: 'How we built real-time English/Arabic switching in a production app, and the RTL bugs that nearly broke us.',
     content: '', // Will be loaded separately
     cover_image_url: 'https://res.cloudinary.com/dqhdphy0b/image/upload/v1774866732/blog/arabic-hero.jpg',
     tags: ['SwiftUI', 'Localization', 'RTL'],
