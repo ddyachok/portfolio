@@ -1,12 +1,14 @@
 import { Link, useLocation } from 'react-router-dom'
 import Logo from './Logo'
+import useAppear from '../hooks/useAppear'
 import styles from './Navbar.module.css'
 
 export default function Navbar() {
   const { pathname } = useLocation()
+  const { fadeIn } = useAppear()
 
   return (
-    <nav className={styles.nav}>
+    <nav className={styles.nav} style={fadeIn(0, 0.5)}>
       <Link to="/" className={styles.brand}>
         <Logo size={28} />
       </Link>

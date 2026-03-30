@@ -5,6 +5,8 @@ import { gqlRequest } from '../lib/graphql'
 import { GET_PUBLISHED_POSTS } from '../lib/queries'
 import { BLOG_POSTS } from '../lib/data'
 import type { BlogPost, SkillLevel } from '../lib/types'
+import Loader from '../components/Loader'
+import useAppear from '../hooks/useAppear'
 import styles from './Blog.module.css'
 
 function formatDate(dateStr: string): string {
@@ -21,6 +23,7 @@ const skillLevelLabels: Record<SkillLevel, string> = {
 export default function Blog() {
   const [posts, setPosts] = useState<BlogPost[]>([])
   const [loading, setLoading] = useState(true)
+  const { fadeUp, brushGrow } = useAppear()
 
   useEffect(() => {
     gqlRequest<{ blog_posts: BlogPost[] }>(GET_PUBLISHED_POSTS)
@@ -33,21 +36,22 @@ export default function Blog() {
     <div className={styles.page}>
       <Navbar />
       <header className={styles.header}>
-        <div className={styles.brushMark} />
-        <h1 className={styles.title}>Blog</h1>
-        <p className={styles.subtitle}>
+        <div className={styles.brushMark} style={brushGrow(0, 'X')} />
+        <h1 className={styles.title} style={fadeUp(0.1)}>Blog</h1>
+        <p className={styles.subtitle} style={fadeUp(0.2)}>
           Notes on iOS development, architecture, and lessons from shipping.
         </p>
       </header>
       <div className={styles.posts}>
         {loading ? (
-          <p className={styles.loading}>—</p>
+          <Loader />
         ) : (
-          posts.map((post) => (
+          posts.map((post, i) => (
             <Link
               key={post.slug}
               to={`/blog/${post.slug}`}
               className={styles.postItem}
+              style={fadeUp(0.3 + i * 0.08, 0.5)}
             >
               {post.cover_image_url && (
                 <div className={styles.postThumb}>

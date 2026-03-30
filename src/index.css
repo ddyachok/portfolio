@@ -5,7 +5,7 @@
   src: url('/fonts/SinistreVF.woff2') format('woff2');
   font-weight: 100 900;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
@@ -13,7 +13,7 @@
   src: url('/fonts/MF-Tahadath-Bold.otf') format('opentype');
   font-weight: 700;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 :root {
@@ -26,7 +26,7 @@
   --whisper: rgba(232, 228, 220, 0.15);
   --border: rgba(255, 255, 255, 0.04);
 
-  --font-serif: 'Sinistre', 'Noto Serif JP', serif;
+  --font-serif: 'Sinistre', serif;
   --font-heading: 'MF Tahadath', 'Inter', sans-serif;
   --font-sans: 'Inter', sans-serif;
   --font-mono: 'Space Mono', monospace;
@@ -64,4 +64,17 @@ img {
 
 #root {
   min-height: 100vh;
+}
+
+/* Loader */
+.loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+}
+
+.loader svg {
+  width: 48px;
+  height: 48px;
 }

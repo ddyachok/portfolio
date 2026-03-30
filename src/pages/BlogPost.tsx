@@ -11,6 +11,8 @@ import { GET_POST_BY_SLUG } from '../lib/queries'
 import { BLOG_POSTS } from '../lib/data'
 import { blogContent } from '../lib/blog-content'
 import type { BlogPost, SkillLevel } from '../lib/types'
+import Loader from '../components/Loader'
+import useAppear from '../hooks/useAppear'
 import styles from './BlogPost.module.css'
 
 function formatDate(dateStr: string): string {
@@ -54,6 +56,7 @@ export default function BlogPost() {
   const { slug } = useParams<{ slug: string }>()
   const [post, setPost] = useState<BlogPost | null>(null)
   const [loading, setLoading] = useState(true)
+  const { fadeUp, fadeIn, brushGrow } = useAppear()
 
   useEffect(() => {
     if (!slug) return
@@ -75,7 +78,7 @@ export default function BlogPost() {
     return (
       <div className={styles.page}>
         <Navbar />
-        <div className={styles.notFound}>—</div>
+        <Loader />
       </div>
     )
   }
@@ -98,12 +101,12 @@ export default function BlogPost() {
       <div className={styles.container}>
         <div className={styles.main}>
           <header className={styles.header}>
-            <Link to="/blog" className={styles.back}>&larr; Blog</Link>
-            <h1 className={styles.title}>{post.title}</h1>
-            <div className={styles.meta}>
+            <Link to="/blog" className={styles.back} style={fadeIn(0)}>&larr; Blog</Link>
+            <h1 className={styles.title} style={fadeUp(0.1)}>{post.title}</h1>
+            <div className={styles.meta} style={fadeUp(0.2, 0.5)}>
               {formatDate(post.published_at)} · {post.reading_time_minutes} min read
             </div>
-            <div className={styles.tags}>
+            <div className={styles.tags} style={fadeUp(0.25, 0.5)}>
               {post.skill_level && (
                 <span className={`${styles.skillLevel} ${styles[post.skill_level]}`}>
                   {skillLevelLabels[post.skill_level]}
@@ -113,14 +116,14 @@ export default function BlogPost() {
                 <span key={tag} className={styles.tag}>{tag}</span>
               ))}
             </div>
-            <div className={styles.divider} />
+            <div className={styles.divider} style={brushGrow(0.3, 'X')} />
           </header>
           {post.cover_image_url && (
-            <div className={styles.cover}>
+            <div className={styles.cover} style={fadeIn(0.35, 0.7)}>
               <img src={post.cover_image_url} alt="" className={styles.coverImg} />
             </div>
           )}
-          <article className={styles.article}>
+          <article className={styles.article} style={fadeIn(0.4)}>
             <ReactMarkdown
               remarkPlugins={[remarkGfm]}
               rehypePlugins={[rehypeHighlight, rehypeSlug]}
