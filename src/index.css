@@ -8,6 +8,14 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'MF Tahadath';
+  src: url('/fonts/MF-Tahadath-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --ink: #0d0d0b;
   --paper: #141410;
@@ -19,6 +27,7 @@
   --border: rgba(255, 255, 255, 0.04);
 
   --font-serif: 'Sinistre', 'Noto Serif JP', serif;
+  --font-heading: 'MF Tahadath', 'Inter', sans-serif;
   --font-sans: 'Inter', sans-serif;
   --font-mono: 'Space Mono', monospace;
 }

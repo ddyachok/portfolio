@@ -115,6 +115,11 @@ export default function BlogPost() {
             </div>
             <div className={styles.divider} />
           </header>
+          {post.cover_image_url && (
+            <div className={styles.cover}>
+              <img src={post.cover_image_url} alt="" className={styles.coverImg} />
+            </div>
+          )}
           <article className={styles.article}>
             <ReactMarkdown
               remarkPlugins={[remarkGfm]}

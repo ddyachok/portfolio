@@ -9,7 +9,6 @@ export const blogContent: Record<string, string> = {
 Bankee is an edtech banking app built for Kuwait. Arabic isn't a nice-to-have — it's the primary language for most of our users. So when we set out to add full Arabic support with **in-app language switching** (no restart required), we figured it would be a couple of weeks of work.
 
 Three weeks of debugging later, here's what actually happened:
-- UICollectionView scroll synchronization **completely broke** in RTL
 - SwiftUI TextFields had no idea how to position a cursor in Arabic
 - Some UI elements mirrored when they absolutely should not have
 
@@ -182,91 +181,7 @@ That 0.1-second delay on \`currentLocaleDidChangeNotification\` isn't arbitrary 
 
 ---
 
-## Battle #1: Scroll Sync That Breaks in RTL
-
-The Class Engagement Report screen is our most complex table. It has three horizontally synchronized scroll views:
-- **Section names** (left column, fixed)
-- **Total students** (second column, fixed)
-- **Data grid** (scrollable, synced with header)
-
-In LTR, the content starts at \`x = 0\` and scrolls right. Simple. In RTL, the content starts at the **right edge** — the maximum scroll offset — and scrolls left. Every piece of offset math we had was wrong.
-
-### What Broke
-
-Our header offset calculation was:
-
-\`\`\`swift
-// LTR: negate the scroll position to move the header opposite to scroll
-return -scrollOffset.x
-\`\`\`
-
-When RTL flipped the scroll direction, the header moved the wrong way. The section names drifted away from their data columns. On iPad, where the table is wider, the misalignment was even worse.
-
-### The Fix
-
-We replaced the hardcoded math with a formula that accounts for RTL's inverted coordinate space:
-
-\`\`\`swift
-private var headerOffsetX: CGFloat {
-    guard hasUserScrolled else { return 0 }
-
-    if languageManager.isRTL {
-        let maxScroll = max(0, headerContentWidth - headerVisibleWidth)
-        return scrollOffset.x - maxScroll
-    } else {
-        return -scrollOffset.x
-    }
-}
-\`\`\`
-
-In RTL, \`scrollOffset.x\` starts at \`maxScroll\` (the rightmost position) and decreases as the user scrolls left. By subtracting \`maxScroll\`, we normalize it to the same zero-based coordinate system as LTR.
-
-### The Hack We're Not Proud Of
-
-When the view first appears in RTL, all three scroll views need to jump to their rightmost position. This repositioning is visible — the content flashes from left to right. We hide it with a loading overlay:
-
-\`\`\`swift
-.onAppear {
-    if languageManager.isRTL {
-        isRTLInitializing = true
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            isRTLInitializing = false
-        }
-    }
-}
-\`\`\`
-
-Half a second of fake loading to hide a layout jump. It works. We're not thrilled about it, but the alternative was users seeing content teleport across the screen.
-
-### Synchronized Vertical Scrolling Without Clobbering Horizontal Position
-
-Our \`SimultaneouslyScrollViewHandler\` syncs vertical scroll position across multiple scroll views. The critical detail for RTL: when syncing, we only update the \`y\` offset and **preserve each view's independent \`x\` offset**:
-
-\`\`\`swift
-func scrollViewDidScroll(_ scrollView: UIScrollView) {
-    guard scrollingScrollView === scrollView else { return }
-
-    scrollViews
-        .compactMap { $0.scrollView }
-        .filter { $0 !== scrollingScrollView }
-        .forEach { targetScrollView in
-            targetScrollView.setContentOffset(
-                CGPoint(
-                    x: targetScrollView.contentOffset.x,  // preserve horizontal position
-                    y: scrollView.contentOffset.y           // sync vertical position
-                ),
-                animated: false
-            )
-        }
-}
-\`\`\`
-
-If we had blindly synced both axes, every vertical scroll would reset the horizontal RTL position back to the left edge. This was one of those bugs that only showed up when scrolling vertically in Arabic — easy to miss in testing if you're only testing horizontal scroll.
-
----
-
-## Battle #2: TextFields That Don't Know They're Arabic
+## Battle: TextFields That Don't Know They're Arabic
 
 SwiftUI's \`TextField\` doesn't give you enough control for proper RTL text input. Text alignment, cursor position, placeholder direction — all of it needs to be set at the UIKit level.
 

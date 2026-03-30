@@ -5,13 +5,35 @@
 }
 
 .hero {
-  padding: 100px 48px 80px;
+  position: relative;
+  padding: 80px 48px 48px;
   background: linear-gradient(170deg, #0d0d0b 0%, #100f0a 50%, #0d0c08 100%);
   width: 100%;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+/* Logo watermark — right side, low opacity */
+.logo {
+  position: absolute;
+  right: -5%;
+  top: 42%;
+  transform: translateY(-50%) rotate(90deg);
+  height: 50%;
+  width: auto;
+  opacity: 0.11;
+  pointer-events: none;
+  user-select: none;
+  object-fit: contain;
+  filter: grayscale(0.2);
+}
+
+.top {
+  position: relative;
+  z-index: 1;
 }
 
 .brushMark {
@@ -38,41 +60,65 @@
   color: var(--faded);
   letter-spacing: 4px;
   text-transform: uppercase;
-  margin-bottom: 48px;
+}
+
+/* Bottom section — buttons + meta */
+.bottom {
+  position: relative;
+  z-index: 1;
 }
 
 .nav {
   display: flex;
-  gap: 32px;
+  gap: 16px;
 }
 
-.nav a {
+.btn {
   font-family: var(--font-sans);
-  font-size: 13px;
-  color: rgba(232, 228, 220, 0.4);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--aged-white);
   text-decoration: none;
-  padding-bottom: 4px;
-  transition: color 0.3s;
+  padding: 14px 36px;
+  border: 1px solid rgba(232, 228, 220, 0.15);
+  border-radius: 8px;
+  letter-spacing: 1px;
+  transition: border-color 0.3s, background 0.3s, color 0.3s;
+  text-align: center;
 }
 
-.nav a:hover {
-  color: var(--ochre);
+.btn:hover {
+  border-color: rgba(232, 228, 220, 0.3);
+}
+
+.btn.primary {
+  background: var(--ochre);
+  border-color: var(--ochre);
+  color: var(--ink, #0d0d0b);
+  font-weight: 600;
+}
+
+.btn.primary:hover {
+  background: #c49b72;
+  border-color: #c49b72;
 }
 
 .meta {
   font-family: var(--font-mono);
   font-size: 11px;
   color: var(--whisper);
-  margin-top: 72px;
+  margin-top: 24px;
 }
 
 @media (max-width: 768px) {
   .hero {
-    padding: 60px 24px;
+    padding: 60px 24px 36px;
   }
 
-  .name {
-    font-size: 36px;
+  .logo {
+    right: -10%;
+    height: 60%;
+    opacity: 0.09;
   }
 
   .brushMark {
@@ -80,13 +126,28 @@
     margin-bottom: 28px;
   }
 
+  .name {
+    font-size: 36px;
+  }
+
   .role {
     font-size: 11px;
     letter-spacing: 3px;
-    margin-bottom: 36px;
+  }
+
+  .nav {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .btn {
+    padding: 16px 0;
+    width: 100%;
+    font-size: 15px;
   }
 
   .meta {
-    margin-top: 48px;
+    margin-top: 16px;
+    text-align: center;
   }
 }

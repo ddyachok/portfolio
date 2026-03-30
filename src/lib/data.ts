@@ -8,7 +8,7 @@ export const BLOG_POSTS: BlogPost[] = [
     slug: 'dynamic-localization-in-ios',
     excerpt: 'How we built real-time English/Arabic switching in Bankee, and the RTL bugs that nearly broke us.',
     content: '', // Will be loaded separately
-    cover_image_url: null,
+    cover_image_url: 'https://res.cloudinary.com/dqhdphy0b/image/upload/v1774866732/blog/arabic-hero.jpg',
     tags: ['SwiftUI', 'Localization', 'RTL'],
     skill_level: 'intermediate',
     reading_time_minutes: 12,
