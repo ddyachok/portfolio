@@ -79,28 +79,30 @@
   font-weight: 400;
   color: var(--aged-white);
   text-decoration: none;
-  padding: 14px 36px;
-  border: 1px solid rgba(232, 228, 220, 0.15);
-  border-radius: 8px;
-  letter-spacing: 1px;
+  padding: 12px 0;
+  border: none;
+  border-bottom: 1px solid rgba(232, 228, 220, 0.3);
+  border-radius: 0;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
   transition: border-color 0.3s, background 0.3s, color 0.3s;
   text-align: center;
 }
 
 .btn:hover {
-  border-color: rgba(232, 228, 220, 0.3);
+  border-bottom-color: rgba(232, 228, 220, 0.6);
 }
 
 .btn.primary {
   background: var(--ochre);
-  border-color: var(--ochre);
+  border: none;
   color: var(--ink, #0d0d0b);
   font-weight: 600;
+  padding: 14px 36px;
 }
 
 .btn.primary:hover {
   background: #c49b72;
-  border-color: #c49b72;
 }
 
 .meta {

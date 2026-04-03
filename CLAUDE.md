@@ -15,6 +15,19 @@
 The visual identity is dark, minimal, textured — inspired by Japanese wabi-sabi aesthetics.
 Imperfection is intentional. Avoid anything that looks generic/corporate/AI-generated.
 
+### Moodboard Direction
+
+All design decisions should reference the moodboard aesthetic (saved in conversation history as attached images). Key traits:
+
+- **Dark, industrial, raw textures** — gritty, not polished
+- **Cyberpunk & Japanese typography influences** — sharp, intentional
+- **High contrast monochrome** with selective warm accent (ochre)
+- **Sharp geometry** — no rounded corners on interactive elements (buttons, cards, inputs)
+- **Brutalist minimalism** — strip away decoration, let typography and negative space do the work
+- **Organic imperfection** — stone, grain, weathered surfaces over clean gradients
+
+When in doubt, choose the rawer, more stripped-down option. If it looks like it could be on a SaaS landing page, it's wrong.
+
 ### Colors
 
 | Token          | Value                          | Usage                        |
@@ -58,10 +71,11 @@ Logo on Home page: positioned absolute, right side, rotated 90°, opacity 9–14
 
 ### Buttons
 
-- **Primary:** `background: var(--ochre)`, `color: var(--ink)`, `font-weight: 600`, `border-radius: 8px`
-- **Secondary:** `border: 1px solid rgba(232, 228, 220, 0.15)`, `color: var(--aged-white)`, transparent bg
-- **Padding:** `14px 36px` desktop, `16px 0` + `width: 100%` mobile
-- **Mobile nav:** buttons stack vertically, full-width, for easy thumb reach
+- **Primary:** `background: var(--ochre)`, `color: var(--ink)`, `font-weight: 600`, `border-radius: 0`, `padding: 14px 36px`
+- **Secondary:** no border except `border-bottom: 1px solid rgba(232, 228, 220, 0.3)`, `color: var(--aged-white)`, transparent bg, `padding: 12px 0`
+- **Shared:** `text-transform: uppercase`, `letter-spacing: 2.5px`, `border-radius: 0`
+- **Mobile nav:** buttons stack vertically, full-width, `padding: 16px 0`
+- **Style rule:** No rounded corners on buttons — sharp, brutalist geometry per moodboard
 
 ### Layout Patterns
 
