@@ -13,21 +13,22 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   const token = authHeader?.startsWith('Bearer ') ? authHeader.slice(7) : null
 
   if (!token) {
-    return res.status(401).json({ error: 'Unauthorized' })
+    return res.status(401).json({ error: 'Unauthorized', reason: 'no_token' })
   }
 
   // Validate session with Neon Auth
-  const authRes = await fetch(`${NEON_AUTH_BASE_URL}/api/auth/get-session`, {
+  const authRes = await fetch(`${NEON_AUTH_BASE_URL}/get-session`, {
     headers: { Authorization: `Bearer ${token}` },
   })
 
   if (!authRes.ok) {
-    return res.status(401).json({ error: 'Unauthorized' })
+    const text = await authRes.text()
+    return res.status(401).json({ error: 'Unauthorized', reason: 'auth_failed', status: authRes.status, detail: text })
   }
 
   const session = await authRes.json()
   if (!session?.user) {
-    return res.status(401).json({ error: 'Unauthorized' })
+    return res.status(401).json({ error: 'Unauthorized', reason: 'no_user', session })
   }
 
   // Proxy GraphQL request to Hasura with admin secret
