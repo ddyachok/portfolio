@@ -12,6 +12,7 @@ export const GET_PUBLISHED_POSTS = `
       skill_level
       reading_time_minutes
       published_at
+      cover_image_url
     }
   }
 `
