@@ -4,7 +4,6 @@ import { createServer, IncomingMessage, ServerResponse } from 'node:http'
 
 const PORT = 3001
 
-const NEON_AUTH_BASE_URL = process.env.NEON_AUTH_BASE_URL!
 const HASURA_GRAPHQL_URL = process.env.HASURA_GRAPHQL_URL!
 const HASURA_ADMIN_SECRET = process.env.HASURA_ADMIN_SECRET!
 
@@ -28,6 +27,33 @@ function json(res: ServerResponse, status: number, body: unknown) {
   res.end(payload)
 }
 
+interface JwtPayload {
+  sub?: string
+  iss?: string
+  exp?: number
+  [key: string]: unknown
+}
+
+function decodeJwtPayload(token: string): JwtPayload | null {
+  try {
+    const parts = token.split('.')
+    if (parts.length !== 3) return null
+    const payload = parts[1].replace(/-/g, '+').replace(/_/g, '/')
+    const json = Buffer.from(payload, 'base64').toString('utf8')
+    return JSON.parse(json) as JwtPayload
+  } catch {
+    return null
+  }
+}
+
+function isTokenValid(token: string): boolean {
+  const payload = decodeJwtPayload(token)
+  if (!payload) return false
+  if (payload.exp && payload.exp * 1000 < Date.now()) return false
+  if (!payload.iss || !payload.iss.includes('neonauth')) return false
+  return true
+}
+
 createServer(async (req, res) => {
   // CORS preflight
   if (req.method === 'OPTIONS') {
@@ -47,16 +73,11 @@ createServer(async (req, res) => {
     ? req.headers.authorization.slice(7)
     : null
 
-  if (!token) return json(res, 401, { error: 'Unauthorized' })
+  if (!token || !isTokenValid(token)) {
+    return json(res, 401, { error: 'Unauthorized' })
+  }
 
   try {
-    const authRes = await fetch(`${NEON_AUTH_BASE_URL}/get-session`, {
-      headers: { Authorization: `Bearer ${token}` },
-    })
-    if (!authRes.ok) return json(res, 401, { error: 'Unauthorized' })
-    const session = await authRes.json() as { user?: unknown }
-    if (!session?.user) return json(res, 401, { error: 'Unauthorized' })
-
     const body = await readBody(req)
     const hasuraRes = await fetch(HASURA_GRAPHQL_URL, {
       method: 'POST',

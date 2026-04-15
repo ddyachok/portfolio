@@ -1,14 +1,22 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { authClient } from '../../lib/neonAuth'
 import styles from './AdminLogin.module.css'
 
 export default function AdminLogin() {
   const navigate = useNavigate()
+  const session = authClient.useSession()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
+
+  // Redirect if already authenticated
+  useEffect(() => {
+    if (!session.isPending && session.data?.user) {
+      navigate('/admin/posts', { replace: true })
+    }
+  }, [session.isPending, session.data, navigate])
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -22,7 +30,9 @@ export default function AdminLogin() {
       return
     }
 
-    navigate('/admin/posts')
+    // Wait for session to propagate before navigating
+    await authClient.getSession()
+    navigate('/admin/posts', { replace: true })
   }
 
   return (
