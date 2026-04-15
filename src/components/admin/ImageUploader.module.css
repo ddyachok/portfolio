@@ -1,0 +1,56 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.zone {
+  border: 1px dashed rgba(255, 255, 255, 0.1);
+  padding: 20px 16px;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  text-align: center;
+}
+
+.zone:hover,
+.zone.dragging {
+  border-color: var(--ochre);
+  background: rgba(180, 140, 100, 0.04);
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--faded);
+  letter-spacing: 1px;
+}
+
+.status {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ochre);
+  letter-spacing: 1px;
+}
+
+.hiddenInput {
+  display: none;
+}
+
+.error {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  color: rgba(180, 110, 100, 0.8);
+}
+
+.preview {
+  margin-top: 4px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.preview img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  display: block;
+}
