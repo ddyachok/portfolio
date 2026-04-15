@@ -50,7 +50,7 @@ createServer(async (req, res) => {
   if (!token) return json(res, 401, { error: 'Unauthorized' })
 
   try {
-    const authRes = await fetch(`${NEON_AUTH_BASE_URL}/api/auth/get-session`, {
+    const authRes = await fetch(`${NEON_AUTH_BASE_URL}/get-session`, {
       headers: { Authorization: `Bearer ${token}` },
     })
     if (!authRes.ok) return json(res, 401, { error: 'Unauthorized' })

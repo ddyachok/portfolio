@@ -17,7 +17,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   // Validate session with Neon Auth
-  const authRes = await fetch(`${NEON_AUTH_BASE_URL}/api/auth/get-session`, {
+  const authRes = await fetch(`${NEON_AUTH_BASE_URL}/get-session`, {
     headers: { Authorization: `Bearer ${token}` },
   })
 
