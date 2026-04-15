@@ -28,7 +28,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   const session = await authRes.json()
   if (!session?.user) {
-    return res.status(401).json({ error: 'Unauthorized', reason: 'no_user', session })
+    return res.status(401).json({
+      error: 'Unauthorized',
+      reason: 'no_user',
+      session,
+      tokenPrefix: token.slice(0, 8),
+      tokenLength: token.length,
+    })
   }
 
   // Proxy GraphQL request to Hasura with admin secret
