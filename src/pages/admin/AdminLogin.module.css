@@ -1,0 +1,116 @@
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(170deg, #0d0d0b 0%, #100f0a 50%, #0d0c08 100%);
+}
+
+.card {
+  width: 100%;
+  max-width: 360px;
+  padding: 0 24px;
+}
+
+.brushMark {
+  width: 3px;
+  height: 64px;
+  background: linear-gradient(180deg, rgba(180, 140, 100, 0.4), rgba(180, 140, 100, 0));
+  margin-bottom: 28px;
+  border-radius: 2px;
+}
+
+.title {
+  font-family: var(--font-serif);
+  font-weight: 200;
+  font-size: 36px;
+  color: var(--aged-white);
+  letter-spacing: -0.5px;
+  margin-bottom: 40px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--faded);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(232, 228, 220, 0.2);
+  color: var(--aged-white);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  padding: 10px 0;
+  outline: none;
+  transition: border-color 0.2s;
+  border-radius: 0;
+}
+
+.input:focus {
+  border-bottom-color: rgba(232, 228, 220, 0.5);
+}
+
+.error {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: var(--stone);
+}
+
+.btn {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--ochre);
+  border: none;
+  border-radius: 0;
+  padding: 14px 36px;
+  cursor: pointer;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  align-self: flex-start;
+  transition: background 0.2s;
+}
+
+.btn:hover:not(:disabled) {
+  background: #c49b72;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.modeToggle {
+  margin-top: 24px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--stone);
+  background: none;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  padding: 0;
+  transition: color 0.2s;
+}
+
+.modeToggle:hover {
+  color: var(--faded);
+}
