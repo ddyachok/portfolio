@@ -215,6 +215,42 @@
   line-height: 1.7;
 }
 
+/* Tables */
+.article table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-family: var(--font-sans);
+  font-size: 13px;
+}
+
+.article thead {
+  border-bottom: 1px solid rgba(180, 140, 100, 0.2);
+}
+
+.article th {
+  font-weight: 600;
+  color: rgba(232, 228, 220, 0.8);
+  text-align: left;
+  padding: 10px 16px;
+  white-space: nowrap;
+}
+
+.article td {
+  color: rgba(232, 228, 220, 0.55);
+  padding: 10px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  line-height: 1.6;
+}
+
+.article tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.article td strong {
+  color: var(--ochre);
+}
+
 /* Syntax highlighting */
 .article pre :global(.hljs-keyword) { color: var(--ochre); }
 .article pre :global(.hljs-string) { color: #8a9a6a; }
